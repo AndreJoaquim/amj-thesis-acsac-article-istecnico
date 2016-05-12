@@ -1,0 +1,11 @@
+\begin{thebibliography}{1}
+
+\bibitem{IPsec}
+S.~Kent and K.~Seo.
+\newblock {Security Architecture for the Internet Protocol (RFC 4301)}, 2005.
+
+\bibitem{SSH}
+T.~Ylonen and C.~Lonvick.
+\newblock {The Secure Shell (SSH) Protocol Architecture (RFC 4251)}, 2006.
+
+\end{thebibliography}

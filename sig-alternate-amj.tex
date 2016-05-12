@@ -165,9 +165,10 @@ Miguel Correia\\
 
 \maketitle
 \begin{abstract}
-We present superTLS, a diverse and redundant vulnerability-tolerant channel for privacy in cloud.
+We present superTLS, a diverse and redundant vulnerability-tolerant secure communication channel for privacy in cloud.
 There have always been concerns about the strength of some of encryption mechanisms used in SSL/TLS channels and some of them were regarded as insecure at some point in time.
-superTLS is our solution to mitigate the problem of secure communication channels being vulnerable to attacks due to unexpected vulnerabilities in its encryption mechanisms. superTLS' premise consists its mechanisms are vulnerable. superTLS relies on a combination of $k$ mechanisms/cipher suites, with $k$ being the diversity factor and $k > 1$.
+superTLS is our solution to mitigate the problem of secure communication channels being vulnerable to attacks due to unexpected vulnerabilities in its encryption mechanisms. It is based on diversity and redundancy of cryptographic mechanisms and certificates to provide a secure communication channel even when one or more mechanisms are regarded vulnerable.
+superTLS relies on a combination of $k$ mechanisms/cipher suites, with $k$ being the diversity factor and $k > 1$.
 Even when $k - 1$ mechanisms are regarded as insecure or considered vulnerable, superTLS relies on the remaining secure, diverse and redundant mechanism to maintain the channel secure.
 We evaluated our channel by comparing it to a normal TLS channel and TLS-over-TLS.
 \end{abstract}
@@ -180,34 +181,39 @@ We evaluated our channel by comparing it to a normal TLS channel and TLS-over-TL
 %
 \begin{CCSXML}
 <ccs2012>
- <concept>
-  <concept_id>10010520.10010553.10010562</concept_id>
-  <concept_desc>Computer systems organization~Embedded systems</concept_desc>
-  <concept_significance>500</concept_significance>
- </concept>
- <concept>
-  <concept_id>10010520.10010575.10010755</concept_id>
-  <concept_desc>Computer systems organization~Redundancy</concept_desc>
-  <concept_significance>300</concept_significance>
- </concept>
- <concept>
-  <concept_id>10010520.10010553.10010554</concept_id>
-  <concept_desc>Computer systems organization~Robotics</concept_desc>
-  <concept_significance>100</concept_significance>
- </concept>
- <concept>
-  <concept_id>10003033.10003083.10003095</concept_id>
-  <concept_desc>Networks~Network reliability</concept_desc>
-  <concept_significance>100</concept_significance>
- </concept>
-</ccs2012>  
+<concept>
+<concept_id>10003033.10003039.10003051</concept_id>
+<concept_desc>Networks~Application layer protocols</concept_desc>
+<concept_significance>500</concept_significance>
+</concept>
+<concept>
+<concept_id>10003033.10003083.10003014</concept_id>
+<concept_desc>Networks~Network security</concept_desc>
+<concept_significance>300</concept_significance>
+</concept>
+<concept>
+<concept_id>10010520.10010575.10010755</concept_id>
+<concept_desc>Computer systems organization~Redundancy</concept_desc>
+<concept_significance>500</concept_significance>
+</concept>
+<concept>
+<concept_id>10002978.10003014.10003015</concept_id>
+<concept_desc>Security and privacy~Security protocols</concept_desc>
+<concept_significance>300</concept_significance>
+</concept>
+<concept>
+<concept_id>10002978.10002979.10002982</concept_id>
+<concept_desc>Security and privacy~Symmetric cryptography and hash functions</concept_desc>
+<concept_significance>100</concept_significance>
+</concept>
+</ccs2012>
 \end{CCSXML}
 
-\ccsdesc[500]{Computer systems organization~Embedded systems}
-\ccsdesc[300]{Computer systems organization~Redundancy}
-\ccsdesc{Computer systems organization~Robotics}
-\ccsdesc[100]{Networks~Network reliability}
-
+\ccsdesc[500]{Networks~Application layer protocols}
+\ccsdesc[300]{Networks~Network security}
+\ccsdesc[500]{Computer systems organization~Redundancy}
+\ccsdesc[300]{Security and privacy~Security protocols}
+\ccsdesc[100]{Security and privacy~Symmetric cryptography and hash functions}
 
 %
 % End generated code
@@ -221,40 +227,43 @@ We evaluated our channel by comparing it to a normal TLS channel and TLS-over-TL
 % We no longer use \terms command
 %\terms{Theory}
 
-\keywords{Diversity; Redundancy; Security; Secure channels}
+\keywords{Secure communication channels; Diversity; Redundancy; TLS; Vulnerability-Tolerance}
 
 \section{Introduction}
-%The \textit{proceedings} are the records of a conference.
-%ACM seeks to give these conference by-products a uniform,
-%high-quality appearance.  To do this, ACM has some rigid
-%requirements for the format of the proceedings documents: there
-%is a specified format (balanced  double columns), a specified
-%set of fonts (Arial or Helvetica and Times Roman) in
-%certain specified sizes (for instance, 9 point for body copy),
-%a specified live area (18 $\times$ 23.5 cm [7" $\times$ 9.25"]) centered on
-%the page, specified size of margins (1.9 cm [0.75"]) top, (2.54 cm [1"]) bottom
-%and (1.9 cm [.75"]) left and right; specified column width
-%(8.45 cm [3.33"]) and gutter size (.83 cm [.33"]).
-%
-%The good news is, with only a handful of manual
-%settings\footnote{Two of these, the {\texttt{\char'134 numberofauthors}}
-%and {\texttt{\char'134 alignauthor}} commands, you have
-%already used; another, {\texttt{\char'134 balancecolumns}}, will
-%be used in your very last run of \LaTeX\ to ensure
-%balanced column heights on the last page.}, the \LaTeX\ document
-%class file handles all of this for you.
-%
-%The remainder of this document is concerned with showing, in
-%the context of an ``actual'' document, the \LaTeX\ commands
-%specifically available for denoting the structure of a
-%proceedings paper, rather than with giving rigorous descriptions
-%or explanations of such commands.
+
+\textit{Secure communication channels} are mechanisms that allow two entities to exchange messages or information securely in the Internet.
+A secure communication channel has three properties: \textit{authenticity}, \textit{confidentiality}, and \textit{integrity}. Regarding authenticity, in an authentic channel, the messages can not be tampered. Regarding confidentiality, in a confidential channel, only the original receiver of a message is able to read that message. Regarding integrity, no one can impersonate another. The information regarding the original sender of a message can not be changed.
+Several secure communication channels exist nowadays, such as TLS, IPsec or SSH. Each of these examples is used for a different purpose, but with the same finality of securing the communication.
+
+\textbf{Transport Layer Security (TLS)} is a secure communication channel widely used. Originally called Secure Sockets Layer (SSL), its first released version was SSL 2.0, released in 1995. SSL 3.0 was released in 1996, bringing improvements to its predecessor such as allowing forward secrecy and supporting SHA-1.
+Defined in 1999, TLS did not introduce major changes. Although, the changes introduced were enough to make TLS 1.0 incompatible with SSL 3.0. In order to grant compatibility, a TLS 1.0 connection can be downgraded to SSL 3.0, which brought security issues. TLS 1.1 and TLS 1.2 are upgrades which brought some improvements such as mitigating CBC (cipher block chaining) attacks and supporting more block cipher modes of operation to use with AES.
+TLS is divided in two sub-protocols, Handshake and Record, constituted by several mechanisms each.
+The Handshake protocol is used to establish or re-establish a communication between a server and client. The Record protocol is used to process the sent and received messages.
+
+\textbf{Internet Protocol Security (IPsec)} is an Internet layer protocol that protects the communication at a lower level than SSL/TLS, which operates at the Application layer \cite{IPsec}.
+
+\textbf{Secure Shell (SSH)} is an Application layer protocol, such as SSL/TLS. SSH is a protocol used for secure remote login and other secure network services over an insecure network \cite{SSH}.
+
+A secure communication channel becomes insecure when a vulnerability is discovered. Vulnerabilities may concern the protocol's specification, cryptographic mechanisms used by the protocol or specific implementations of the protocol. Many vulnerabilities have been discovered in SSL/TLS originating new versions of the protocol with renewed security aspects such as deprecating cryptographic mechanisms or enforcing security measures.
+Concrete implementations of SSL/TLS have been also considered vulnerable by having implementation details causing a breach of security and affecting devices worldwide.
 
 \begin{itemize}
 	\item {Description}
+\end{itemize}
+
+superTLS is a secure communication channel tolerant to vulnerabilities which does not rely on only one cryptographic mechanism. It is our belief that, in order to solve the problem, \textit{diversity} and \textit{redundancy} are helpful and can help mitigate the number of vulnerabilities.
+Diversity and redundancy consist in using two or more different mechanisms with the same objective. For example, MD5 and SHA-3 are both hash functions used to generate digests. In a real case, where MD5 has become insecure, i.e., it is proved to have collisions, our diverse secure communication channel has other mechanism, SHA-3, to keep the communication secure. Using diversity and redundancy, when a mechanism is targeted by an attack, another mechanism is able to maintain the security and availability of the communication.
+
+\begin{itemize}
 	\item The contributions of this paper are: x,y,z
+\end{itemize}
+
+\begin{itemize}
 	\item The rest of the paper is organized as followed: z,y,x
 \end{itemize}
+
+The rest of the document is organized in the following way: Section 3 presents the related work. Section 4 presents the architecture of the proposed solution. Section 5 presents how the solution is going to be evaluated. Section 6 presents the scheduling of the future work. Section 7 presents some conclusions.
+
 
 \section{Related Work}
 
@@ -267,6 +276,11 @@ What are the current issues/vulnerabilities in the existing systems/mechanisms?
 \end{itemize}
 
 \section{SuperTLS/Architecture}
+
+\begin{itemize}
+\item Images updated from the thesis' project
+\item Explain second cipher suite [X-Factor] audition and selection
+\end{itemize}
 
 \section{Experimental evaluation}
 
@@ -290,6 +304,12 @@ examples only.
 %authors would like to thank Gerald Murray of ACM for
 %his help in codifying this \textit{Author's Guide}
 %and the \textbf{.cls} and \textbf{.tex} files that it describes.
+
+\section{Future Work}
+
+\begin{itemize}
+\item Usar duas libraries e usar funções duma e doutra
+\end{itemize}
 
 %
 % The following two commands are all you need in the
