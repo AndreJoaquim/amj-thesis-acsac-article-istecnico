@@ -131,19 +131,16 @@
 \alignauthor
 Andr\'e Joaquim\\
        \affaddr{INESC-ID, Instituto Superior T\'ecnico, Universidade de Lisboa}\\
-       \affaddr{R. Alves Redol 9, 1000-029}\\
        \affaddr{Lisbon, Portugal}\\
 % 2nd. author
 \alignauthor
 Miguel L. Pardal\\
        \affaddr{INESC-ID, Instituto Superior T\'ecnico, Universidade de Lisboa}\\
-       \affaddr{R. Alves Redol 9, 1000-029}\\
        \affaddr{Lisbon, Portugal}\\
 % 3rd. author
 \alignauthor
 Miguel Correia\\
        \affaddr{INESC-ID, Instituto Superior T\'ecnico, Universidade de Lisboa}\\
-       \affaddr{R. Alves Redol 9, 1000-029}\\
        \affaddr{Lisbon, Portugal}\\
        %
        \end{tabular}
@@ -170,7 +167,7 @@ There have always been concerns about the strength of some of encryption mechani
 superTLS is our solution to mitigate the problem of secure communication channels being vulnerable to attacks due to unexpected vulnerabilities in its encryption mechanisms. It is based on diversity and redundancy of cryptographic mechanisms and certificates to provide a secure communication channel even when one or more mechanisms are regarded vulnerable.
 superTLS relies on a combination of $k$ mechanisms/cipher suites, with $k$ being the diversity factor and $k > 1$.
 Even when $k - 1$ mechanisms are regarded as insecure or considered vulnerable, superTLS relies on the remaining secure, diverse and redundant mechanism to maintain the channel secure.
-We evaluated our channel by comparing it to a normal TLS channel and TLS-over-TLS.
+We evaluated our channel by comparing it to a normal TLS channel.
 \end{abstract}
 
 
@@ -251,34 +248,70 @@ Concrete implementations of SSL/TLS have been also considered vulnerable by havi
 	\item {Description}
 \end{itemize}
 
-superTLS is a secure communication channel tolerant to vulnerabilities which does not rely on only one cryptographic mechanism. It is our belief that, in order to solve the problem, \textit{diversity} and \textit{redundancy} are helpful and can help mitigate the number of vulnerabilities.
-Diversity and redundancy consist in using two or more different mechanisms with the same objective. For example, MD5 and SHA-3 are both hash functions used to generate digests. In a real case, where MD5 has become insecure, i.e., it is proved to have collisions, our diverse secure communication channel has other mechanism, SHA-3, to keep the communication secure. Using diversity and redundancy, when a mechanism is targeted by an attack, another mechanism is able to maintain the security and availability of the communication.
+superTLS is a secure communication channel tolerant to vulnerabilities which does not rely on only one cryptographic mechanism. It is our belief that \textit{diversity} and \textit{redundancy} of cryptographic mechanisms and certificates can help mitigate existent vulnerabilities.
+In our project's context, diversity and redundancy consist in using two or more different mechanisms/cipher suites with the same objective. For example, MD5 and SHA-3 are both hash functions used to generate digests. In a real case, where MD5 has become insecure, our diverse and redundant secure communication channel relies upon SHA-3 to keep the communication secure. Using diversity and redundancy of cryptographic mechanisms, when a one of those mechanisms is successfully attacked, another mechanism is able to maintain the security and availability of the communication.
 
 \begin{itemize}
 	\item The contributions of this paper are: x,y,z
 \end{itemize}
 
+Using diversity and redundancy, superTLS aims at increasing security over current secure communication channels.
+Guaranteeing a diversity factor $k > 1$, which implies having $k$ different cipher suites with optimally $k$ different mechanisms for each of the following:
+\begin{itemize}
+\item Key exchange;
+\item Authentication;
+\item Encryption;
+\item {MAC: HMAC/AEAD (used for data integrity). \textbf{NOTE: In TLS, HMAC is used for CBC and stream cipher. AEAD is used for GCM and CCM (MtE)}}
+\end{itemize}
+
+Although SSL/TLS supporting strong encryption mechanisms, such as AES and RSA, there are other factors than mathematical complexity that can contribute to vulnerabilities.
+Diversifying encryption mechanisms includes diversifying certificates and consequently keys (public, private, shared).
+Diversity of certificates is a direct consequence of diversifying encryption mechanisms due to the fact that each certificate is related to an authentication and key exchange mechanism.
+
+One of the challenges of this project is to study if diversity and redundancy have a real impact on increasing security of a communication channel while having reasonable performance and time-related costs which required a precise measurement of our solution.
+
 \begin{itemize}
 	\item The rest of the paper is organized as followed: z,y,x
 \end{itemize}
 
-The rest of the document is organized in the following way: Section 3 presents the related work. Section 4 presents the architecture of the proposed solution. Section 5 presents how the solution is going to be evaluated. Section 6 presents the scheduling of the future work. Section 7 presents some conclusions.
+The rest of the document is organized in the following way: Section 2 presents the related work. Section 3 presents the architecture of the proposed solution. Section 4 presents the evaluation. Section 5 presents some conclusions.
 
 
 \section{Related Work}
+\label{sec-related-work}
 
 What are the current issues/vulnerabilities in the existing systems/mechanisms? 
 
 \begin{itemize}
 	\item{Brief TLS}
+\end{itemize}
+
+
+\begin{itemize}
 	\item{Mechanisms vulnerabilities}
 	\item{Brief combining mechanisms OR brief diversity}
 \end{itemize}
 
-\section{SuperTLS/Architecture}
+\section{Overview}
+
+SuperTLS is a diverse and redundant secure communication channel. It aims at increasing security using diverse and redundant cryptographic mechanisms and certificates, and it is based on the TLS 1.2 protocol. Although being an independent secure communication channel, superTLS is compatible with TLS 1.2 but does not support all of TLS 1.2 cipher suites. (such as the ones containing PSK and SRP mechanisms)
+
+This project aims to solve the main problem originated by having only one cipher suite negotiated between client and server.
+When one of the cipher suite's mechanisms becomes insecure, the secure communication channels using that cipher suite may become vulnerable.
+Unlike TLS communication channels, superTLS does not rely in only one cipher suite.
+Using superTLS, more than one cipher suite is negotiated between client and server and, consequently, more than one encryption mechanism will be used for each purpose -- key exchange, authentication, encryption and MAC.
+
+Although most cipher suites used by TLS 1.2 are regarded as secure, as stated in Section \ref{sec-related-work}, there is not any assurance that a governmental agency or a company with high computational power and financial resources is not able to break one of the encryption mechanisms in the near future.
+
+\subsection{Protocol Specification}
 
 \begin{itemize}
 \item Images updated from the thesis' project
+\end{itemize}
+
+\subsection{Implementation}
+
+\begin{itemize}
 \item Explain second cipher suite [X-Factor] audition and selection
 \end{itemize}
 
@@ -308,7 +341,7 @@ examples only.
 \section{Future Work}
 
 \begin{itemize}
-\item Usar duas libraries e usar funções duma e doutra
+\item Usar duas libraries compativeis e usar funcoes duma e doutra
 \end{itemize}
 
 %
