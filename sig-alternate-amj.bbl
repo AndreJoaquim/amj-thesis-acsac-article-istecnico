@@ -1,5 +1,12 @@
 \begin{thebibliography}{1}
 
+\bibitem{CarvalhoThesis14}
+R.~Carvalho.
+\newblock {Authentication Security through Diversity and Redundancy for Cloud
+  Computing}.
+\newblock Master's thesis, Instituto Superior T\'ecnico, Lisbon, Portugal,
+  2014.
+
 \bibitem{IPsec}
 S.~Kent and K.~Seo.
 \newblock {Security Architecture for the Internet Protocol (RFC 4301)}, 2005.

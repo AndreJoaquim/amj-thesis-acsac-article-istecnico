@@ -81,7 +81,7 @@
 %\crdata{0-12345-67-8/90/01}  % Allows default copyright data (0-89791-88-6/97/05) to be over-ridden - IF NEED BE.
 % --- End of Author Metadata ---
 
-\title{superTLS: A Diverse and Redundant Secure Communication Channel for Privacy in Cloud}
+\title{SuperTLS: A Diverse and Redundant Secure Communication Channel for Privacy in Cloud}
 %\subtitle{[Extended Abstract]
 %\titlenote{A full version of this paper is available as
 %\textit{Author's Guide to Preparing ACM SIG Proceedings Using
@@ -164,10 +164,10 @@ Miguel Correia\\
 \begin{abstract}
 We present superTLS, a diverse and redundant vulnerability-tolerant secure communication channel for privacy in cloud.
 There have always been concerns about the strength of some of encryption mechanisms used in SSL/TLS channels and some of them were regarded as insecure at some point in time.
-superTLS is our solution to mitigate the problem of secure communication channels being vulnerable to attacks due to unexpected vulnerabilities in its encryption mechanisms. It is based on diversity and redundancy of cryptographic mechanisms and certificates to provide a secure communication channel even when one or more mechanisms are regarded vulnerable.
-superTLS relies on a combination of $k$ mechanisms/cipher suites, with $k$ being the diversity factor and $k > 1$.
-Even when $k - 1$ mechanisms are regarded as insecure or considered vulnerable, superTLS relies on the remaining secure, diverse and redundant mechanism to maintain the channel secure.
-We evaluated our channel by comparing it to a normal TLS channel.
+SuperTLS is our solution to mitigate the problem of secure communication channels being vulnerable to attacks due to unexpected vulnerabilities in its encryption mechanisms. It is based on diversity and redundancy of cryptographic mechanisms and certificates to provide a secure communication channel even when one or more mechanisms are regarded vulnerable.
+SuperTLS relies on a combination of $k$ mechanisms/cipher suites, with $k$ being the diversity factor and $k > 1$.
+Even when $k - 1$ mechanisms are regarded as insecure or considered vulnerable, SuperTLS relies on the remaining secure, diverse and redundant mechanism to maintain the channel secure.
+We evaluated the performance of our channel by comparing it to a normal TLS channel.
 \end{abstract}
 
 
@@ -232,30 +232,34 @@ We evaluated our channel by comparing it to a normal TLS channel.
 A secure communication channel has three properties: \textit{authenticity}, \textit{confidentiality}, and \textit{integrity}. Regarding authenticity, in an authentic channel, the messages can not be tampered. Regarding confidentiality, in a confidential channel, only the original receiver of a message is able to read that message. Regarding integrity, no one can impersonate another. The information regarding the original sender of a message can not be changed.
 Several secure communication channels exist nowadays, such as TLS, IPsec or SSH. Each of these examples is used for a different purpose, but with the same finality of securing the communication.
 
-\textbf{Transport Layer Security (TLS)} is a secure communication channel widely used. Originally called Secure Sockets Layer (SSL), its first released version was SSL 2.0, released in 1995. SSL 3.0 was released in 1996, bringing improvements to its predecessor such as allowing forward secrecy and supporting SHA-1.
+\textit{Transport Layer Security (TLS)} is a secure communication channel widely used. Originally called Secure Sockets Layer (SSL), its first released version was SSL 2.0, released in 1995. SSL 3.0 was released in 1996, bringing improvements to its predecessor such as allowing forward secrecy and supporting SHA-1.
 Defined in 1999, TLS did not introduce major changes. Although, the changes introduced were enough to make TLS 1.0 incompatible with SSL 3.0. In order to grant compatibility, a TLS 1.0 connection can be downgraded to SSL 3.0, which brought security issues. TLS 1.1 and TLS 1.2 are upgrades which brought some improvements such as mitigating CBC (cipher block chaining) attacks and supporting more block cipher modes of operation to use with AES.
 TLS is divided in two sub-protocols, Handshake and Record, constituted by several mechanisms each.
 The Handshake protocol is used to establish or re-establish a communication between a server and client. The Record protocol is used to process the sent and received messages.
 
-\textbf{Internet Protocol Security (IPsec)} is an Internet layer protocol that protects the communication at a lower level than SSL/TLS, which operates at the Application layer \cite{IPsec}.
+\textit{Internet Protocol Security (IPsec)} is an Internet layer protocol that protects the communication at a lower level than SSL/TLS, which operates at the Application layer \cite{IPsec}.
 
-\textbf{Secure Shell (SSH)} is an Application layer protocol, such as SSL/TLS. SSH is a protocol used for secure remote login and other secure network services over an insecure network \cite{SSH}.
+\textit{Secure Shell (SSH)} is an Application layer protocol, such as SSL/TLS. SSH is a protocol used for secure remote login and other secure network services over an insecure network \cite{SSH}.
 
 A secure communication channel becomes insecure when a vulnerability is discovered. Vulnerabilities may concern the protocol's specification, cryptographic mechanisms used by the protocol or specific implementations of the protocol. Many vulnerabilities have been discovered in SSL/TLS originating new versions of the protocol with renewed security aspects such as deprecating cryptographic mechanisms or enforcing security measures.
 Concrete implementations of SSL/TLS have been also considered vulnerable by having implementation details causing a breach of security and affecting devices worldwide.
 
 \begin{itemize}
+	\item Maybe talk a little about the project's context -- the cloud and communication between clouds
+\end{itemize}
+
+\begin{itemize}
 	\item {Description}
 \end{itemize}
 
-superTLS is a secure communication channel tolerant to vulnerabilities which does not rely on only one cryptographic mechanism. It is our belief that \textit{diversity} and \textit{redundancy} of cryptographic mechanisms and certificates can help mitigate existent vulnerabilities.
+SuperTLS is a secure communication channel tolerant to vulnerabilities which does not rely on only one cryptographic mechanism. It is our belief that \textit{diversity} and \textit{redundancy} of cryptographic mechanisms and certificates can help mitigate existent vulnerabilities.
 In our project's context, diversity and redundancy consist in using two or more different mechanisms/cipher suites with the same objective. For example, MD5 and SHA-3 are both hash functions used to generate digests. In a real case, where MD5 has become insecure, our diverse and redundant secure communication channel relies upon SHA-3 to keep the communication secure. Using diversity and redundancy of cryptographic mechanisms, when a one of those mechanisms is successfully attacked, another mechanism is able to maintain the security and availability of the communication.
 
 \begin{itemize}
 	\item The contributions of this paper are: x,y,z
 \end{itemize}
 
-Using diversity and redundancy, superTLS aims at increasing security over current secure communication channels.
+Using diversity and redundancy, SuperTLS aims at increasing security over current secure communication channels.
 Guaranteeing a diversity factor $k > 1$, which implies having $k$ different cipher suites with optimally $k$ different mechanisms for each of the following:
 \begin{itemize}
 \item Key exchange;
@@ -276,7 +280,6 @@ One of the challenges of this project is to study if diversity and redundancy ha
 
 The rest of the document is organized in the following way: Section 2 presents the related work. Section 3 presents the architecture of the proposed solution. Section 4 presents the evaluation. Section 5 presents some conclusions.
 
-
 \section{Related Work}
 \label{sec-related-work}
 
@@ -286,7 +289,6 @@ What are the current issues/vulnerabilities in the existing systems/mechanisms?
 	\item{Brief TLS}
 \end{itemize}
 
-
 \begin{itemize}
 	\item{Mechanisms vulnerabilities}
 	\item{Brief combining mechanisms OR brief diversity}
@@ -294,14 +296,62 @@ What are the current issues/vulnerabilities in the existing systems/mechanisms?
 
 \section{Overview}
 
-SuperTLS is a diverse and redundant secure communication channel. It aims at increasing security using diverse and redundant cryptographic mechanisms and certificates, and it is based on the TLS 1.2 protocol. Although being an independent secure communication channel, superTLS is compatible with TLS 1.2 but does not support all of TLS 1.2 cipher suites. (such as the ones containing PSK and SRP mechanisms)
+SuperTLS is a diverse and redundant secure communication channel. It aims at increasing security using diverse and redundant cryptographic mechanisms and certificates, and it is based on the TLS protocol. Although being an independent secure communication channel, SuperTLS is compatible with TLS 1.2 but does not support all of its cipher suites. (\textbf{NOTA: devia dizer isto? --}such as the ones containing PSK and SRP mechanisms)
 
-This project aims to solve the main problem originated by having only one cipher suite negotiated between client and server.
-When one of the cipher suite's mechanisms becomes insecure, the secure communication channels using that cipher suite may become vulnerable.
-Unlike TLS communication channels, superTLS does not rely in only one cipher suite.
-Using superTLS, more than one cipher suite is negotiated between client and server and, consequently, more than one encryption mechanism will be used for each purpose -- key exchange, authentication, encryption and MAC.
+This project aims to solve the main problem originated by having only one cipher suite negotiated between client and server: when one of the cipher suite's mechanisms becomes insecure, the secure communication channels using that cipher suite may become vulnerable.
+Although most cipher suites used by TLS 1.2 are regarded as secure, as stated in Section \ref{sec-related-work}, there is not any assurance that a governmental agency or a company with high computational power and financial resources is not able to break one of those cryptographic mechanisms in the near future.
 
-Although most cipher suites used by TLS 1.2 are regarded as secure, as stated in Section \ref{sec-related-work}, there is not any assurance that a governmental agency or a company with high computational power and financial resources is not able to break one of the encryption mechanisms in the near future.
+Unlike a TLS communication channel, a SuperTLS communication channel does not rely in only one cipher suite.
+SuperTLS negotiates more than one cipher suite between client and server and, consequently, more than one cryptographic mechanism will be used for each \textbf{phase/purpose} -- key exchange, authentication, encryption and MAC.
+
+Diversity and redundancy's first entry point in SuperTLS is in the SuperTLS' Handshake, where client and server negotiate $k$ cipher suites to be used in the communication, where $k$, $k\geq1$ is called the \textit{diversity factor}. In an abnormal case where the diversity factor $k = 1$, it is considered that the communication channel has no diversity nor redundancy. Nevertheless, in this case, SuperTLS works as a regular TLS 1.2 channel with one cipher suite.
+
+The strength of SuperTLS resides in the fact that, even when $(k - 1)$ cipher suites become insecure, because one of its cryptographic mechanisms is insecure, our proposal remains invulnerable. The remaining secure, diverse and redundant cipher suite ensures that the communication channel is secured by remaining invulnerable.
+
+Nevertheless, not all ciphers suites are compatible with one another. As referred in Section \ref{sec-related-work}, cipher suites must be combined in a way that security is increased. For that to happen, we want to maximize diversity.
+In order to fulfil these constraints, some research was made to determine and quantify diversity among some cryptographic mechanisms \cite{CarvalhoThesis14}.
+
+The server chooses the best combination of $k$ cipher suites according to the cipher suites server and client have available. The choice of the cipher suites might be conditioned by the certificates of both server and client.
+Diversity is measured using different metrics for hash functions or public-key cryptographic functions. Hash functions' metrics include origin, year, digest size, structure, rounds and weaknesses (collisions, second preimage and preimage).
+After comparing several hash functions using the metrics stated above, the authors concluded that the best three combinations are the following:
+\begin{itemize}
+\item {SHA-1 + SHA-3: This combination is not possible in SuperTLS. TLS 1.2 does not support SHA-3;}
+\item {SHA-1 + Whirlpool: This combination is not possible in SuperTLS. TLS 1.2 does not support Whirlpool;} 
+\item {SHA-2 + SHA-3: This combination is not possible in SuperTLS. TLS 1.2 does not support SHA-3.}
+\end{itemize}
+
+All the remaining suggested combinations cannot also be used because TLS 1.2 does not support SHA-3.
+These results have a direct impact in SuperTLS due to the fact that, being SuperTLS based on OpenSSL, and compatible with TLS 1.2, it also does not support SHA-3 nor Whirlpool. All of SuperTLS' cipher suites use either AEAD (MAC-then-Encrypt mode using a SHA-2 variant) or SHA-2 (SHA-256 or SHA-384).
+
+Having a small range of available hash functions limits the maximum diversity factor achievable concerning hash functions.
+SHA-3 is relatively recent, having been selected ad the winner of the NIST hash function competition on 2012. In a near future, it is expected that a new TLS protocol version supports SHA-3 and makes possible the use of diverse hash functions.
+
+Regarding public-key functions, the metrics used include origin, year, mathematical hard problems, perfect forward secrecy, semantic security and known attacks.
+After comparing several public-key encryption mechanisms, using the metrics stated above, the authors concluded that the best four combinations are the following:
+\begin{itemize}
+\item {DSA + RSA: This combination is possible as TLS 1.2 suports both functions for \textit{authentication}. However, TLS 1.2 specific cipher suites only support DSA with elliptic curves (ECDSA);}
+\item {DSA + Rabin-Williams: This combination is not possible. TLS 1.2 does not support Rabin-Williams;}
+\item {RSA + ECDH: This combination is possible as TLS 1.2 supports both functions for \textit{key exchange};}
+\item {RSA + ECDSA: This combination is possible as TLS 1.2 supports both functions for \textit{authentication}.}
+\end{itemize}
+
+Regarding authentication, although DSA + RSA is stated as the most diverse combination, TLS 1.2 preferred functions use ECDSA instead of DSA. Using elliptic curves results in a faster computation and lower power consumption \textbf{NOTA: encontrar referencia para isto. ver tese do ricardo. pg. 28, ultimo paragrafo.}. With that being said, the preferred combination for authentication is RSA + ECDSA.
+
+Regarding key exchange, the most diverse combination is RSA + ECDH. Although, in order to grant perfect forward secrecy, the ECDH must be employed using ephemeral keys (ECDHE). Concluding, the preferred combination for key exchange is RSA + ECDHE.
+
+The study did not presented any conclusions regarding symmetric-key encryption, such as AES. Therefore, considering the metrics employed for public-key encryption functions, and considering an additional metric -- the mode of operation -- we obtained combinations of diverse symmetric-key encryption:
+\begin{itemize}
+\item {AES256-GCM + CAMELLIA128-CBC: }
+\item {AES256-CBC + CAMELLIA128-GCM: }
+\item {AES128-GCM + CAMELLIA256-CBC: }
+\item {AES128-CBC + CAMELLIA256-GCM: }
+\end{itemize}
+
+As the cipher suites list is not very extensive, we are able to select a diverse group of $k$ cipher suites without generating a considerable amount of overhead. As the cipher suites are presented in order of preference, the first cipher suite chosen is, ideally, the first of the list.
+
+Diversity and redundancy will also be introduced in the following communication between client and server. It is our intent to use a subset of the $k$ cipher suites defined in the Handshake Protocol to cipher the messages. While performance must be taken into account, we will proceed to estimate the reasonable $k$ cipher suites and also the reasonable subset of $k$ to cipher the messages with.
+
+In terms of security, our solution must tolerate all the attacks given that at least one diverse redundant mechanism of the one attacked should not to be vulnerable that attack. On the contrary, our solution should never be vulnerable to attacks to which TLS 1.2 is not vulnerable. This fact would indicate a decrease of security.
 
 \subsection{Protocol Specification}
 
@@ -312,7 +362,15 @@ Although most cipher suites used by TLS 1.2 are regarded as secure, as stated in
 \subsection{Implementation}
 
 \begin{itemize}
+\item I started by implementing diversity in the cipher.
+\item The interface is the same as OpenSSL v1.0.2g, with the addition of SuperTLS specific functions
 \item Explain second cipher suite [X-Factor] audition and selection
+\item State my interface -- new functions (most important)
+\end{itemize}
+
+Functions:
+\begin{itemize}
+	\item{\textit{SSL\_CIPHER *ssl3\_choose\_sec\_cipher \\(SSL* s,\\ STACK\_OF(SSL\_CIPHER) *clnt,\\ STACK\_OF(SSL\_CIPHER) *srvr)}: Chooses a second cipher suite according to the second certificate and the first chosen cipher suite. This function tries to create maximum diversity.}
 \end{itemize}
 
 \section{Experimental evaluation}
@@ -357,12 +415,12 @@ examples only.
 %
 % ACM needs 'a single self-contained file'!
 %
-\section{References}
-Generated by bibtex from your ~.bib file.  Run latex,
-then bibtex, then latex twice (to resolve references)
-to create the ~.bbl file.  Insert that ~.bbl file into
-the .tex source file and comment out
-the command \texttt{{\char'134}thebibliography}.
+%\section{References}
+%Generated by bibtex from your ~.bib file.  Run latex,
+%then bibtex, then latex twice (to resolve references)
+%to create the ~.bbl file.  Insert that ~.bbl file into
+%the .tex source file and comment out
+%the command \texttt{{\char'134}thebibliography}.
 % This next section command marks the start of
 % Appendix B, and does not continue the present hierarchy
 %\section{More Help for the Hardy}
