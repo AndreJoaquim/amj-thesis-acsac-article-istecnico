@@ -7,6 +7,12 @@ R.~Carvalho.
 \newblock Master's thesis, Instituto Superior T\'ecnico, Lisbon, Portugal,
   2014.
 
+\bibitem{Gupta02}
+V.~Gupta, S.~Gupta, S.~Chang, and D.~Stebila.
+\newblock Performance analysis of elliptic curve cryptography for ssl.
+\newblock In {\em Proceedings of the 1st ACM Workshop on Wireless Security},
+  WiSE '02, pages 87--94, New York, NY, USA, 2002. ACM.
+
 \bibitem{IPsec}
 S.~Kent and K.~Seo.
 \newblock {Security Architecture for the Internet Protocol (RFC 4301)}, 2005.
