@@ -7,6 +7,11 @@ R.~Carvalho.
 \newblock Master's thesis, Instituto Superior T\'ecnico, Lisbon, Portugal,
   2014.
 
+\bibitem{TLS1.2-5246}
+T.~Dierks and E.~Rescorla.
+\newblock {The Transport Layer Security (TLS) Protocol, Version 1.2 (RFC
+  5246)}, 2008.
+
 \bibitem{Gupta02}
 V.~Gupta, S.~Gupta, S.~Chang, and D.~Stebila.
 \newblock Performance analysis of elliptic curve cryptography for ssl.

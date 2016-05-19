@@ -46,6 +46,10 @@
 % For tracking purposes - this is V2.0 - May 2012
 
 \documentclass{sig-alternate-05-2015}
+% Maintain images and tables within their respective sections
+\usepackage{caption} 
+
+\graphicspath{ {images/} }
 
 \def\sharedaffiliation{%
 \end{tabular}
@@ -309,9 +313,49 @@ In terms of security, our solution must tolerate all the attacks given that at l
 
 \subsection{Protocol Specification}
 
-\begin{itemize}
-\item Images updated from the thesis' project
-\end{itemize}
+SuperTLS's Handshake Protocol is similar to TLS Handshake Protocol. Messages' name are identical in order to provide easier migration and transition from TLS. Additionally, all the SuperTLS messages' names are analogous to TLS. Using this simplification, anyone who is familiarized with TLS can easily understand SuperTLS' Handshake messages and their purpose.
+
+The messages which are diversity entry points are ClientHello, ServerHello, ServerKeyExchange, k-ServerKeyExchange, (Server and Client) Certificate, ClientKeyExchange and k-ClientKeyExchange.
+
+The first message to be sent is called \textit{ClientHello}. This message's purpose is to inform the server that the client wants to establish a diverse secure channel for communication. The content of this first message consist in the client's protocol version, a Random structure (analogous to TLS 1.2) containing the current time and a 28-byte pseudo-randomly generated number, the session identifier, a list of the client's cipher suites and a list of the client's compression methods, if compression is to be used.
+
+The server responds with a message named \textit{ServerHello}. ServerHello is a very important message as it is where the server sends to the client the $k$ cipher suites to be used in the communication. The server sends to the client its protocol version, a Random structure identical to the one sent by the client, the session identifier and the $k$ cipher suites chosen by the server from the list the client sent. It is also sent the compression method to use, if compression is to be used in the communication.
+
+The server proceeds to send a \textit{(Server) Certificate} message containing its $k$ certificates to the client. The $k$ chosen cipher suites are dependent from the server's certificates. Each certificate is associated with one key exchange mechanism (KEM). Therefore, the $k$ cipher suites must use the key exchange mechanisms supported by the server's certificates.
+
+\textbf{NOTA: Devo incluir o seguinte paragrafo?}
+
+However, SuperTLS behaves normally if the server has $0 < i < k$ certificates. The cipher suites to be used are chosen considering the available certificates. In this case, the diversity is not maximum due to the fact that a number of cipher suites will share the same certificate.
+
+The ServerKeyExchange message is the next message to be sent to the client by the server. This message is only sent if one of the $k$ cipher suites includes a key exchange mechanism which uses ephemeral keys, namely ECDHE or DHE. The contents of this message are the server's Diffie-Hellman ephemeral parameters. For every other $k - 1$ cipher suites using ECDHE or DHE, the server sends additional ServerKeyExchange messages with additional Diffie-Hellman ephemeral parameters.
+
+\textbf{NOTA: Devo tentar justificar porque \'e que mando mais mensagens em vez de tentar incluir tudo na mesma?}
+Instead of computing all the ephemeral parameters and sending a larger message, the server computes one parameter at once and sends it immediately.
+
+\begin{figure}[t]
+\includegraphics[width=9cm]{superTLS-handshake}
+\centering
+\caption{SuperTLS' Handshake messages using a diversity factor $k$. The diversity and redundancy entry points are marked in blue and underlined.}
+\label{fig:superTLS-example}
+\end{figure}
+
+%\begin{figure}[t]
+%\includegraphics[width=9cm]{superTLS-example}
+%\centering
+%\caption{Example of SuperTLS' Handshake messages using $k = 2$ and choosing the combination TLS\_DHE\_DSS\_WITH\_AES\_128\_CBC\_SHA+\\TLS\_RSA\_WITH\_AES\_256\_CBC\_SHA256. The diversity and redundancy entry points are marked in blue and underlined.}
+%\label{fig:superTLS-example}
+%\end{figure}
+
+The remaining messages sent by the server to the client at this point of negotiation, CertificateRequest and ServerHelloDone, are identical to TLS 1.2 \cite{TLS1.2-5246}.
+
+The client proceeds to send a Certificate message containing its $i$ diverse certificates to the server, analogous to the Certificate message the client received previously from the server.
+After sending its certificates, the client sends the ClientKeyExchange message. The content of this message is based on the cipher suites chosen. The client sends $m$ RSA-encrypted premaster secrets to the server, with $m \geq 0$. $m$ the subset of the $k$ cipher suites that use RSA for KEM. The client also sends its $n$ Diffie-Hellman public values to the server, where $n$ is the number of cipher suites using Diffie-Hellman. Even if the $k$ cipher suites share the same KEM, this methodology still applies as we can introduce diversity by using different parameters for each KEM.
+
+The server may need to verify the client's $k$ certificates. If they have signing capabilities, the client digitally signs all the previous handshake messages and sends them to the server for verification.
+
+Client and server now exchange ChangeCipherSpec messages, alike the Cipher Spec Protocol of TLS 1.2, in order to state that they are now using the previously negotiated cipher suites for exchanging messages in a secure fashion.
+
+The client and server, in order to finish the Handshake, send to each other a Finished message. This is the first message sent using the $k$ cipher suites negotiated earlier. Its purpose is to each party receive and validate the data received in this message. If the data is validate, client and server can now exchange messages or information over the connection. The Finished message uses a pseudo-random function to generate its content. Diversity will also be applied here, using $k$ pseudo-random functions to generate the message's content.
 
 \subsection{Combining diverse cipher suites}
 
@@ -368,6 +412,7 @@ Using this combination of cipher suites, maximum diversity is achieved using a d
 \subsection{Implementation}
 
 \begin{itemize}
+\item The server need to specify which certificates he wants to use by loading it to the SuperTLS
 \item Compatible with TLS and OpenSSL but does not support all of its cipher suites.
 \item I started by implementing diversity in the cipher.
 \item The interface is the same as OpenSSL v1.0.2g, with the addition of SuperTLS specific functions
