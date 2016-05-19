@@ -325,9 +325,9 @@ The server proceeds to send a \textit{(Server) Certificate} message containing i
 
 \textbf{NOTA: Devo incluir o seguinte paragrafo?}
 
-However, SuperTLS behaves normally if the server has $0 < i < k$ certificates. The cipher suites to be used are chosen considering the available certificates. In this case, the diversity is not maximum due to the fact that a number of cipher suites will share the same certificate.
+However, SuperTLS behaves normally if the server has $x, 0 < x < k$ certificates. The cipher suites to be used are chosen considering the available certificates. In this case, the diversity is not maximum due to the fact that a number of cipher suites will share the same certificate.
 
-The ServerKeyExchange message is the next message to be sent to the client by the server. This message is only sent if one of the $k$ cipher suites includes a key exchange mechanism which uses ephemeral keys, namely ECDHE or DHE. The contents of this message are the server's Diffie-Hellman ephemeral parameters. For every other $k - 1$ cipher suites using ECDHE or DHE, the server sends additional ServerKeyExchange messages with additional Diffie-Hellman ephemeral parameters.
+The \textit{ServerKeyExchange} message is the next message to be sent to the client by the server. This message is only sent if one of the $k$ cipher suites includes a key exchange mechanism which uses ephemeral keys, namely ECDHE or DHE. The contents of this message are the server's Diffie-Hellman ephemeral parameters. For every other $k - 1$ cipher suites using ECDHE or DHE, the server sends additional ServerKeyExchange messages with additional diverse Diffie-Hellman ephemeral parameters.
 
 \textbf{NOTA: Devo tentar justificar porque \'e que mando mais mensagens em vez de tentar incluir tudo na mesma?}
 Instead of computing all the ephemeral parameters and sending a larger message, the server computes one parameter at once and sends it immediately.
@@ -348,14 +348,16 @@ Instead of computing all the ephemeral parameters and sending a larger message, 
 
 The remaining messages sent by the server to the client at this point of negotiation, CertificateRequest and ServerHelloDone, are identical to TLS 1.2 \cite{TLS1.2-5246}.
 
-The client proceeds to send a Certificate message containing its $i$ diverse certificates to the server, analogous to the Certificate message the client received previously from the server.
-After sending its certificates, the client sends the ClientKeyExchange message. The content of this message is based on the cipher suites chosen. The client sends $m$ RSA-encrypted premaster secrets to the server, with $m \geq 0$. $m$ the subset of the $k$ cipher suites that use RSA for KEM. The client also sends its $n$ Diffie-Hellman public values to the server, where $n$ is the number of cipher suites using Diffie-Hellman. Even if the $k$ cipher suites share the same KEM, this methodology still applies as we can introduce diversity by using different parameters for each KEM.
+\textbf{NOTA: O Client n\~ao precisa mesmo de enviar $k$ certificados... alterei no esquema. o cliente envia $i$ e o servidor envia $k$ ou $x$. Rever.}
+The client proceeds to send a \textit{(Client) Certificate} message containing its $i$ certificates to the server, analogous to the (Server) Certificate message the client received previously from the server.
 
-The server may need to verify the client's $k$ certificates. If they have signing capabilities, the client digitally signs all the previous handshake messages and sends them to the server for verification.
+After sending its certificates, the client proceeds to send $k$ \textit{ClientKeyExchange} messages to the server. The content of these messages is based on the $k$ cipher suites chosen. If $m, 0 \leq m \leq k$ of the cipher suites use RSA as KEM, the client sends $m$ messages, each one with a RSA-encrypted pre-master secret to the server. If $j, 0 \leq j \leq k$ of the cipher suites use ECDHE or DHE, the client sends $j$ messages to the server containing its $j$ Diffie-Hellman public values. Even if a subset of the $k$ cipher suites share the same KEM, this methodology still applies as we introduce diversity by using different parameters for each cipher suite being used.
 
-Client and server now exchange ChangeCipherSpec messages, alike the Cipher Spec Protocol of TLS 1.2, in order to state that they are now using the previously negotiated cipher suites for exchanging messages in a secure fashion.
+The server may need to verify the client's $i$ certificates. If they have signing capabilities, the client digitally signs all the previous handshake messages and sends them to the server for verification.
 
-The client and server, in order to finish the Handshake, send to each other a Finished message. This is the first message sent using the $k$ cipher suites negotiated earlier. Its purpose is to each party receive and validate the data received in this message. If the data is validate, client and server can now exchange messages or information over the connection. The Finished message uses a pseudo-random function to generate its content. Diversity will also be applied here, using $k$ pseudo-random functions to generate the message's content.
+Client and server now exchange \textit{ChangeCipherSpec} messages, alike the Cipher Spec Protocol of TLS 1.2, in order to state that they are now using the previously negotiated cipher suites for exchanging messages in a secure fashion.
+
+The client and server, in order to finish the Handshake, send to each other a \textit{Finished} message. This is the first message sent encrypted using the $k$ cipher suites negotiated earlier. Its purpose is to each party receive and validate the data received in this message. If the data is valid, client and server can now exchange messages over the communication channel.
 
 \subsection{Combining diverse cipher suites}
 

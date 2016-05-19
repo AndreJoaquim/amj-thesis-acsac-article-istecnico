@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.12.11)  19 MAY 2016 16:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.12.11)  19 MAY 2016 17:11
 entering extended mode
 **sig-alternate-amj.tex
 (sig-alternate-amj.tex
@@ -351,12 +351,12 @@ Overfull \hbox (15.42766pt too wide) in paragraph at lines 318--319
 \T1/aer/m/n/9 tHello, Server-Hello, ServerKeyEx-change, k-ServerKeyExchange,
  []
 
-<images/superTLS-handshake.png, id=20, 1817.79124pt x 1369.115pt>
+<images/superTLS-handshake.png, id=20, 1817.79124pt x 1253.68375pt>
 File: images/superTLS-handshake.png Graphic file (type png)
 
 <use images/superTLS-handshake.png>
 Package pdftex.def Info: images/superTLS-handshake.png used on input line 336.
-(pdftex.def)             Requested size: 256.0748pt x 192.86557pt.
+(pdftex.def)             Requested size: 256.0748pt x 176.60492pt.
 
 Overfull \hbox (16.0748pt too wide) in paragraph at lines 336--338
  [][] 
@@ -366,7 +366,7 @@ Overfull \hbox (16.0748pt too wide) in paragraph at lines 336--338
 Underfull \vbox (badness 1558) has occurred while \output is active []
 
  [3 <./images/superTLS-handshake.png>]
-Overfull \hbox (13.36545pt too wide) in paragraph at lines 405--407
+Overfull \hbox (13.36545pt too wide) in paragraph at lines 407--409
 \T1/aer/m/it/9 TLS_ECDHE_ECDSA_WITH_CAMELLIA_128_CBC_SHA256\T1/aer/m/n/9 . 
  []
 
@@ -380,7 +380,7 @@ Here is how much of TeX's memory you used:
  7213 multiletter control sequences out of 15000+200000
  57125 words of font info for 80 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 53i,10n,92p,632b,487s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 53i,10n,92p,718b,487s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/f
 ontname/8r.enc}<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/c
 m/cmbx9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
@@ -395,7 +395,7 @@ Files (x86)/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Program Files (x
 eX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/font
 s/type1/urw/times/utmr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw
 /times/utmri8a.pfb>
-Output written on sig-alternate-amj.pdf (5 pages, 268829 bytes).
+Output written on sig-alternate-amj.pdf (5 pages, 268976 bytes).
 PDF statistics:
  74 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
