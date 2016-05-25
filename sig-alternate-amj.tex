@@ -408,18 +408,19 @@ Using this combination of cipher suites, maximum diversity is achieved using a d
 
 \subsection{Implementation}
 
-\begin{itemize}
-\item The server need to specify which certificates he wants to use by loading it to the SuperTLS
-\item Compatible with TLS and OpenSSL but does not support all of its cipher suites.
-\item I started by implementing diversity in the cipher.
-\item The interface is the same as OpenSSL v1.0.2g, with the addition of SuperTLS specific functions
-\item State my interface -- new functions (most important)
-\end{itemize}
+SuperTLS is based on OpenSSL v1.0.2g. Creating a secure communication channel from scratch is a risk because it could have vulnerabilities that were not detected and which could cause a breach of security. Additionally, creating a new secure communication channel, and consequently a new API, would create many entrance barriers to anyone who wanted to use our new communication channel. Therefore, we chose to implement SuperTLS based on OpenSSL to avoid the maximum amount of vulnerabilities originated from coding errors and to make it easier to migrate from OpenSSL to SuperTLS, as the SuperTLS' API contains the same functions as the OpenSSL's API plus the SuperTLS' specific calls/functions.
 
-Functions:
-\begin{itemize}
-	\item{\textit{SSL\_CIPHER *ssl3\_choose\_sec\_cipher \\(SSL* s,\\ STACK\_OF(SSL\_CIPHER) *clnt,\\ STACK\_OF(SSL\_CIPHER) *srvr)}: Chooses a second cipher suite according to the second certificate and the first chosen cipher suite. This function tries to create maximum diversity.}
-\end{itemize}
+Although being based on OpenSSL, SuperTLS is not compatible with OpenSSL. Due to its diversity and redundancy characteristics, SuperTLS can not connect to a OpenSSL server or client because, even though it is possible to use SuperTLS with just one certificate, even then SuperTLS will aim maximizing diversity with the purpose of increasing security.
+
+Besides this fact, SuperTLS does not support all of OpenSSL cipher suites, such as PSK and SRP cipher suites.
+
+\textbf{NOTA: Explicar aqui porque \'e que escolhemos $k = 2$}
+
+In order to establish a SuperTLS communication channel, additional functions are required to fulfil the requirements of SuperTLS, such as loading two certificates and corresponding private keys. These functions have a similar name of the ones belonging to the OpenSSL API, to minimize the learning curve.
+The most relevant functions regarding the setup of the channel are the functions that allow to load the second certificate and private key and allow to check if the second private key corresponds to the second certificate.
+
+Regarding the SuperTLS Handshake, we opted to send $k, k = 2$ ServerKeyExchange, and ClientKeyExchange, messages instead of sending one single ServerKeyExchange, and one single ClientKeyExchange, each one with several parameters. This is due to the fact that it is easier to understand and to maintain the code. If $k$ needs to be increased, just send an additional message instead of changing the code related to sending and retrieving ServerKeyExchange and ClientKeyExchange messages.
+
 
 \section{Experimental evaluation}
 
