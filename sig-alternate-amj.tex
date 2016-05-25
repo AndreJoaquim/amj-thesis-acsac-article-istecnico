@@ -421,6 +421,50 @@ The most relevant functions regarding the setup of the channel are the functions
 
 Regarding the SuperTLS Handshake, we opted to send $k, k = 2$ ServerKeyExchange, and ClientKeyExchange, messages instead of sending one single ServerKeyExchange, and one single ClientKeyExchange, each one with several parameters. This is due to the fact that it is easier to understand and to maintain the code. If $k$ needs to be increased, just send an additional message instead of changing the code related to sending and retrieving ServerKeyExchange and ClientKeyExchange messages.
 
+The signing and encryption ordering is also very important for SuperTLS. Figure \ref{fig:diverse-mac-and-cipher-pt1} shows the ordering for one cipher and one MAC, i.e., the OpenSSL implementation. We opted to keep the signing prior to the encryption, regarding both ciphers.
+The first possibility was, ordered from first to last:
+\begin{enumerate}
+\item{Apply the second MAC to the message \textit{m};}
+\item{Apply the first MAC to the message \textit{m};}
+\item{Encrypt to the message \textit{m} plus both MACs with the first cipher;}
+\item{Encrypt the first ciphertext with the second cipher.}
+\end{enumerate}
+
+\begin{figure}[t]
+\includegraphics[width=9cm]{diverse_mac_and_cipher_pt1}
+\centering
+\caption{First four steps regarding the ordering of the encryption and signing of SuperTLS using a diversity factor $k = 2$.}
+\label{fig:diverse-mac-and-cipher-pt1}
+\end{figure}
+
+This caused some issues regarding the MAC. Applying two MACs in a row, using the same message and the same hash function, which can happen due to TLS' cipher suites using mostly SHA-2 variants, would possibly generate two equal MACs. This is not a desired outcome.
+Due to this fact, a second possibility was proposed, also ordered from first to last:
+\begin{enumerate}
+\item{Apply the first MAC to the message \textit{m};}
+\item{Encrypt the first message and its MAC with the first cipher;}
+\item{Apply the second MAC to the first ciphertext;}
+\item{Encrypt the first ciphertext and its MAC with the second cipher.}
+\end{enumerate}
+In both cases, the message and the MACs are encrypted with both ciphers. The second possibility was the chosen to apply in SuperTLS because in this case there is not a chance that both MACs are identical, if the hash function used is secure (SHA-2 is considered secure).
+Figure \ref{fig:diverse-mac-and-cipher-pt2} demonstrates the final ordering of SuperTLS communication.
+
+\begin{figure}[t]
+\includegraphics[width=9cm]{diverse_mac_and_cipher_pt2}
+\centering
+\caption{Remaining three steps regarding the ordering of the encryption and signing of SuperTLS using a diversity factor $k = 2$. Here is represented the second signing and the second encryption, employing diversity and redundancy in the communication.}
+\label{fig:diverse-mac-and-cipher-pt2}
+\end{figure}
+
+\subsubsection{Theoretical message size increase}
+
+Diversity and redundancy are the essential concepts of SuperTLS and both concepts are used in order to aim increasing security. Nevertheless, signing and encrypting $k$ times has its cost, namely regarding the message size.
+Figures \ref{fig:diverse-mac-and-cipher-pt1} and \ref{fig:diverse-mac-and-cipher-pt2} show the theoretical increase of the message size originated by using a second MAC and a second encryption function. Considering $eivlen$ the size of the initialization vector (IV) associated with first cipher, $msg\_length$ the original message size and $mac\_size$ the size of the first MAC, Figure \ref{fig:diverse-mac-and-cipher-pt1} shows that the size of the first ciphertext, $first\_len$, using just one encryption and one MAC is equal to $eivlen+msg\_length+mac\_size$. If the encryption function requires a fixed block size, an additional padding of size $padding$ is also added, making the final size $first\_len=eivlen+msg\_length+padding+mac\_size$. This is the expected size of an OpenSSL message.
+
+SuperTLS, as Figure \ref{fig:diverse-mac-and-cipher-pt2} shows, and as stated before, uses an additional MAC and encryption function. Considering $eivlen\sec$ the size of the IV associated with the second cipher and $mac\_size\_sec$ the size of the second MAC, the size of the second ciphertext is equal to $eivlen\_sec+first\_len+mac\_size\_sec$. Although, similar to the first cipher, if the encryption function requires a fixed block size, a padding of size $padding\_sec$ is also added. Concluding, the final size of the message to be sent is, excluding the header, $eivlen\_sec+first\_len+padding\_sec+mac\_size\_sec$.
+
+In the best case, the number of packets is the same for OpenSSL and SuperTLS. In the worst case, there is sent one additional packet if the encryption function requires a fixed block size and the maximum size of the packet, after the second MAC and the second encryption, is exceeded by, at least, one byte. In this case, an additional full packet is needed to be sent due to the constraint of having fixed block size.
+
+Concluding, the increase of the message size depends on the length of the second Initialization Vector, the possibly-existent second padding and the length of the second generated MAC.
 
 \section{Experimental evaluation}
 
