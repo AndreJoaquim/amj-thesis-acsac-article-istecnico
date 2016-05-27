@@ -1,4 +1,28 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{Adrian2015}
+D.~Adrian, K.~Bhargavan, Z.~Durumeric, P.~Gaudry, M.~Green, J.~Halderman,
+  N.~Heninger, D.~Springall, E.~Thom{\'{e}}, L.~Valenta, B.~Vandersloot,
+  E.~Wustrow, and S.~Paul.
+\newblock {Imperfect Forward Secrecy: How Diffie-Hellman Fails in Practice}.
+\newblock {\em 22nd ACM Conference on Computer and Communications Security (CCS
+  ’15)}, 2015.
+
+\bibitem{Beurdouche2015}
+B.~Beurdouche, K.~Bhargavan, A.~Delignat-lavaud, C.~Fournet, and M.~Kohlweiss.
+\newblock {A Messy State of the Union: Taming the Composite State Machines of
+  TLS}.
+\newblock {\em IEEE Symposium on Security and Privacy}, pages 1--19, 2015.
+
+\bibitem{Bogdanov2011}
+A.~Bogdanov, D.~Khovratovich, and C.~Rechberger.
+\newblock {Biclique cryptanalysis of the full AES}.
+\newblock {\em Lecture Notes in Computer Science}, 7073 LNCS:344--371, 2011.
+
+\bibitem{Carvalho2014-HB}
+M.~Carvalho, J.~DeMott, R.~Ford, and D.~Wheeler.
+\newblock {Heartbleed 101}.
+\newblock {\em IEEE Security {\&} Privacy}, 12(4):63--67, 2014.
 
 \bibitem{CarvalhoThesis14}
 R.~Carvalho.
@@ -12,6 +36,14 @@ T.~Dierks and E.~Rescorla.
 \newblock {The Transport Layer Security (TLS) Protocol, Version 1.2 (RFC
   5246)}, 2008.
 
+\bibitem{Ferguson2001}
+N.~Ferguson, J.~Kelsey, S.~Lucks, B.~Schneier, M.~Stay, D.~Wagner, and
+  D.~Whiting.
+\newblock Improved cryptanalysis of rijndael.
+\newblock In G.~Goos, J.~Hartmanis, J.~van Leeuwen, and B.~Schneier, editors,
+  {\em Fast Software Encryption}, volume 1978 of {\em Lecture Notes in Computer
+  Science}, pages 213--230. Springer Berlin Heidelberg, 2001.
+
 \bibitem{Gupta02}
 V.~Gupta, S.~Gupta, S.~Chang, and D.~Stebila.
 \newblock Performance analysis of elliptic curve cryptography for ssl.
@@ -21,6 +53,100 @@ V.~Gupta, S.~Gupta, S.~Chang, and D.~Stebila.
 \bibitem{IPsec}
 S.~Kent and K.~Seo.
 \newblock {Security Architecture for the Internet Protocol (RFC 4301)}, 2005.
+
+\bibitem{Kleinjung2010}
+T.~Kleinjung, K.~Aoki, J.~Franke, A.~Lenstra, E.~Thom{\'{e}}, J.~Bos,
+  P.~Gaudry, A.~Kruppa, P.~Montgomery, D.~Osvik, H.~{Te Riele}, A.~Timofeev,
+  and P.~Zimmermann.
+\newblock {Factorization of a 768-Bit RSA modulus}.
+\newblock {\em Lecture Notes in Computer Science}, 6223 LNCS:333--350, 2010.
+
+\bibitem{Littlewood2004}
+B.~Littlewood and L.~Strigini.
+\newblock {Redundancy and Diversity in Security}.
+\newblock {\em Computer Security ESORICS 2004}, pages 227--246, 2004.
+
+\bibitem{Menezes1996-ch9}
+A.~Menezes, P.~van Oorschot, and S.~Vanstone.
+\newblock {Hash Functions and Data Integrity}.
+\newblock In {\em Handbook of Applied Cryptography}, chapter~9, pages 321--383.
+  1996.
+
+\bibitem{Menezes1996}
+A.~Menezes, P.~van Oorschot, and S.~Vanstone.
+\newblock {Public-Key Encryption}.
+\newblock In {\em Handbook of Applied Cryptography}, chapter~8. CRC Press,
+  Inc., 1996.
+
+\bibitem{Merkle79}
+R.~C. Merkle.
+\newblock {\em Secrecy, Authentication, and Public Key Systems.}
+\newblock PhD thesis, Stanford, CA, USA, 1979.
+\newblock AAI8001972.
+
+\bibitem{Rijmen2001}
+V.~Rijmen and J.~Daemen.
+\newblock {Advanced Encryption Standard}.
+\newblock {\em U.S. National Institute of Standards and Technology (NIST)},
+  2009:8--12, 2001.
+
+\bibitem{Schneier12}
+B.~Schneier.
+\newblock {When Will We See Collisions for SHA-1?}
+\newblock
+  \url{https://www.schneier.com/blog/archives/2012/10/when\_will\_we\_se.html},
+  2012.
+\newblock Last time accessed: 2016-01-03.
+
+\bibitem{Schneier15}
+B.~Schneier.
+\newblock {SHA-1 Freestart Collision}.
+\newblock
+  \url{https://www.schneier.com/blog/archives/2015/10/sha-1\_freestart.html},
+  2015.
+\newblock Last time accessed: 2016-01-03.
+
+\bibitem{heartbeat-extension}
+R.~Seggelmann, M.~Tuexen, and M.~Williams.
+\newblock {Transport Layer Security (TLS) and Datagram Transport Layer Security
+  (DTLS) Heartbeat Extension (RFC 6520)}, 2012.
+
+\bibitem{RFC7457}
+Y.~Sheffer, R.~Holz, and P.~Saint-Andre.
+\newblock {Summarizing Known Attacks on Transport Layer Security (TLS) and
+  Datagram TLS (DTLS) (RFC 7457)}, 2015.
+
+\bibitem{Shor1995}
+P.~Shor.
+\newblock {Polynomial-Time Algorithms for Prime Factorization and Discrete
+  Logarithms on a Quantum Computer}.
+\newblock {\em SIAM Journal on Scientific and Statistical Computing}, 26:1484,
+  1995.
+
+\bibitem{Stevens11}
+M.~Stevens.
+\newblock {\em Attacks on Hash Functions and Applications}.
+\newblock PhD thesis, 2012.
+
+\bibitem{Stevens15}
+M.~Stevens, P.~Karpman, and T.~Peyrin.
+\newblock {Freestart collision on full SHA-1}.
+\newblock Cryptology ePrint Archive, Report 2015/967, 2015.
+
+\bibitem{Logjam-explained}
+F.~Valsorda.
+\newblock {Logjam: the latest TLS vulnerability explained}.
+\newblock
+  \url{https://blog.cloudflare.com/logjam-the-latest-tls-vulnerability-explained/},
+  2015.
+\newblock Last time accessed: 2015-11-13.
+
+\bibitem{Wang05}
+X.~Wang, Y.~Yin, and H.~Yu.
+\newblock {Finding Collisions in the Full SHA-1}.
+\newblock In {\em Proceedings of the 25th Annual International Conference on
+  Advances in Cryptology}, CRYPTO'05, pages 17--36, Berlin, Heidelberg, 2005.
+  Springer-Verlag.
 
 \bibitem{SSH}
 T.~Ylonen and C.~Lonvick.
