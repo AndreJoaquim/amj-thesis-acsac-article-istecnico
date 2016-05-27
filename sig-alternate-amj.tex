@@ -583,18 +583,42 @@ Concluding, the increase of the message size depends on the length of the second
 
 \section{Experimental evaluation}
 
+We evaluated SuperTLS in three different factors: \textit{performance}, \textit{security} and \textit{management and cost}.
+In order to evaluate SuperTLS, we considered OpenSSL 1.0.2g as the comparison factor, due to the fact that SuperTLS is based on that version of SuperTLS.
 
+Overall, the end-user should not experience a slower connection. Even if the communication is proven to be slower, it should be unnoticeable to the end-user. In the worst case, users should experience a connection $k, k = 2$ times slower than using OpenSSL 1.0.2g.
+
+\subsection{Performance}
+
+\begin{enumerate}
+\item{Count = 110 Handshakes for each one}
+\item{SuperTLS' Handshake takes, in average, and considering the cipher suites AES256-GCM-SHA384 and ECDH-ECDSA-AES256-GCM-SHA384, 3,909 milliseconds;}
+\item{SuperTLS' Handshake takes, in average, and considering the cipher suite AES256-GCM-SHA384, 2,345 milliseconds;}
+\item{SuperTLS' Handshake takes 66,(6)\% longer than OpenSSL's Handshake, i.e., $1,66 < k, k = 2$ times longer than OpenSSL's Handshake. The worst case being $k$ times slower, SuperTLS' successfully accomplished a percentage better than the worst case. This happens because SuperTLS' Handshake is nor equal to two OpenSSL/TLS Handshakes but rather one modified OpenSSL/TLS Handshake;}
+\item{SuperTLS' Handshake takes, in average, more 1,564 milliseconds longer than OpenSSL's Handshake;}
+\item{The message size is, in average, X bytes larger than a OpenSSL message;}
+\item{The time taken to send a 100Kb/1Mb/10Mb/50Mb message through SuperTLS is: ;}
+\item{The time taken to send a 100Kb/1Mb/10Mb/50Mb message through OpenSSL is: ;}
+\item{Overall, a message sent through SuperTLS takes X\% longer than a message sent OpenSSL.}
+\end{enumerate}
+
+\subsection{Security}
+
+\begin{enumerate}
+\item{In X\% of times, the best combination is chosen, maximizing diversity and security;}
+\end{enumerate}
+
+\subsection{Management and Cost}
+
+\begin{enumerate}
+\item{Certificates have a cost, and having $k$ certificates instead of one, increases the cost in $(k - 1) * the price of one certificate$;}
+\item{There is also an extra cost of maintaining $k$ certificates instead of just one.}
+\item{As we considered SuperTLS with a diversity factor $k = 2$, the cost of the certificates duplicates, considering that the second certificate is as expensive as the one already owned. Although certificates are expensive, they do not represent a huge cost (dozens of euros/dollars). Therefore, duplicating the cost of certificates is compensated by increasing the security;}
+\item{Managing one or two certificates is almost the same.}
+\end{enumerate}
 
 \section{Conclusions}
-This paragraph will end the body of this sample document.
-Remember that you might still have Acknowledgments or
-Appendices; brief samples of these
-follow.  There is still the Bibliography to deal with; and
-we will make a disclaimer about that here: with the exception
-of the reference to the \LaTeX\ book, the citations in
-this paper are to articles which have nothing to
-do with the present subject and are used as
-examples only.
+
 %\end{document}  % This is where a 'short' article might terminate
 
 %ACKNOWLEDGMENTS are optional
@@ -609,8 +633,9 @@ examples only.
 \section{Future Work}
 
 \begin{itemize}
-\item Usar duas libraries compativeis e usar funcoes duma e doutra
-\item Using SHA-3 for hash to increase diversity when it is supported by TLS
+\item{SuperTLS is based only on a version of OpenSSL. An interesting feature would be diversifying two different libraries and make them compatible with each other. This would increase diversity in the code and, optionally, programming languages. Also, different teams think differently and this could potentially lead to make SuperTLS to tolerate more vulnerabilities regarded with the implementation;}
+\item{Using SHA-3 for hash to increase diversity when it is supported by TLS}
+\item{SuperTLS performed rather well comparing with OpenSSL. The only existing approach other than SuperTLS is TLS-over-TLS. Future work: Compare SuperTLS with TLS-over-TLS.}
 \end{itemize}
 
 %

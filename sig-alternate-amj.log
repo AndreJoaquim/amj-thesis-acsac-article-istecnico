@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.12.11)  27 MAY 2016 14:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.12.11)  27 MAY 2016 16:37
 entering extended mode
 **sig-alternate-amj.tex
 (sig-alternate-amj.tex
@@ -436,17 +436,63 @@ Overfull \hbox (16.0748pt too wide) in paragraph at lines 567--569
  []
 
 [8 <./images/diverse_mac_and_cipher_pt1.png> <./images/diverse_mac_and_cipher_p
-t2.png>] (sig-alternate-amj.bbl) [9] (sig-alternate-amj.aux)
+t2.png>]
+Overfull \hbox (5.82193pt too wide) in paragraph at lines 595--596
+\T1/aer/m/n/9 ing the ci-pher suites AES256-GCM-SHA384 and ECDH-
+ []
+
+
+Overfull \hbox (21.35439pt too wide) in paragraph at lines 597--598
+[]\T1/aer/m/n/9 SuperTLS' Hand-shake takes 66,(6)% longer than OpenSSL's
+ []
+
+
+Overfull \hbox (1.04848pt too wide) in paragraph at lines 597--598
+\T1/aer/m/n/9 slower, Su-perTLS' suc-cess-fully ac-com-plished a per-cent-
+ []
+
+
+Overfull \hbox (7.84589pt too wide) in paragraph at lines 597--598
+\T1/aer/m/n/9 Su-perTLS' Hand-shake is nor equal to two OpenSSL/TLS
+ []
+
+
+Overfull \hbox (47.58868pt too wide) in paragraph at lines 614--615
+\T1/aer/m/n/9 stead of one, in-creases the cost in $\OT1/cmr/m/n/9 (\OML/cmm/m/
+it/9 k \OMS/cmsy/m/n/9   \OT1/cmr/m/n/9 1) \OMS/cmsy/m/n/9  \OML/cmm/m/it/9 th
+epriceofonecertificate$\T1/aer/m/n/9 ; 
+ []
+
+
+Overfull \hbox (1.45673pt too wide) in paragraph at lines 636--637
+\T1/aer/m/n/9 think dif-fer-ently and this could po-ten-tially lead to make
+ []
+
+
+Overfull \hbox (4.56058pt too wide) in paragraph at lines 636--637
+\T1/aer/m/n/9 Su-perTLS to tol-er-ate more vul-ner-a-bil-i-ties re-garded with
+ []
+
+
+Overfull \hbox (17.72745pt too wide) in paragraph at lines 638--639
+[]\T1/aer/m/n/9 SuperTLS per-formed rather well com-par-ing with OpenSSL.
+ []
+
+(sig-alternate-amj.bbl [9]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+) [10]
+(sig-alternate-amj.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 3990 strings out of 493673
- 55633 string characters out of 3141529
+ 3988 strings out of 493673
+ 55623 string characters out of 3141529
  132296 words of memory out of 3000000
  7246 multiletter control sequences out of 15000+200000
- 59752 words of font info for 82 fonts, out of 3000000 for 9000
+ 59102 words of font info for 80 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  53i,10n,92p,854b,487s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Progra
@@ -463,9 +509,9 @@ nts/type1/public/amsfonts/cm/cmti9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts
 rw/helvetic/uhvr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times
 /utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb
 ><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on sig-alternate-amj.pdf (9 pages, 357716 bytes).
+Output written on sig-alternate-amj.pdf (10 pages, 361152 bytes).
 PDF statistics:
- 96 PDF objects out of 1000 (max. 8388607)
+ 99 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
