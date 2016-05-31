@@ -433,13 +433,10 @@ The server responds with a message named \textit{ServerHello}. ServerHello is a 
 
 The server proceeds to send a \textit{(Server) Certificate} message containing its $k$ certificates to the client. The $k$ chosen cipher suites are dependent from the server's certificates. Each certificate is associated with one key exchange mechanism (KEM). Therefore, the $k$ cipher suites must use the key exchange mechanisms supported by the server's certificates.
 
-\textbf{NOTA: Devo incluir o seguinte paragrafo?}
-
 However, SuperTLS behaves normally if the server has $x, 0 < x < k$ certificates. The cipher suites to be used are chosen considering the available certificates. In this case, the diversity is not maximum due to the fact that a number of cipher suites will share the same certificate.
 
 The \textit{ServerKeyExchange} message is the next message to be sent to the client by the server. This message is only sent if one of the $k$ cipher suites includes a key exchange mechanism which uses ephemeral keys, namely ECDHE or DHE. The contents of this message are the server's Diffie-Hellman ephemeral parameters. For every other $k - 1$ cipher suites using ECDHE or DHE, the server sends additional ServerKeyExchange messages with additional diverse Diffie-Hellman ephemeral parameters.
 
-\textbf{NOTA: Devo tentar justificar porque \'e que mando mais mensagens em vez de tentar incluir tudo na mesma?}
 Instead of computing all the ephemeral parameters and sending a larger message, the server computes one parameter at once and sends it immediately.
 
 \begin{figure}[t]
@@ -458,7 +455,6 @@ Instead of computing all the ephemeral parameters and sending a larger message, 
 
 The remaining messages sent by the server to the client at this point of negotiation, CertificateRequest and ServerHelloDone, are identical to TLS 1.2 \cite{TLS1.2-5246}.
 
-\textbf{NOTA: O Client n\~ao precisa mesmo de enviar $k$ certificados... alterei no esquema. o cliente envia $i$ e o servidor envia $k$ ou $x$. Rever.}
 The client proceeds to send a \textit{(Client) Certificate} message containing its $i$ certificates to the server, analogous to the (Server) Certificate message the client received previously from the server.
 
 After sending its certificates, the client proceeds to send $k$ \textit{ClientKeyExchange} messages to the server. The content of these messages is based on the $k$ cipher suites chosen. If $m, 0 \leq m \leq k$ of the cipher suites use RSA as KEM, the client sends $m$ messages, each one with a RSA-encrypted pre-master secret to the server. If $j, 0 \leq j \leq k$ of the cipher suites use ECDHE or DHE, the client sends $j$ messages to the server containing its $j$ Diffie-Hellman public values. Even if a subset of the $k$ cipher suites share the same KEM, this methodology still applies as we introduce diversity by using different parameters for each cipher suite being used.
@@ -502,15 +498,19 @@ Regarding authentication, although DSA + RSA is stated as the most diverse combi
 
 Regarding key exchange, the most diverse combination is RSA + ECDH. Although, in order to grant perfect forward secrecy, the ECDH must be employed using ephemeral keys (ECDHE). Concluding, the preferred combination for key exchange is RSA + ECDHE.
 
-The study did not presented any conclusions regarding symmetric-key encryption, such as AES. Therefore, considering the metrics -- origin, year, and semantic security -- employed for public-key encryption functions, and considering an additional metric -- the mode of operation -- we obtained combinations of diverse symmetric-key encryption:
+The study did not presented any conclusions regarding symmetric-key encryption, such as AES. Therefore, considering the metrics -- origin, year, and semantic security -- employed for public-key encryption functions, and considering an additional metric -- the mode of operation -- we obtained combinations of diverse symmetric-key encryption functions:
 \begin{itemize}
-\item {AES256-GCM + CAMELLIA128-CBC: This combination is possible as TLS 1.2 suports both functions;}
-\item {AES256-CBC + CAMELLIA128-GCM: This combination is possible as TLS 1.2 suports both functions;}
-\item {AES128-GCM + CAMELLIA256-CBC: This combination is possible as TLS 1.2 suports both functions;}
-\item {AES128-CBC + CAMELLIA256-GCM: This combination is possible as TLS 1.2 suports both functions.}
+\item {AES256-GCM + CAMELLIA128-CBC: This combination is possible as TLS 1.2 supports both functions;}
+\item {AES256-CBC + CAMELLIA128-GCM: This combination is possible as TLS 1.2 supports both functions;}
+\item {AES128-GCM + CAMELLIA256-CBC: This combination is possible as TLS 1.2 supports both functions;}
+\item {AES128-CBC + CAMELLIA256-GCM: This combination is possible as TLS 1.2 supports both functions.}
 \end{itemize}
 
-Both AES and Camellia are supported by TLS 1.2 and are considered secure. The most diverse combination is AES256-GCM + CAMELLIA128-CBC. Their origin is different, they were first published in different years, they both have semantic security (as they both use initialization vectors) and the mode of operation is also different. One constraint of using this combination is that there is no cipher suite that uses RSA for key exchange, Camellia for encryption and a SHA-2 variant for MAC. Therefore, and in order to create maximum diversity, using Camellia implies using ECDHE for key exchange with Camellia.
+Both AES and Camellia are supported by TLS 1.2 and are considered secure. The most diverse combination is AES256-GCM + CAMELLIA128-CBC. Their origin is different, they were first published in different years, they both have semantic security (as they both use initialization vectors) and the mode of operation is also different. One constraint of using this combination is that there is no cipher suite that uses RSA for key exchange, Camellia for encryption and a SHA-2 variant for MAC. Although RFC 6367 \cite{RFC6367} describes the support for Camellia HMAC-based cipher suites, extending TLS 1.2, these cipher suites are not supported by OpenSSL 1.0.2g. Using a cipher suite that uses Camellia, in order to maximize diversity, implies using also SHA-1 for MAC and not using ECDHE for key exchange nor ECDSA for authentication in that cipher suite. Concluding, using Camellia increases diversity in encryption but reduces security in MAC, forcing the use of an insecure algorithm. Nevertheless, diversity in encryption is still an objective to accomplish. We decided the best option was, in fact:
+\begin{itemize}
+\item {AES256-GCM + AES128: This combination is possible as TLS 1.2 supports both functions.}
+\end{itemize}
+These functions are, in theory, the same, but employed with a different strength size and mode of operation, they can be considered diverse, although have an inferior degree of diversity comparing to any of the combinations above.
 
 As the cipher suites list is not very extensive, we are able to select a diverse group of $k$ cipher suites without generating a considerable amount of overhead. As the cipher suites are presented in order of preference, the first cipher suite chosen is, ideally, the first of the list.
 
@@ -584,9 +584,7 @@ Concluding, the increase of the message size depends on the length of the second
 \section{Experimental evaluation}
 
 We evaluated SuperTLS in three different factors: \textit{performance}, \textit{security} and \textit{management and cost}.
-In order to evaluate SuperTLS, we considered OpenSSL 1.0.2g as the comparison factor, due to the fact that SuperTLS is based on that version of SuperTLS.
-
-Overall, the end-user should not experience a slower connection. Even if the communication is proven to be slower, it should be unnoticeable to the end-user. In the worst case, users should experience a connection $k, k = 2$ times slower than using OpenSSL 1.0.2g.
+In order to evaluate SuperTLS, we considered OpenSSL 1.0.2g as the comparison factor, due to the fact that SuperTLS is based on that version of SuperTLS. In the worst case, users should experience a connection $k, k = 2$ times slower than using OpenSSL.
 
 \subsection{Performance}
 
@@ -596,10 +594,18 @@ Overall, the end-user should not experience a slower connection. Even if the com
 \item{SuperTLS' Handshake takes, in average, and considering the cipher suite AES256-GCM-SHA384, 2,345 milliseconds;}
 \item{SuperTLS' Handshake takes 66,(6)\% longer than OpenSSL's Handshake, i.e., $1,66 < k, k = 2$ times longer than OpenSSL's Handshake. The worst case being $k$ times slower, SuperTLS' successfully accomplished a percentage better than the worst case. This happens because SuperTLS' Handshake is nor equal to two OpenSSL/TLS Handshakes but rather one modified OpenSSL/TLS Handshake;}
 \item{SuperTLS' Handshake takes, in average, more 1,564 milliseconds longer than OpenSSL's Handshake;}
-\item{The message size is, in average, X bytes larger than a OpenSSL message;}
+
+\item{A 100Kb message corresponds to 102771 bytes using SuperTLS, while using OpenSSL, the same message corresponds to sending 102603 bytes. Sending 100Kb through SuperTLS costs an additional 168 bytes; Using this correlation, and assuming that it should be proportional, sending a 1Mb message should cost 172032 bytes. Although...}
+\item{A 1Mb message corresponds to 1029054 bytes using SuperTLS, while using OpenSSL, the same message corresponds to sending 1025856 bytes. Sending 1Mb through SuperTLS costs an additional 3198 bytes;}
+\item{This happens because the growth of the total encrypted message size is not proportional to the message size itself. The plaintext and the encrypted text have the same length. Therefore, encrypting $k$ times won't increase in terms of encrypted text size.}
+
 \item{The time taken to send a 100Kb/1Mb/10Mb/50Mb message through SuperTLS is: ;}
 \item{The time taken to send a 100Kb/1Mb/10Mb/50Mb message through OpenSSL is: ;}
 \item{Overall, a message sent through SuperTLS takes X\% longer than a message sent OpenSSL.}
+\item{The overhead generated by using multiple ciphers and signatures is... <complete this>}
+
+\item{Additional measurements: Measure the throughput of the channel. How many messages are sent in 1 minute in SuperTLS? How many messages are sent in OpenSSL? The throughput should naturally be inferior.}
+\item{}
 \end{enumerate}
 
 \subsection{Security}
@@ -630,13 +636,13 @@ Overall, the end-user should not experience a slower connection. Even if the com
 %his help in codifying this \textit{Author's Guide}
 %and the \textbf{.cls} and \textbf{.tex} files that it describes.
 
-\section{Future Work}
-
-\begin{itemize}
-\item{SuperTLS is based only on a version of OpenSSL. An interesting feature would be diversifying two different libraries and make them compatible with each other. This would increase diversity in the code and, optionally, programming languages. Also, different teams think differently and this could potentially lead to make SuperTLS to tolerate more vulnerabilities regarded with the implementation;}
-\item{Using SHA-3 for hash to increase diversity when it is supported by TLS}
-\item{SuperTLS performed rather well comparing with OpenSSL. The only existing approach other than SuperTLS is TLS-over-TLS. Future work: Compare SuperTLS with TLS-over-TLS.}
-\end{itemize}
+%\section{Future Work}
+%
+%\begin{itemize}
+%\item{SuperTLS is based only on a version of OpenSSL. An interesting feature would be diversifying two different libraries and make them compatible with each other. This would increase diversity in the code and, optionally, programming languages. Also, different teams think differently and this could potentially lead to make SuperTLS to tolerate more vulnerabilities regarded with the implementation;}
+%\item{Using SHA-3 for hash to increase diversity when it is supported by TLS}
+%\item{SuperTLS performed rather well comparing with OpenSSL. The only existing approach other than SuperTLS is TLS-over-TLS. Future work: Compare SuperTLS with TLS-over-TLS.}
+%\end{itemize}
 
 %
 % The following two commands are all you need in the

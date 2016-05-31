@@ -50,6 +50,11 @@ V.~Gupta, S.~Gupta, S.~Chang, and D.~Stebila.
 \newblock In {\em Proceedings of the 1st ACM Workshop on Wireless Security},
   WiSE '02, pages 87--94, New York, NY, USA, 2002. ACM.
 
+\bibitem{RFC6367}
+S.~Kanno and M.~Kanda.
+\newblock {Addition of the Camellia Cipher Suites to Transport Layer Security
+  (TLS) (RFC 6367)}, 2011.
+
 \bibitem{IPsec}
 S.~Kent and K.~Seo.
 \newblock {Security Architecture for the Internet Protocol (RFC 4301)}, 2005.
