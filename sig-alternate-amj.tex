@@ -165,7 +165,7 @@ Miguel Correia\\
 
 \maketitle
 \begin{abstract}
-We present superTLS, a diverse and redundant vulnerability-tolerant secure communication channel for privacy in cloud.
+We present SuperTLS, a diverse and redundant vulnerability-tolerant secure communication channel for privacy in cloud.
 There have always been concerns about the strength of some of encryption mechanisms used in SSL/TLS channels and some of them were regarded as insecure at some point in time.
 SuperTLS is our solution to mitigate the problem of secure communication channels being vulnerable to attacks due to unexpected vulnerabilities in its encryption mechanisms. It is based on diversity and redundancy of cryptographic mechanisms and certificates to provide a secure communication channel even when one or more mechanisms are regarded vulnerable.
 SuperTLS relies on a combination of $k$ mechanisms/cipher suites, with $k$ being the diversity factor and $k > 1$.
@@ -248,11 +248,9 @@ Concrete implementations of SSL/TLS have been also considered vulnerable by havi
 SuperTLS is a secure communication channel tolerant to vulnerabilities which does not rely on only one cryptographic mechanism. It is our belief that \textit{diversity} and \textit{redundancy} of cryptographic mechanisms and certificates can help mitigate existent vulnerabilities.
 In our project's context, diversity and redundancy consist in using two or more different mechanisms/cipher suites with the same objective. For example, MD5 and SHA-3 are both hash functions used to generate digests. In a real case, where MD5 has become insecure, our diverse and redundant secure communication channel relies upon SHA-3 to keep the communication secure. Using diversity and redundancy of cryptographic mechanisms, when a one of those mechanisms is successfully attacked, another mechanism is able to maintain the security and availability of the communication.
 
-\begin{itemize}
-	\item Maybe talk a little about the project's context -- the cloud and communication between clouds
-\end{itemize}
-
-SuperTLS is part of an European project named SafeCloud...
+%\begin{itemize}
+%	\item Maybe talk a little about the project's context -- the cloud and communication between clouds
+%\end{itemize}
 
 Using diversity and redundancy, SuperTLS aims at increasing security over current secure communication channels by guaranteeing a diversity factor $k > 1$, which implies having $k$ different cipher suites with optimally $k$ different mechanisms for key exchange, authentication, encryption and signing.
 
@@ -415,9 +413,9 @@ Diversity and redundancy will also naturally be introduced in the following comm
 
 SuperTLS negotiates a default of $k = 2$ cipher suites, implying a diversity factor $k = 2$. While performance and management costs must be taken into account, this is the estimate of a reasonable $k$ cipher suites to use in the communication.
 
-\textbf{NOTA1: Ver se a tese do ricardo diz algo acerca de k=2 ser o melhor}
-
-\textbf{NOTA2: Ser\'a que posso afirmar que conforme o k cresce, a diversidade \'e cada vez menor e que 2 \'e a melhor relacao entre performance e diversidade?}
+%\textbf{NOTA1: Ver se a tese do ricardo diz algo acerca de k=2 ser o melhor}
+%
+%\textbf{NOTA2: Ser\'a que posso afirmar que conforme o k cresce, a diversidade \'e cada vez menor e que 2 \'e a melhor relacao entre performance e diversidade?}
 
 In terms of security, our solution must tolerate all the attacks given that at least one diverse redundant mechanism of the one attacked should not to be vulnerable that attack. On the contrary, our solution should never be vulnerable to attacks to which TLS 1.2 is not vulnerable.
 
@@ -527,8 +525,6 @@ Although being based on OpenSSL, SuperTLS is not compatible with OpenSSL. Due to
 
 Besides this fact, SuperTLS does not support all of OpenSSL cipher suites, such as PSK and SRP cipher suites.
 
-\textbf{NOTA: Explicar aqui porque \'e que escolhemos $k = 2$}
-
 In order to establish a SuperTLS communication channel, additional functions are required to fulfil the requirements of SuperTLS, such as loading two certificates and corresponding private keys. These functions have a similar name of the ones belonging to the OpenSSL API, to minimize the learning curve.
 The most relevant functions regarding the setup of the channel are the functions that allow to load the second certificate and private key and allow to check if the second private key corresponds to the second certificate.
 
@@ -569,6 +565,7 @@ Figure \ref{fig:diverse-mac-and-cipher-pt2} demonstrates the final ordering of S
 \end{figure}
 
 \subsubsection{Theoretical message size increase}
+\label{subsubsec:theretical-msg-size}
 
 Diversity and redundancy are the essential concepts of SuperTLS and both concepts are used in order to aim increasing security. Nevertheless, signing and encrypting $k$ times has its cost, namely regarding the message size.
 Figures \ref{fig:diverse-mac-and-cipher-pt1} and \ref{fig:diverse-mac-and-cipher-pt2} show the theoretical increase of the message size originated by using a second MAC and a second encryption function. Considering $eivlen$ the size of the initialization vector (IV) associated with first cipher, $msg\_length$ the original message size and $mac\_size$ the size of the first MAC, Figure \ref{fig:diverse-mac-and-cipher-pt1} shows that the size of the first ciphertext, $first\_len$, using just one encryption and one MAC is equal to $eivlen+msg\_length+mac\_size$. If the encryption function requires a fixed block size, an additional padding of size $padding$ is also added, making the final size $first\_len=eivlen+msg\_length+padding+mac\_size$. This is the expected size of an OpenSSL message.
@@ -609,33 +606,29 @@ TLS\_ECDH\_ECDSA\_WITH\_AES\_256\_GCM\_SHA384.
 \label{fig:eval_time_2}
 \end{figure}
 
-The time taken to send a 50Mb message through SuperTLS is, in average, 534,55 ms;
-The time taken to retrieve a 50Mb message through SuperTLS is, in average, 549,61 ms;
-The time taken to send a 50Mb message through OpenSSL is, in average, 435,01 ms ;
-The time taken to retrieve a 50Mb message through OpenSSL is, in average, 443,1 ms;
+Figure \ref{fig:eval_time_2} shows the comparison between the time it takes to send, and receive, a message through a SuperTLS channel and the time it takes to send, and receive, the same message through an OpenSSL/TLS channel. Overall, a message sent through a SuperTLS channel takes, in average, 22,88\% longer than a message sent OpenSSL. For example, a 50 Megabytes message takes, in average, $534,55$ ms to be sent through a SuperTLS, while using OpenSSL, the same message takes $435,01$ ms to be sent.
+The overhead generated by using multiple ciphers and signatures exists, as expected, but it is much smaller than the worst case.
 
-{Overall, a message sent through SuperTLS takes, in average, 22,88\% longer than a message sent OpenSSL.
-The overhead generated by using multiple ciphers and signatures exists, as expected, but it is much smaller than the worst case ($k$ times slower).
+In Section \ref{subsubsec:theretical-msg-size}, we already did an analysis of the expected message size increase, using variables. In order to validate the premise that the message increase is the same considering the same message size, we measured the increase in the message size, in bytes, comparing, once again, SuperTLS and OpenSSL channels.
+A 100 Kilobytes plaintext message converts into a ciphertext of $102 771$ bytes long, using SuperTLS. Using OpenSSL, the same message corresponds to a ciphertext of $102 603$ bytes. Concluding, sending a 100 Kb message through SuperTLS costs an additional $168$ bytes. Although, as stated before, the number of extra bytes sent is not directly proportional to the message size. Assuming that they were directly proportional, sending a 1 Megabyte message through a SuperTLS channel would cost $172 032$ bytes.
 
-\begin{enumerate}
-
-\item{A 100Kb message corresponds to 102771 bytes using SuperTLS, while using OpenSSL, the same message corresponds to sending 102603 bytes. Sending 100Kb through SuperTLS costs an additional 168 bytes; Using this correlation, and assuming that it should be proportional, sending a 1Mb message should cost 172032 bytes. Although...}
-\item{A 1Mb message corresponds to 1029054 bytes using SuperTLS, while using OpenSSL, the same message corresponds to sending 1025856 bytes. Sending 1Mb through SuperTLS costs an additional 3198 bytes;}
-\item{This happens because the growth of the total encrypted message size is not proportional to the message size itself. The plaintext and the encrypted text have the same length. Therefore, encrypting $k$ times won't increase in terms of encrypted text size.}
-\item{This information was retrieved using Wireshark to track the SuperTLS packets through a TLS connection.}
-
-\end{enumerate}
+We also evaluated the message size of the ciphertext of a 1 Megabyte plaintext message. A 1 Mb plaintext message corresponds to a ciphertext of $1 029 054$ bytes using SuperTLS, while using OpenSSL, the same message converts into a message of $1 025 856$ bytes. Concluding, sending 1 Mb through a SuperTLS channel costs an additional $3 198$ bytes than using a OpenSSL channel.
+As we can conclude, the values are not definitely not directly proportional.
 
 \subsection{Management and Cost}
 
-\begin{enumerate}
-\item{Certificates have a cost, and having $k$ certificates instead of one, increases the cost in $(k - 1) * the price of one certificate$;}
-\item{There is also an extra cost of maintaining $k$ certificates instead of just one.}
-\item{As we considered SuperTLS with a diversity factor $k = 2$, the cost of the certificates duplicates, considering that the second certificate is as expensive as the one already owned. Although certificates are expensive, they do not represent a huge cost (dozens of euros/dollars). Therefore, duplicating the cost of certificates is compensated by increasing the security;}
-\item{Managing one or two certificates is almost the same.}
-\end{enumerate}
+SuperTLS is a communication channel which objective is to provide a vulnerability-tolerant channel, using diversity and redundancy, to provide security. Nevertheless, SuperTLS, such as TLS and other protocols, uses certificates and need to be managed.
+A cloud or server using a TLS-based communication channels, such as OpenSSL, to communicate in a secure fashion with another cloud only needs one certificate. If the same cloud or server decides to use SuperTLS, it will need, at least $2$ certificates, and at maximum, $k$ certificates. Although certificates are not very expensive, they represent an annual cost to the cloud or server. If the cloud or server decides to use SuperTLS, it can be used with just one certificate, but diminishing the diversity and, consequently, the potential security increase.
+
+Using a diversity factor $k = 2$, the cost of the certificates duplicates, which can be an issue for some cloud providers or companies. Nevertheless, it is our belief that the additional cost of having two certificates instead of one is compensated by the increase of security and vulnerability-tolerance provided by SuperTLS.
+
+Regarding management, there is the need to manage two certificates instead of one. This does not represent a huge increase of management costs as the number of certificates only duplicates. If the cloud's owner decides to use SuperTLS with a diversity factor $k > 2$, the management costs of maintaining the $k$ certificates might represent an significant increase of management costs.
 
 \section{Conclusions}
+
+SuperTLS is a diverse and redundant vulnerability-tolerant secure communication channel designed for communication between clouds. It aims at increasing security using the most diverse cipher suites to tolerate vulnerabilities in any encryption mechanism used in the communication channel. We used a default diversity factor $k = 2$ for SuperTLS, and the preferred cipher suite to use with a SuperTLS are \textit{TLS\_ECDHE\_ECDSA\_WITH\_AES\_256\_GCM\_SHA384} + \\\textit{TLS\_RSA\_WITH\_AES\_128\_CBC\_SHA256}. In order to evaluate our solution, we compared it to an OpenSSL 1.0.2g communication channel. While expected to be $k, k = 2$ times slower than an OpenSSL channel, SuperTLS' evaluation demonstrated that using diversity and redundancy of cryptographic mechanisms does not generate the expected overhead. SuperTLS takes, in average, 22,88\% longer to send a message than TLS/OpenSSL, but considering the increase in security, this overhead is acceptable.
+
+Overall, considering the additional costs of having an extra certificate, the time increase, and potential management costs, the SuperTLS is a very good communication channel for clouds to communicate, using diversity to mitigate vulnerabilities existent.
 
 %\end{document}  % This is where a 'short' article might terminate
 
