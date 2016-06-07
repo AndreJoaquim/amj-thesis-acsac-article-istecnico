@@ -84,7 +84,7 @@
 %\crdata{0-12345-67-8/90/01}  % Allows default copyright data (0-89791-88-6/97/05) to be over-ridden - IF NEED BE.
 % --- End of Author Metadata ---
 
-\title{SuperTLS: A Diverse and Redundant Secure Communication Channel for Privacy in Cloud}
+\title{SuperTLS: Protocol for Diverse and Redundant Secure Communication Channels for Privacy in Cloud}
 %\subtitle{[Extended Abstract]
 %\titlenote{A full version of this paper is available as
 %\textit{Author's Guide to Preparing ACM SIG Proceedings Using
@@ -165,12 +165,12 @@ Miguel Correia\\
 
 \maketitle
 \begin{abstract}
-We present SuperTLS, a diverse and redundant vulnerability-tolerant secure communication channel for privacy in cloud.
+We present SuperTLS, a protocol for diverse and redundant vulnerability-tolerant secure communication channel for privacy in cloud.
 There have always been concerns about the strength of some of encryption mechanisms used in SSL/TLS channels and some of them were regarded as insecure at some point in time.
 SuperTLS is our solution to mitigate the problem of secure communication channels being vulnerable to attacks due to unexpected vulnerabilities in its encryption mechanisms. It is based on diversity and redundancy of cryptographic mechanisms and certificates to provide a secure communication channel even when one or more mechanisms are regarded vulnerable.
 SuperTLS relies on a combination of $k$ mechanisms/cipher suites, with $k$ being the diversity factor and $k > 1$.
 Even when $k - 1$ mechanisms are regarded as insecure or considered vulnerable, SuperTLS relies on the remaining secure, diverse and redundant mechanism to maintain the channel secure.
-We evaluated the performance of our channel by comparing it to a normal TLS channel.
+We evaluated the performance of SuperTLS by comparing it to a regular TLS channel.
 \end{abstract}
 
 %
@@ -223,7 +223,7 @@ We evaluated the performance of our channel by comparing it to a normal TLS chan
 %
 \printccsdesc
 
-\keywords{Secure communication channels; Diversity; Redundancy; TLS; Vulnerability-Tolerance}
+\keywords{Protocol; Secure communication channels; Diversity; Redundancy; Vulnerability-Tolerance}
 
 \section{Introduction}
 
@@ -245,8 +245,8 @@ The Handshake protocol is used to establish or re-establish a communication betw
 A secure communication channel becomes insecure when a vulnerability is discovered. Vulnerabilities may concern the protocol's specification, cryptographic mechanisms used by the protocol or specific implementations of the protocol. Many vulnerabilities have been discovered in SSL/TLS originating new versions of the protocol with renewed security aspects such as deprecating cryptographic mechanisms or enforcing security measures.
 Concrete implementations of SSL/TLS have been also considered vulnerable by having implementation details causing a breach of security and affecting devices worldwide.
 
-SuperTLS is a secure communication channel tolerant to vulnerabilities which does not rely on only one cryptographic mechanism. It is our belief that \textit{diversity} and \textit{redundancy} of cryptographic mechanisms and certificates can help mitigate existent vulnerabilities.
-In our project's context, diversity and redundancy consist in using two or more different mechanisms/cipher suites with the same objective. For example, MD5 and SHA-3 are both hash functions used to generate digests. In a real case, where MD5 has become insecure, our diverse and redundant secure communication channel relies upon SHA-3 to keep the communication secure. Using diversity and redundancy of cryptographic mechanisms, when a one of those mechanisms is successfully attacked, another mechanism is able to maintain the security and availability of the communication.
+SuperTLS is a protocol for secure communication channels tolerant to vulnerabilities which does not rely on only one cryptographic mechanism. It is our belief that \textit{diversity} and \textit{redundancy} of cryptographic mechanisms and certificates can help mitigate existent vulnerabilities.
+In our project's context, diversity and redundancy consist in using two or more different mechanisms with the same objective. For example, MD5 and SHA-3 are both hash functions used to generate digests. In a real case, where MD5 has become insecure, our diverse and redundant secure communication channel relies upon SHA-3 to keep the communication secure. Using diversity and redundancy of cryptographic mechanisms, when a one of those mechanisms is successfully attacked, another mechanism is able to maintain the security and availability of the communication.
 
 %\begin{itemize}
 %	\item Maybe talk a little about the project's context -- the cloud and communication between clouds
@@ -258,9 +258,9 @@ Although SSL/TLS supporting strong encryption mechanisms, such as AES and RSA, t
 Diversifying encryption mechanisms includes diversifying certificates and consequently keys (public, private, shared).
 Diversity of certificates is a direct consequence of diversifying encryption mechanisms due to the fact that each certificate is related to an authentication and key exchange mechanism.
 
-The contributions of this paper are a new secure communication channel which uses diversity and redundancy to tolerate vulnerabilities in existent cryptographic mechanisms based on TLS 1.2 and specific evidence that diversity and redundancy can be employed without creating an excessive overhead in the communication. Proving that diversity and redundancy have a real impact on increasing security of a communication channel, while having reasonable performance and time-related costs, required a precise evaluation of our solution.
+The contributions of this paper are a new protocol for secure communication channels which uses diversity and redundancy to tolerate vulnerabilities in existent cryptographic mechanisms based on TLS 1.2, and specific evidence that diversity and redundancy can be employed without creating an excessive overhead in the communication. Proving that diversity and redundancy have a real impact on increasing security of a communication channel, while having reasonable performance and time-related costs, required a precise evaluation of our solution.
 
-The rest of the document is organized in the following way: Section 2 presents the related work. Section 3 presents the architecture of the proposed solution. Section 4 presents the evaluation. Section 5 presents some conclusions.
+The rest of the document is organized in the following way: Section 2 presents the related work. Section 3 presents the architecture of the proposed solution. Section 4 presents the implementation of SuperTLS. Section 5 presents the experimental evaluation. Section 6 presents some conclusions.
 
 \section{Related Work}
 \label{sec-related-work}
@@ -371,7 +371,7 @@ Proposed by Rivest \textit{et al.} in 1978, RSA is a cryptographic mechanism use
 RSA is broken when those problems are solved, within a small amount of time.
 
 Kleinjung \textit{et al.} performed the factorization of RSA-768, a RSA number with 232 digits \cite{Kleinjung2010}. The researchers state they spent almost two years in the whole process, which is clearly a non feasible time.
-Factorizing a large integer is a very different concept from breaking RSA. RSA is still secure (see Table \ref{TLS-keyexchange}).
+Factorizing a large integer is a very different concept from breaking RSA. RSA is still secure.
 As of 2010, the researchers concluded that RSA-1024 would be factored within five years, i.e., in 2015. As for now, no factorization of RSA-1024 has been publicly announced, so their conclusion proved to be false.
 
 Shor, using quantum computing, invented an algorithm to factorize integers in polynomial time, named \textit{Shor's algorithm} \cite{Shor1995}. One obstacle arises when we try to implement Shor's algorithm -- it is yet to be invented real quantum computers. For the time being, quantum computers are just theoretical models.
@@ -397,9 +397,9 @@ In 2005, Wang \textit{et al.} presented a collision attack on SHA-1 that reduced
 
 Nowadays it is still computationally expensive to perform these number of calculations. In the near future, by the year of 2021, a collision attack is expected to be affordable to a university research project \cite{Schneier12}.
 
-\section{Overview}
+\section{SuperTLS}
 
-SuperTLS is a diverse and redundant vulnerability-tolerant secure communication channel. It aims at increasing security using diverse and redundant cryptographic mechanisms and certificates, and it is based on the TLS protocol. Although being an independent secure communication channel, SuperTLS is compatible with TLS 1.2.
+SuperTLS is a protocol for diverse and redundant vulnerability-tolerant secure communication channels. It aims at increasing security using diverse and redundant cryptographic mechanisms and certificates, and it is based on the TLS protocol. Although being an independent protocol for secure communication channels, SuperTLS is compatible with TLS 1.2.
 
 This project aims to solve the main problem originated by having only one cipher suite negotiated between client and server: when one of the cipher suite's mechanisms becomes insecure, the communication channels using that cipher suite may become vulnerable.
 Although most cipher suites' cryptographic mechanisms supported by TLS 1.2 are regarded as secure, as stated in Section \ref{sec-related-work}, there is not any assurance that a governmental agency or a company with high computational power and financial resources is not able to break one of those cryptographic mechanisms in the near future.
@@ -443,13 +443,6 @@ Instead of computing all the ephemeral parameters and sending a larger message, 
 \caption{SuperTLS' Handshake messages using a diversity factor $k$. The diversity and redundancy entry points are marked in blue and underlined.}
 \label{fig:superTLS-example}
 \end{figure}
-
-%\begin{figure}[t]
-%\includegraphics[width=9cm]{superTLS-example}
-%\centering
-%\caption{Example of SuperTLS' Handshake messages using $k = 2$ and choosing the combination TLS\_DHE\_DSS\_WITH\_AES\_128\_CBC\_SHA+\\TLS\_RSA\_WITH\_AES\_256\_CBC\_SHA256. The diversity and redundancy entry points are marked in blue and underlined.}
-%\label{fig:superTLS-example}
-%\end{figure}
 
 The remaining messages sent by the server to the client at this point of negotiation, CertificateRequest and ServerHelloDone, are identical to TLS 1.2 \cite{TLS1.2-5246}.
 
@@ -517,13 +510,13 @@ For key exchange, as stated above, SuperTLS will use Ephemeral ECDH (ECDHE) and 
 
 Using this combination of cipher suites, maximum diversity is achieved using a diversity factor $k = 2$. The least diversified part of the communication is the MAC, due to the fact that TLS 1.2 does not support SHA-3 for now.
 
-\subsection{Implementation}
+\section{Implementation}
 
-SuperTLS is based on OpenSSL v1.0.2g. Creating a secure communication channel from scratch is a risk because it could have vulnerabilities that were not detected and which could cause a breach of security. Additionally, creating a new secure communication channel, and consequently a new API, would create many entrance barriers to anyone who wanted to use our new communication channel. Therefore, we chose to implement SuperTLS based on OpenSSL to avoid the maximum amount of vulnerabilities originated from coding errors and to make it easier to migrate from OpenSSL to SuperTLS, as the SuperTLS' API contains the same functions as the OpenSSL's API plus the SuperTLS' specific calls/functions.
+SuperTLS' implementation is based on OpenSSL v1.0.2g. Implementing a secure communication channel from scratch is a risk because it could have vulnerabilities that were not detected and which could cause a breach of security. Additionally, creating a new secure communication channel, and consequently a new API, would create many entrance barriers to anyone who wanted to use our new communication channel. Therefore, we chose to implement SuperTLS based on OpenSSL to avoid the maximum amount of vulnerabilities originated from coding errors and to make it easier to migrate from OpenSSL to SuperTLS, as the SuperTLS' API contains the same functions as the OpenSSL's API plus the SuperTLS' specific calls/functions.
 
 Although being based on OpenSSL, SuperTLS is not compatible with OpenSSL. Due to its diversity and redundancy characteristics, SuperTLS can not connect to a OpenSSL server or client because, even though it is possible to use SuperTLS with just one certificate, even then SuperTLS will aim maximizing diversity with the purpose of increasing security.
 
-Besides this fact, SuperTLS does not support all of OpenSSL cipher suites, such as PSK and SRP cipher suites.
+Besides this fact, SuperTLS does not support all of OpenSSL cipher suites, for example PSK and SRP cipher suites.
 
 In order to establish a SuperTLS communication channel, additional functions are required to fulfil the requirements of SuperTLS, such as loading two certificates and corresponding private keys. These functions have a similar name of the ones belonging to the OpenSSL API, to minimize the learning curve.
 The most relevant functions regarding the setup of the channel are the functions that allow to load the second certificate and private key and allow to check if the second private key corresponds to the second certificate.
@@ -564,8 +557,8 @@ Figure \ref{fig:diverse-mac-and-cipher-pt2} demonstrates the final ordering of S
 \label{fig:diverse-mac-and-cipher-pt2}
 \end{figure}
 
-\subsubsection{Theoretical message size increase}
-\label{subsubsec:theretical-msg-size}
+\subsection{Theoretical message size increase}
+\label{subsec:theretical-msg-size}
 
 Diversity and redundancy are the essential concepts of SuperTLS and both concepts are used in order to aim increasing security. Nevertheless, signing and encrypting $k$ times has its cost, namely regarding the message size.
 Figures \ref{fig:diverse-mac-and-cipher-pt1} and \ref{fig:diverse-mac-and-cipher-pt2} show the theoretical increase of the message size originated by using a second MAC and a second encryption function. Considering $eivlen$ the size of the initialization vector (IV) associated with first cipher, $msg\_length$ the original message size and $mac\_size$ the size of the first MAC, Figure \ref{fig:diverse-mac-and-cipher-pt1} shows that the size of the first ciphertext, $first\_len$, using just one encryption and one MAC is equal to $eivlen+msg\_length+mac\_size$. If the encryption function requires a fixed block size, an additional padding of size $padding$ is also added, making the final size $first\_len=eivlen+msg\_length+padding+mac\_size$. This is the expected size of an OpenSSL message.
@@ -609,7 +602,7 @@ TLS\_ECDH\_ECDSA\_WITH\_AES\_256\_GCM\_SHA384.
 Figure \ref{fig:eval_time_2} shows the comparison between the time it takes to send, and receive, a message through a SuperTLS channel and the time it takes to send, and receive, the same message through an OpenSSL/TLS channel. Overall, a message sent through a SuperTLS channel takes, in average, 22,88\% longer than a message sent OpenSSL. For example, a 50 Megabytes message takes, in average, $534,55$ ms to be sent through a SuperTLS, while using OpenSSL, the same message takes $435,01$ ms to be sent.
 The overhead generated by using multiple ciphers and signatures exists, as expected, but it is much smaller than the worst case.
 
-In Section \ref{subsubsec:theretical-msg-size}, we already did an analysis of the expected message size increase, using variables. In order to validate the premise that the message increase is the same considering the same message size, we measured the increase in the message size, in bytes, comparing, once again, SuperTLS and OpenSSL channels.
+In Section \ref{subsec:theretical-msg-size}, we already did an analysis of the expected message size increase, using variables. In order to validate the premise that the message increase is the same considering the same message size, we measured the increase in the message size, in bytes, comparing, once again, SuperTLS and OpenSSL channels.
 A 100 Kilobytes plaintext message converts into a ciphertext of $102 771$ bytes long, using SuperTLS. Using OpenSSL, the same message corresponds to a ciphertext of $102 603$ bytes. Concluding, sending a 100 Kb message through SuperTLS costs an additional $168$ bytes. Although, as stated before, the number of extra bytes sent is not directly proportional to the message size. Assuming that they were directly proportional, sending a 1 Megabyte message through a SuperTLS channel would cost $172 032$ bytes.
 
 We also evaluated the message size of the ciphertext of a 1 Megabyte plaintext message. A 1 Mb plaintext message corresponds to a ciphertext of $1 029 054$ bytes using SuperTLS, while using OpenSSL, the same message converts into a message of $1 025 856$ bytes. Concluding, sending 1 Mb through a SuperTLS channel costs an additional $3 198$ bytes than using a OpenSSL channel.
