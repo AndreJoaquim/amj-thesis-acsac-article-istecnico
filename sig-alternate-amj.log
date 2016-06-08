@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.12.11)  7 JUN 2016 10:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.12.11)  7 JUN 2016 11:44
 entering extended mode
 **sig-alternate-amj.tex
 (sig-alternate-amj.tex
@@ -445,18 +445,18 @@ Overfull \hbox (1.36389pt too wide) in paragraph at lines 588--589
 
  []
 
-<images/eval_time_2.png, id=48, 361.35pt x 258.9675pt>
-File: images/eval_time_2.png Graphic file (type png)
+<images/eval_time_2_bw.png, id=48, 361.35pt x 258.9675pt>
+File: images/eval_time_2_bw.png Graphic file (type png)
 
-<use images/eval_time_2.png>
-Package pdftex.def Info: images/eval_time_2.png used on input line 596.
+<use images/eval_time_2_bw.png>
+Package pdftex.def Info: images/eval_time_2_bw.png used on input line 596.
 (pdftex.def)             Requested size: 256.0748pt x 183.52046pt.
 
 Overfull \hbox (16.0748pt too wide) in paragraph at lines 596--598
  [][] 
  []
 
-[9 <./images/eval_time_2.png>]
+[9 <./images/eval_time_2_bw.png>]
 Overfull \hbox (2.87704pt too wide) in paragraph at lines 622--623
 []\T1/aer/m/n/9 SuperTLS is a di-verse and re-dun-dant vulnerability-tolerant
  []
@@ -470,7 +470,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 ] (sig-alternate-amj.aux) ) 
 Here is how much of TeX's memory you used:
  3995 strings out of 493673
- 55782 string characters out of 3141529
+ 55797 string characters out of 3141529
  132296 words of memory out of 3000000
  7252 multiletter control sequences out of 15000+200000
  59102 words of font info for 80 fonts, out of 3000000 for 9000
@@ -491,7 +491,7 @@ es (x86)/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Program Files (x86)
 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/t
 ype1/urw/times/utmr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/ti
 mes/utmri8a.pfb>
-Output written on sig-alternate-amj.pdf (11 pages, 366710 bytes).
+Output written on sig-alternate-amj.pdf (11 pages, 366915 bytes).
 PDF statistics:
  103 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

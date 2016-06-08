@@ -14,18 +14,19 @@ volume = {12},
 year = {2014}
 }
 
-@article{Evans2011,
+@incollection{Evans2011,
 author = {Evans, D. and Nguyen-Tuong, A. and Knight, J.},
 doi = {10.1007/978-1-4614-0977-9},
 file = {:C$\backslash$:/Users/ASUS/Dropbox/M\_SafeCloud/Andre/\_papers/mpc-vulnerability-tolerant comm - diversity/1- Arguments for diversity in security/1.1- Moving Target Defense/Evans11/mt2011.pdf:pdf},
 isbn = {978-1-4614-0976-2},
-journal = {Moving Target Defense Advances in Information Security},
+  booktitle={Moving Target Defense},
 mendeley-groups = {Thesis' Project Related Work/1. Arguments for diversity in security/1.1. Moving-target defense},
 pages = {29--48},
-title = {{Moving Target Defense}},
+title={Effectiveness of moving target defenses},
 url = {http://www.springerlink.com/index/10.1007/978-1-4614-0977-9},
 volume = {54},
-year = {2011}
+year = {2011},
+  publisher={Springer}
 }
 
 @article{Carvalho2014,
@@ -38,7 +39,7 @@ keywords = {Attack,MTD,Moving-target defense,Target,system security},
 mendeley-groups = {Thesis' Project Related Work/1. Arguments for diversity in security/1.1. Moving-target defense},
 number = {2},
 pages = {73--76},
-title = {{Moving-target defenses for computer networks}},
+title = {Moving-target defenses for computer networks},
 volume = {12},
 year = {2014}
 }
@@ -56,17 +57,17 @@ year = {2014}
 }
 
 
-@article{Littlewood2004,
+@inproceedings{Littlewood2004,
 abstract = {Redundancy and diversity are commonly applied principles for fault tolerance against accidental faults. Their use in security, which is attracting increasing interest, is less general and less of an accepted principle. In particular, redundancy without diversity is often argued to be useless against systematic attack, and diversity to be of dubious value. This paper discusses their roles and limits, and to what extent lessons from research on their use for reliability can be applied to security, in areas such as intrusion detection. We take a probabilistic approach to the problem, and argue its validity for security. We then discuss the various roles of redundancy and diversity for security, and show that some basic insights from probabilistic modelling in reliability and safety indeed apply to examples of design for security.We discuss the factors affecting the efficacy of redundancy and diversity, the role of “independence” between layers of defense, and some of the trade-offs facing designers.},
 author = {Littlewood, B. and Strigini, L.},
 doi = {10.1093/rheumatology/keu107.001},
 file = {:C$\backslash$:/Users/ASUS/AppData/Local/Mendeley Ltd./Mendeley Desktop/Downloaded/Littlewood, Strigini - 2004 - Redundancy and Diversity in Security.pdf:pdf},
 isbn = {9780754679707},
 issn = {17411068},
-journal = {Computer Security ESORICS 2004},
+booktitle = {Computer Security -- ESORICS 2004, 9th European Symposium on Research Computer Security},
 mendeley-groups = {Thesis' Project Related Work/1. Arguments for diversity in security},
 pages = {227--246},
-title = {{Redundancy and Diversity in Security}},
+title = {Redundancy and Diversity in Security},
 year = {2004}
 }
 
@@ -220,16 +221,18 @@ year = {2013}
   year = {2012}
 }
 
-@article{Adrian2015,
+@inproceedings{Adrian2015,
 abstract = {We investigate the security of Diffie-Hellman key exchange as used in popular Internet protocols and find it to be less secure than widely believed. First, we present a novel flaw in TLS that allows a man-in-the-middle to downgrade connections to “export-grade” Diffie-Hellman. To carry out this attack, we implement the number field sieve discrete log algorithm. After a week-long precomputation for a specified 512-bit group, we can compute arbitrary discrete logs in this group in minutes. We find that 82{\%} of vulnerable servers use a single 512-bit group, allowing us to compromise connections to 7{\%} of Alexa Top Million HTTPS sites. In response, major browsers are being changed to reject short groups. We go on to consider Diffie-Hellman with 768- and 1024-bit groups. A small number of fixed or standardized groups are in use by millions of TLS, SSH, and VPN servers. Performing precomputations on a few of these groups would allow a passive eavesdropper to decrypt a large fraction of Internet traffic. In the 1024-bit case, we estimate that such computations are plausible given nation-state resources, and a close reading of published NSA leaks shows that the agency’s attacks on VPNs are consistent with having achieved such a break. We conclude that moving to stronger key exchange methods should be a priority for the Internet community.},
 author = {Adrian, D. and Bhargavan, K. and Durumeric, Z. and Gaudry, P. and Green, M. and Halderman, J. and Heninger, N. and Springall, D. and Thom{\'{e}}, E. and Valenta, L. and Vandersloot, B. and Wustrow, E. and Paul, S.},
 doi = {10.1145/2810103.2813707},
 file = {:C$\backslash$:/Users/ASUS/Dropbox/M{\_}SafeCloud/Andre/{\_}papers/mpc-vulnerability-tolerant comm - diversity/5- SSL-TLS/5.3- SSL Vulnerabilities/Adrian15/imperfect-forward-secrecy-ccs15.pdf:pdf},
 isbn = {9781450338325},
-journal = {22nd ACM Conference on Computer and Communications Security (CCS ’15)},
+booktitle = {Proceedings of the 22nd ACM Conference on Computer and Communications Security},
 mendeley-groups = {Thesis' Project Related Work/5. SSL/TLS},
-title = {{Imperfect Forward Secrecy: How Diffie-Hellman Fails in Practice}},
+title = {Imperfect Forward Secrecy: How {Diffie-Hellman} Fails in Practice},
 url = {https://weakdh.org/imperfect-forward-secrecy.pdf},
+pages = {5--1},
+month = oct,
 year = {2015}
 }
 
@@ -368,19 +371,19 @@ title = {{Authenticated-Encryption with Associated-Data}},
 year = {2002}
 }
 
-@article{Kleinjung2010,
+@inproceedings{Kleinjung2010,
 abstract = {This paper reports on the factorization of the 768-bit number RSA-768 by the num- ber field sieve factoring method and discusses some implications for RSA.},
 author = {Kleinjung, T. and Aoki, K. and Franke, J. and Lenstra, A. and Thom{\'{e}}, E. and Bos, J. and Gaudry, P. and Kruppa, A. and Montgomery, P. and Osvik, D. and {Te Riele}, H. and Timofeev, A. and Zimmermann, P.},
 doi = {10.1007/978-3-642-14623-7{\_}18},
 file = {:C$\backslash$:/Users/ASUS/Dropbox/M{\_}SafeCloud/Andre/{\_}papers/mpc-vulnerability-tolerant comm - diversity/3- Vulnerabilities in cryptographic mechanisms/Aoki09/006.pdf:pdf},
 isbn = {3642146228},
 issn = {03029743},
-journal = {Lecture Notes in Computer Science},
 keywords = {RSA,number field sieve},
 mendeley-groups = {Thesis' Project Related Work/3. Vulnerabilities in criptographic mechanisms},
 pages = {333--350},
-title = {{Factorization of a 768-Bit RSA modulus}},
-volume = {6223 LNCS},
+title = {Factorization of a 768-Bit {RSA} modulus},
+booktitle = {Proceedings of the 30th Annual Conference on Advances in Cryptology},
+volume = {LNCS 6223},
 year = {2010}
 }
 
@@ -480,36 +483,34 @@ volume = {2009},
 year = {2001}
 }
 
-@article{Bogdanov2011,
+@inproceedings{Bogdanov2011,
 abstract = {Since Rijndael was chosen as the Advanced Encryption Standard (AES), improving upon 7-round attacks on the 128-bit key variant (out of 10 rounds) or upon 8-round attacks on the 192/256-bit key variants (out of 12/14 rounds) has been one of the most difficult challenges in the cryptanalysis of block ciphers for more than a decade. In this paper, we present the novel technique of block cipher cryptanalysis with bicliques, which leads to the following results: • The first key recovery method for the full AES-128 with computational complexity 2126.1. • The first key recovery method for the full AES-192 with computational complexity 2189.7. • The first key recovery method for the full AES-256 with computational complexity 2254.4. • Key recovery methods with lower complexity for the reduced-round versions of AES not considered before, including cryptanalysis of 8-round AES-128 with complexity 2124.9. • Preimage search for compression functions based on the full AES versions faster than brute force. In contrast to most shortcut attacks on AES variants, we do not need to assume related-keys. Most of our techniques only need a very small part of the codebook and have low memory requirements, and are practically verified to a large extent. As our cryptanalysis is of high computational complexity, it does not threaten the practical use of AES in any way.},
 author = {Bogdanov, A. and Khovratovich, D. and Rechberger, C.},
 doi = {10.1007/978-3-642-25385-0{\_}19},
 file = {:C$\backslash$:/Users/ASUS/Dropbox/M{\_}SafeCloud/Andre/{\_}papers/mpc-vulnerability-tolerant comm - diversity/3- Vulnerabilities in cryptographic mechanisms/Bogdanov11/aesbc.pdf:pdf},
 isbn = {9783642253843},
 issn = {03029743},
-journal = {Lecture Notes in Computer Science},
+booktitle = {Proceedings of the 17th International Conference on the Theory and Application of Cryptology and Information Security},
 keywords = {AES,bicliques,block ciphers,key recovery,preimage},
 mendeley-groups = {Thesis' Project Related Work/3. Vulnerabilities in criptographic mechanisms},
 pages = {344--371},
-title = {{Biclique cryptanalysis of the full AES}},
-volume = {7073 LNCS},
+title = {Biclique cryptanalysis of the full {AES}},
+volume = {LNCS 7073},
 year = {2011}
 }
 
 @incollection{Ferguson2001,
 year={2001},
 isbn={978-3-540-41728-6},
-booktitle={Fast Software Encryption},
-volume={1978},
-series={Lecture Notes in Computer Science},
+booktitle={Proceedings of Fast Software Encryption},
+volume={LNCS 1978},
 editor={Goos, Gerhard and Hartmanis, Juris and van Leeuwen, Jan and Schneier, Bruce},
 doi={10.1007/3-540-44706-7_15},
-title={Improved Cryptanalysis of Rijndael},
+title={Improved Cryptanalysis of {Rijndael}},
 url={http://dx.doi.org/10.1007/3-540-44706-7_15},
-publisher={Springer Berlin Heidelberg},
+publisher={Springer},
 author={Ferguson, N. and Kelsey, J. and Lucks, S. and Schneier, B. and Stay, M. and Wagner, D. and Whiting, D.},
-pages={213-230},
-language={English}
+pages={213-230}
 }
 
 @article{Biryukov2009,
@@ -545,17 +546,18 @@ year = {2009}
  address = {Berlin, Heidelberg},
 } 
 
-@article{Beurdouche2015,
+@inproceedings{Beurdouche2015,
 abstract = {Implementations of the Transport Layer Security (TLS) protocol must handle a variety of protocol versions and extensions, authentication modes, and key exchange methods. Confusingly, each combination may prescribe a different message sequence between the client and the server. We address the problem of designing a robust composite state machine that correctly multiplexes between these different protocol modes. We systematically test popular open-source TLS implementations for state machine bugs and discover several critical security vulnerabilities that have lain hidden in these libraries for years, and have now finally been patched due to our disclosures. Several of these vulnerabilities, including the recently publicized FREAK flaw, enable a network attacker to break into TLS connections between authenticated clients and servers. We argue that state machine bugs stem from incorrect compositions of individually correct state machines. We present the first verified implementation of a composite TLS state machine in C that can be embedded into OpenSSL and accounts for all its supported ciphersuites. Our attacks expose the need for the formal verification of core components in cryptographic protocol libraries; our implementation demonstrates that such mechanized proofs are within reach, even for mainstream TLS implementations.},
 author = {Beurdouche, B. and Bhargavan, K. and Delignat-lavaud, A. and Fournet, C. and Kohlweiss, M.},
 doi = {10.1109/SP.2015.39},
 file = {:C$\backslash$:/Users/ASUS/Dropbox/M{\_}SafeCloud/Andre/{\_}papers/mpc-vulnerability-tolerant comm - diversity/5- SSL-TLS/5.3- SSL Vulnerabilities/Beurdouche15/smack.pdf:pdf},
 isbn = {978-1-4673-6949-7},
 issn = {1081-6011},
-journal = {IEEE Symposium on Security and Privacy},
+booktitle = {Proceedings of the 2015 IEEE Symposium on Security and Privacy},
 mendeley-groups = {Thesis' Project Related Work/5. SSL/TLS},
-pages = {1--19},
-title = {{A Messy State of the Union: Taming the Composite State Machines of TLS}},
+pages = {535--552},
+title = {A Messy State of the Union: Taming the Composite State Machines of {TLS}},
+month = may,
 year = {2015}
 }
 
@@ -579,7 +581,7 @@ keywords = {Computer crashes,Electronic commerce,Heartbleed,Internet,OpenSSL,Pay
 mendeley-groups = {Thesis' Project Related Work/5. SSL/TLS},
 number = {4},
 pages = {63--67},
-title = {{Heartbleed 101}},
+title = {Heartbleed 101},
 url = {http://ieeexplore.ieee.org/lpdocs/epic03/wrapper.htm?arnumber=6876249},
 volume = {12},
 year = {2014}
@@ -621,23 +623,23 @@ year = {1996}
 
 @misc{Stevens15,
 	author = {Stevens, M. and Karpman, P. and Peyrin, T.},
-	title = {{Freestart collision on full SHA-1}},
+	title = {Freestart collision on full {SHA-1}},
 	howpublished = {Cryptology ePrint Archive, Report 2015/967},
 	year = {2015},
 }
 
 @misc{Schneier15,
   author = {Schneier, B.},
-  title = {{SHA-1 Freestart Collision}},
-  howpublished = {\url{https://www.schneier.com/blog/archives/2015/10/sha-1\_freestart.html}},
+  title = {{SHA-1} Freestart Collision},
+  howpublished = {\url{https://www.schneier.com/blog/archives/2015/10/sha-1_freestart.html}},
   note = {Last time accessed: 2016-01-03},
   year = {2015}
 }
 
 @misc{Schneier12,
   author = {Schneier, B.},
-  title = {{When Will We See Collisions for SHA-1?}},
-  howpublished = {\url{https://www.schneier.com/blog/archives/2012/10/when\_will\_we\_se.html}},
+  title = {When Will We See Collisions for {SHA-1?}},
+  howpublished = {\url{https://www.schneier.com/blog/archives/2012/10/when_will_we_se.html}},
   note = {Last time accessed: 2016-01-03},
   year = {2012}
 }
@@ -647,24 +649,22 @@ year = {1996}
  author = {Merkle, R. C.},
  title = {Secrecy, Authentication, and Public Key Systems.},
  year = {1979},
- note = {AAI8001972},
  publisher = {Stanford University},
- address = {Stanford, CA, USA}
+ school = {Stanford, CA, USA}
 } 
 
 @phdthesis{Stevens11,
  author = {Stevens, M.},
  title = {Attacks on Hash Functions and Applications},
  year = {2012},
- publisher = {Mathematical Institute, Leiden University}
+ school = {Mathematical Institute, Leiden University} 
 }
 
 
 @inproceedings{Wang05,
  author = {Wang, X. and Yin, Y. and Yu, H.},
- title = {{Finding Collisions in the Full SHA-1}},
+ title = {Finding Collisions in the Full {SHA-1}},
  booktitle = {Proceedings of the 25th Annual International Conference on Advances in Cryptology},
- series = {CRYPTO'05},
  year = {2005},
  isbn = {3-540-28114-2, 978-3-540-28114-6},
  location = {Santa Barbara, California},
@@ -674,13 +674,12 @@ year = {1996}
  doi = {10.1007/11535218_2},
  acmid = {2153421},
  publisher = {Springer-Verlag},
- address = {Berlin, Heidelberg},
  keywords = {SHA-0, SHA-1, collision search attacks, hash functions}
 }
 
 @MastersThesis{CarvalhoThesis14,
  author = {Ricardo Carvalho},
- title = {{Authentication Security through Diversity and Redundancy for Cloud Computing}},
+ title = {Authentication Security through Diversity and Redundancy for Cloud Computing},
  school = {Instituto Superior T\'ecnico},
  address = {Lisbon, Portugal},
  year = {2014},
@@ -688,9 +687,8 @@ year = {1996}
 
 @inproceedings{Gupta02,
  author = {Gupta, Vipul and Gupta, Sumit and Chang, Sheueling and Stebila, Douglas},
- title = {Performance Analysis of Elliptic Curve Cryptography for SSL},
+ title = {Performance Analysis of Elliptic Curve Cryptography for {SSL}},
  booktitle = {Proceedings of the 1st ACM Workshop on Wireless Security},
- series = {WiSE '02},
  year = {2002},
  isbn = {1-58113-585-8},
  location = {Atlanta, GA, USA},
@@ -700,6 +698,118 @@ year = {1996}
  doi = {10.1145/570681.570691},
  acmid = {570691},
  publisher = {ACM},
- address = {New York, NY, USA},
  keywords = {elliptic curve cryptography (ECC), internet security, secure socket layer (SSL), wireless},
 }
+
+@article{Forrest1997,
+ author = {Forrest, Stephanie and Hofmeyr, Steven A. and Somayaji, Anil},
+ title = {Computer Immunology},
+ journal = {Communications of the ACM},
+ volume = {40},
+ number = {10},
+ month = oct,
+ year = {1997},
+ pages = {88--96}
+} 
+
+@inproceedings{Garcia:11,
+	Author = {Garcia, M. and Bessani, A. and Gashi, I. and Neves, N. and Obelheiro, R.},
+	Booktitle = {Proceedings of the IEEE/IFIP 41st International Conference on Dependable Systems and Networks},
+	Month = {27--30 June},
+	Pages = {383 -394},
+	Title = {{OS} diversity for intrusion tolerance: Myth or reality?},
+	Year = {2011}
+}
+
+
+@inproceedings{Avizienis77n-version,
+	Author = {Avi\v{z}ienis, A. and Chen, L.},
+	Booktitle = {Proceedings of the IEEE International Computer Software and Applications Conference},
+	Citeulike-Article-Id = {9950246},
+	Keywords = {fault-tolerance, n-version},
+	Pages = {149--155},
+	Posted-At = {2011-10-27 09:13:04},
+	Priority = {2},
+	Title = {{On the implementation of N-version programming for software fault tolerance during execution}},
+	Year = {1977}
+}
+
+@inproceedings{Forrest:1997:BDC:822075.822408,
+ author = {Forrest, S. and Somayaji, A. and Ackley, D.},
+ title = {Building Diverse Computer Systems},
+ booktitle = {Proceedings of the 6th Workshop on Hot Topics in Operating Systems},
+ year = {1997},
+ isbn = {0-8186-7834-8},
+ url = {http://dl.acm.org/citation.cfm?id=822075.822408},
+ acmid = {822408},
+ publisher = {IEEE Computer Society},
+ keywords = {security of data, diverse computer systems, computing systems, computer security, software diversity, randomizations, specified behavior, robustness, memory allocation, stack frame, simple buffer overflow attack},
+}
+
+@inproceedings{homescu2013profile,
+  title={Profile-guided automated software diversity},
+  author={Homescu, Andrei and Neisius, Steven and Larsen, Per and Brunthaler, Stefan and Franz, Michael},
+  booktitle={Proceedings of the 2013 IEEE/ACM International Symposium on Code Generation and Optimization},
+  pages={1--11},
+  year={2013}
+}
+
+@inproceedings{larsen2014sok,
+  title={{SoK}: Automated software diversity},
+  author={Larsen, Per and Homescu, Andrei and Brunthaler, Stefan and Franz, Michael},
+  booktitle={Proceedings of the 2014 IEEE Symposium on Security and Privacy},
+  pages={276--291},
+  year={2014}
+}
+
+@inproceedings{xu2003transparent,
+  title={Transparent runtime randomization for security},
+  author={Xu, Jun and Kalbarczyk, Zbigniew and Iyer, Ravishankar K},
+  booktitle={Proceedings of the 22nd International Symposium on Reliable Distributed Systems},
+  pages={260--269},
+  year={2003}
+}
+
+
+@unpublished{ENISA:14,
+	Author = {ENISA},
+	Date-Added = {2016-03-29 12:46:27 +0000},
+	Date-Modified = {2016-03-29 12:47:44 +0000},
+	Month = {nov},
+	Title = {Algorithms, Key Size and Parameters Report -- 2014},
+	Year = {2014}}
+
+@book{viega2002network,
+  title={Network Security with {OpenSSL}: Cryptography for Secure Communications},
+  author={Viega, John and Messier, Matt and Chandra, Pravir},
+  year={2002},
+  publisher={O'Reilly}
+}
+
+@inproceedings{Bilge:12,
+  title={Before we knew it: an empirical study of zero-day attacks in the real world},
+  author={Bilge, L. and Dumitras, T.},
+  booktitle={Proceedings of the ACM Conference on Computer and Communications Security},
+  pages={833--844},
+  year={2012}
+}
+
+@article{Roeder:10,
+	Author = {Roeder, Tom and Schneider, Fred B.},
+	Issue = {2},
+	Journal = tocs,
+	Month = Jul,
+	Pages = {4:1--4:54},
+	Title = {Proactive obfuscation},
+	Volume = {28},
+	Year = 2010}
+
+@article{Sousa:10,
+	Author = {Paulo Sousa and Alysson Neves Bessani and Miguel Correia and Nuno Ferreira Neves and Paulo Verissimo},
+	Journal = {IEEE Transactions on Parallel and Distributed Systems},
+	Month = apr,
+	Number = {4},
+	Pages = {452--465},
+	Title = {Highly Available Intrusion-Tolerant Services with Proactive-Reactive Recovery},
+	Volume = {21},
+	Year = 2010}
