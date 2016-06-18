@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.12.11)  7 JUN 2016 11:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.12.11)  18 JUN 2016 18:09
 entering extended mode
 **sig-alternate-amj.tex
 (sig-alternate-amj.tex
@@ -246,77 +246,124 @@ Package caption Info: \@makecaption = \long macro:#1#2-> \vskip 10pt \setbox \@
 tempboxa \hbox {\textbf {#1: #2}} \ifdim \wd \@tempboxa >\hsize \textbf {#1: #2
 }\par \else \hbox to\hsize {\hfil \box \@tempboxa \hfil } \fi .
 \c@ContinuedFloat=\count111
-) (sig-alternate-amj.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
+) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tablefootnote\tablefootnote.sty
+"
+Package: tablefootnote 2014/01/26 v1.1c Table foot notes (HMM)
+ ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\letltxmacro.sty"
+Package: letltxmacro 2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\xifthen\xifthen.sty"
+Package: xifthen 2015/11/05 v1.4.0 Extended ifthen features
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\calc.sty"
+Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count112
+\calc@Bcount=\count113
+\calc@Adimen=\dimen130
+\calc@Bdimen=\dimen131
+\calc@Askip=\skip46
+\calc@Bskip=\skip47
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count114
+\calc@Cskip=\skip48
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ifthen.sty"
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ifmtarg\ifmtarg.sty"
+Package: ifmtarg 2009/09/02 v1.2a check for an empty argument
+))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\etoolbox\etoolbox.sty"
+Package: etoolbox 2015/08/02 v2.2a e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count115
+))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\multirow\multirow.sty"
+\bigstrutjot=\dimen132
+)
+(sig-alternate-amj.aux)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count112
-\scratchdimen=\dimen130
+\scratchcounter=\count116
+\scratchdimen=\dimen133
 \scratchbox=\box30
-\nofMPsegments=\count113
-\nofMParguments=\count114
+\nofMPsegments=\count117
+\nofMParguments=\count118
 \everyMPshowfont=\toks38
-\MPscratchCnt=\count115
-\MPscratchDim=\dimen131
-\MPnumerator=\count116
-\makeMPintoPDFobject=\count117
+\MPscratchCnt=\count119
+\MPscratchDim=\dimen134
+\MPnumerator=\count120
+\makeMPintoPDFobject=\count121
 \everyMPtoPDFconversion=\toks39
 )
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Try loading font information for U+msa on input line 166.
+LaTeX Font Info:    Try loading font information for U+msa on input line 116.
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 166.
+LaTeX Font Info:    Try loading font information for U+msb on input line 116.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+lasy on input line 166.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 116.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ulasy.fd"
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 166.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 116.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\t1ptm.fd"
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 166.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 116.
 
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <7> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 166.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 116.
 
 Excluding 'CCSXML' comment.
-LaTeX Font Info:    Try loading font information for OMS+aer on input line 224.
+LaTeX Font Info:    Try loading font information for OMS+aer on input line 177.
 
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ae\omsaer.fd"
 File: omsaer.fd 1999/12/27
 )
 LaTeX Font Info:    Font shape `OMS/aer/m/n' in size <9> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 224.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 177.
 
-Overfull \hbox (1.35014pt too wide) in paragraph at lines 224--225
+Overfull \hbox (1.35014pt too wide) in paragraph at lines 177--178
 \T1/aer/bx/n/9 dancy; \OMS/cmsy/m/n/9 \T1/aer/bx/n/9 Security and pri-vacy $\O
 MS/cmsy/m/n/9 !$ \T1/aer/m/it/9 Se-cu-rity pro-to-cols; \T1/aer/m/n/9 Sym-
+ []
+
+
+Overfull \hbox (2.02118pt too wide) in paragraph at lines 201--205
+\T1/aer/m/n/9 protocols: AH and ESP. \T1/aer/m/it/9 Se-cure Shell \T1/aer/m/n/9
+ (SSH) is an application-
+ []
+
+
+Overfull \hbox (2.62622pt too wide) in paragraph at lines 206--208
+\T1/aer/m/n/9 forc-ing se-cu-rity mea-sures. Con-crete im-ple-men-ta-tions of S
+SL/
  []
 
 
@@ -326,174 +373,120 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 ]
-Overfull \hbox (2.16676pt too wide) in paragraph at lines 261--262
-\T1/aer/m/n/9 dun-dancy to tol-er-ate vul-ner-a-bil-i-ties in ex-is-tent cryp-t
-o-graphic
+Overfull \hbox (3.99452pt too wide) in paragraph at lines 268--269
+\T1/aer/m/n/9 op-ti-miza-tion for au-to-mated soft-ware di-ver-sity gen-er-a-ti
+on [16].
  []
 
 [2]
-Overfull \hbox (2.82294pt too wide) in paragraph at lines 306--307
-[]\T1/aer/m/n/9 After re-ceiv-ing the \T1/aer/m/it/9 Server-Hel-loDone \T1/aer/
-m/n/9 mes-sage, the client
+LaTeX Font Info:    Try loading font information for T1+aett on input line 334.
+
+ ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ae\t1aett.fd"
+File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
+)
+Overfull \hbox (2.00346pt too wide) in paragraph at lines 356--367
+\T1/aer/m/n/9 this valid Diffie-Hellman mode, the hand-shake pro-ceeds with-
  []
 
+[3] [4] <images/vttls-handshake.png, id=29, 1185.67969pt x 1206.00563pt>
+File: images/vttls-handshake.png Graphic file (type png)
 
-Underfull \vbox (badness 1558) has occurred while \output is active []
+<use images/vttls-handshake.png>
+Package pdftex.def Info: images/vttls-handshake.png used on input line 474.
+(pdftex.def)             Requested size: 256.0748pt x 260.4639pt.
 
- [3]
-Overfull \hbox (14.07323pt too wide) in paragraph at lines 363--363
-[]\secfnt Vulnerabilities in cryp-to-graphic mech-a-nisms 
- []
-
-
-Overfull \hbox (1.5466pt too wide) in paragraph at lines 368--368
-[]\subsecfnt Vulnerabilities in asym-met-ric en-cryp-tion mech-
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (11.29326pt too wide) in paragraph at lines 381--383
-[]\T1/aer/m/n/9 The Ad-vanced En-cryp-tion Stan-dard (AES), orig-i-nally named
- []
-
-
-Overfull \hbox (1.56421pt too wide) in paragraph at lines 389--392
-\T1/aer/m/n/9 phy re-gard data in-tegrity and mes-sage au-then-ti-ca-tion. Some
--
- []
-
-[4]
-Overfull \hbox (19.56264pt too wide) in paragraph at lines 402--403
-[]\T1/aer/m/n/9 SuperTLS is a pro-to-col for di-verse and re-dun-dant vulnerabi
-lity-
- []
-
-
-Overfull \hbox (2.76984pt too wide) in paragraph at lines 402--403
-\T1/aer/m/n/9 ing se-cu-rity us-ing di-verse and re-dun-dant cryp-to-graphic me
-ch-
- []
-
-
-Overfull \hbox (15.42766pt too wide) in paragraph at lines 426--427
-\T1/aer/m/n/9 tHello, Server-Hello, ServerKeyEx-change, k-ServerKeyExchange,
- []
-
-
-Underfull \vbox (badness 1558) has occurred while \output is active []
-
- [5]
-<images/superTLS-handshake.png, id=31, 1817.79124pt x 1253.68375pt>
-File: images/superTLS-handshake.png Graphic file (type png)
-
-<use images/superTLS-handshake.png>
-Package pdftex.def Info: images/superTLS-handshake.png used on input line 441.
-(pdftex.def)             Requested size: 256.0748pt x 176.60492pt.
-
-Overfull \hbox (16.0748pt too wide) in paragraph at lines 441--443
+Overfull \hbox (16.0748pt too wide) in paragraph at lines 474--476
  [][] 
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [6 <./images/superTLS-handshake.png>]
-Overfull \hbox (8.26605pt too wide) in paragraph at lines 519--520
-[]\T1/aer/m/n/9 Besides this fact, Su-perTLS does not sup-port all of OpenSSL
+
+Overfull \hbox (1.47539pt too wide) in paragraph at lines 491--492
+[]\T1/aer/m/n/9 Client and server now ex-change \T1/aer/m/sc/9 Change-Ci-pher-S
+pec \T1/aer/m/n/9 mes-
  []
 
-[7] <images/diverse_mac_and_cipher_pt1.png, id=41, 706.64pt x 932.48375pt>
+[5 <./images/vttls-handshake.png>]
+Overfull \hbox (2.03197pt too wide) in paragraph at lines 560--564
+\T1/aer/m/n/9 cre-ation of vul-ner-a-bil-i-ties; ex-ist-ing soft-ware such as O
+penSSL
+ []
+
+[6] <images/diverse_mac_and_cipher_pt1.png, id=38, 706.64pt x 932.48375pt>
 File: images/diverse_mac_and_cipher_pt1.png Graphic file (type png)
 
 <use images/diverse_mac_and_cipher_pt1.png>
 Package pdftex.def Info: images/diverse_mac_and_cipher_pt1.png used on input li
-ne 536.
-(pdftex.def)             Requested size: 256.0748pt x 337.91354pt.
+ne 600.
+(pdftex.def)             Requested size: 199.16928pt x 262.81532pt.
 
-Overfull \hbox (16.0748pt too wide) in paragraph at lines 536--538
- [][] 
- []
-
-<images/diverse_mac_and_cipher_pt2.png, id=42, 971.63pt x 687.56876pt>
+<images/diverse_mac_and_cipher_pt2.png, id=39, 971.63pt x 687.56876pt>
 File: images/diverse_mac_and_cipher_pt2.png Graphic file (type png)
 
 <use images/diverse_mac_and_cipher_pt2.png>
 Package pdftex.def Info: images/diverse_mac_and_cipher_pt2.png used on input li
-ne 554.
-(pdftex.def)             Requested size: 256.0748pt x 181.20816pt.
-
-Overfull \hbox (16.0748pt too wide) in paragraph at lines 554--556
- [][] 
+ne 620.
+(pdftex.def)             Requested size: 227.62204pt x 161.07509pt.
+ [7 <./images/diverse_mac_and_cipher_pt1.png>]
+Overfull \hbox (3.77672pt too wide) in paragraph at lines 675--677
+\T1/aer/m/n/9 mil-lisec-onds. There-fore, the \T1/aer/m/sc/9 vt-TLS\T1/aer/m/n/
+9 's Hand-shake takes 66.7%
  []
 
-[8 <./images/diverse_mac_and_cipher_pt1.png> <./images/diverse_mac_and_cipher_p
-t2.png>]
-Overfull \hbox (14.06407pt too wide) in paragraph at lines 583--587
-\T1/aer/m/n/9 used a sam-ple of 110 Su-perTLS' Hand-shakes and 110 OpenSSL's
- []
-
-
-Overfull \hbox (1.83443pt too wide) in paragraph at lines 588--589
-\T1/aer/m/n/9 Hand-shake takes 66,(6)% longer than OpenSSL's Hand-shake.
- []
-
-
-Overfull \hbox (1.36389pt too wide) in paragraph at lines 588--589
-\T1/aer/m/n/9 OpenSSL's Hand-shake, suc-cess-fully ac-com-plish-ing a per-cent-
-
- []
-
-<images/eval_time_2_bw.png, id=48, 361.35pt x 258.9675pt>
+<images/eval_time_2_bw.png, id=45, 361.35pt x 258.9675pt>
 File: images/eval_time_2_bw.png Graphic file (type png)
 
 <use images/eval_time_2_bw.png>
-Package pdftex.def Info: images/eval_time_2_bw.png used on input line 596.
-(pdftex.def)             Requested size: 256.0748pt x 183.52046pt.
+Package pdftex.def Info: images/eval_time_2_bw.png used on input line 685.
+(pdftex.def)             Requested size: 240.0pt x 172.00177pt.
 
-Overfull \hbox (16.0748pt too wide) in paragraph at lines 596--598
- [][] 
+Overfull \hbox (12.15642pt too wide) in paragraph at lines 691--697
+\T1/aer/m/n/9 to send and re-ceive a mes-sage us-ing \T1/aer/m/sc/9 vt-TLS \T1/
+aer/m/n/9 and OpenSSL/TLS.
  []
 
-[9 <./images/eval_time_2_bw.png>]
-Overfull \hbox (2.87704pt too wide) in paragraph at lines 622--623
-[]\T1/aer/m/n/9 SuperTLS is a di-verse and re-dun-dant vulnerability-tolerant
+[8 <./images/diverse_mac_and_cipher_pt2.png> <./images/eval_time_2_bw.png>]
+Overfull \hbox (1.8785pt too wide) in paragraph at lines 709--717
+\T1/aer/m/n/9 some man-age-ment ef-fort and costs. A server us-ing OpenSSL/
  []
 
 (sig-alternate-amj.bbl
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [10])
-[11
+ [9]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-] (sig-alternate-amj.aux) ) 
+) [10]
+(sig-alternate-amj.aux) ) 
 Here is how much of TeX's memory you used:
- 3995 strings out of 493673
- 55797 string characters out of 3141529
- 132296 words of memory out of 3000000
- 7252 multiletter control sequences out of 15000+200000
- 59102 words of font info for 80 fonts, out of 3000000 for 9000
+ 4590 strings out of 493673
+ 64031 string characters out of 3141529
+ 139960 words of memory out of 3000000
+ 7807 multiletter control sequences out of 15000+200000
+ 59732 words of font info for 86 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 53i,10n,92p,1133b,487s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/f
-ontname/8r.enc}<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/c
-m/cmbx9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
-mmi6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi
-9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pf
-b><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C
-:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Pr
-ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Progr
-am Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Program 
-Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Program Fil
-es (x86)/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Program Files (x86)
-/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Program Files (x86)/MiKTeX 
-2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/t
-ype1/urw/times/utmr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/ti
-mes/utmri8a.pfb>
-Output written on sig-alternate-amj.pdf (11 pages, 366915 bytes).
+ 53i,10n,92p,1148b,494s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fon
+tname/8r.enc}<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
+cmbx9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmc
+sc10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi
+6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.p
+fb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><
+C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/P
+rogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Progr
+am Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program 
+Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Program Fil
+es (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Program Files 
+(x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt9.pfb><C:/Program Files (x8
+6)/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Program Files (x86)/MiKTe
+X 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts
+/type1/urw/times/utmr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/
+times/utmri8a.pfb>
+Output written on sig-alternate-amj.pdf (10 pages, 359162 bytes).
 PDF statistics:
- 103 PDF objects out of 1000 (max. 8388607)
+ 105 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

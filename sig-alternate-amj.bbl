@@ -4,78 +4,139 @@
 D.~Adrian, K.~Bhargavan, Z.~Durumeric, P.~Gaudry, M.~Green, J.~Halderman,
   N.~Heninger, D.~Springall, E.~Thom{\'{e}}, L.~Valenta, B.~Vandersloot,
   E.~Wustrow, and S.~Paul.
-\newblock {Imperfect Forward Secrecy: How Diffie-Hellman Fails in Practice}.
-\newblock {\em 22nd ACM Conference on Computer and Communications Security (CCS
-  ’15)}, 2015.
+\newblock Imperfect forward secrecy: How {Diffie-Hellman} fails in practice.
+\newblock In {\em Proceedings of the 22nd ACM Conference on Computer and
+  Communications Security}, October 2015.
 
-\bibitem{Beurdouche2015}
-B.~Beurdouche, K.~Bhargavan, A.~Delignat-lavaud, C.~Fournet, and M.~Kohlweiss.
-\newblock {A Messy State of the Union: Taming the Composite State Machines of
-  TLS}.
-\newblock {\em IEEE Symposium on Security and Privacy}, pages 1--19, 2015.
+\bibitem{Avizienis77n-version}
+A.~Avi\v{z}ienis and L.~Chen.
+\newblock {On the implementation of N-version programming for software fault
+  tolerance during execution}.
+\newblock In {\em Proceedings of the IEEE International Computer Software and
+  Applications Conference}, pages 149--155, 1977.
+
+\bibitem{Bilge:12}
+L.~Bilge and T.~Dumitras.
+\newblock Before we knew it: an empirical study of zero-day attacks in the real
+  world.
+\newblock In {\em Proceedings of the ACM Conference on Computer and
+  Communications Security}, pages 833--844, 2012.
 
 \bibitem{Bogdanov2011}
 A.~Bogdanov, D.~Khovratovich, and C.~Rechberger.
-\newblock {Biclique cryptanalysis of the full AES}.
-\newblock {\em Lecture Notes in Computer Science}, 7073 LNCS:344--371, 2011.
+\newblock Biclique cryptanalysis of the full {AES}.
+\newblock In {\em Proceedings of the 17th International Conference on the
+  Theory and Application of Cryptology and Information Security}, volume LNCS
+  7073, pages 344--371, 2011.
 
 \bibitem{Carvalho2014-HB}
-M.~Carvalho, J.~DeMott, R.~Ford, and D.~Wheeler.
-\newblock {Heartbleed 101}.
-\newblock {\em IEEE Security {\&} Privacy}, 12(4):63--67, 2014.
+M.~Carvalho, J.~DeMott, R.~Ford, and D.~A. Wheeler.
+\newblock Heartbleed 101.
+\newblock {\em IEEE Security Privacy}, 12(4):63--67, July 2014.
+
+\bibitem{Carvalho2014}
+M.~Carvalho and R.~Ford.
+\newblock Moving-target defenses for computer networks.
+\newblock {\em IEEE Security and Privacy}, 12(2):73--76, 2014.
 
 \bibitem{CarvalhoThesis14}
 R.~Carvalho.
-\newblock {Authentication Security through Diversity and Redundancy for Cloud
-  Computing}.
+\newblock Authentication security through diversity and redundancy for cloud
+  computing.
 \newblock Master's thesis, Instituto Superior T\'ecnico, Lisbon, Portugal,
   2014.
 
 \bibitem{TLS1.2-5246}
 T.~Dierks and E.~Rescorla.
-\newblock {The Transport Layer Security (TLS) Protocol, Version 1.2 (RFC
-  5246)}, 2008.
+\newblock {The Transport Layer Security (TLS) Protocol Version 1.2}.
+\newblock RFC 5246, RFC Editor, August 2008.
+\newblock \url{http://www.rfc-editor.org/rfc/rfc5246.txt}.
+
+\bibitem{ENISA:14}
+ENISA.
+\newblock Algorithms, key size and parameters report -- 2014.
+\newblock nov 2014.
+
+\bibitem{Evans2011}
+D.~Evans, A.~Nguyen-Tuong, and J.~Knight.
+\newblock Effectiveness of moving target defenses.
+\newblock In {\em Moving Target Defense}, volume~54, pages 29--48. Springer,
+  2011.
 
 \bibitem{Ferguson2001}
 N.~Ferguson, J.~Kelsey, S.~Lucks, B.~Schneier, M.~Stay, D.~Wagner, and
   D.~Whiting.
-\newblock Improved cryptanalysis of rijndael.
+\newblock Improved cryptanalysis of {Rijndael}.
 \newblock In G.~Goos, J.~Hartmanis, J.~van Leeuwen, and B.~Schneier, editors,
-  {\em Fast Software Encryption}, volume 1978 of {\em Lecture Notes in Computer
-  Science}, pages 213--230. Springer Berlin Heidelberg, 2001.
+  {\em Proceedings of Fast Software Encryption}, volume LNCS 1978, pages
+  213--230. Springer, 2001.
+
+\bibitem{Forrest1997}
+S.~Forrest, S.~A. Hofmeyr, and A.~Somayaji.
+\newblock Computer immunology.
+\newblock {\em Communications of the ACM}, 40(10):88--96, Oct. 1997.
+
+\bibitem{Forrest:1997:BDC:822075.822408}
+S.~Forrest, A.~Somayaji, and D.~Ackley.
+\newblock Building diverse computer systems.
+\newblock In {\em Proceedings of the 6th Workshop on Hot Topics in Operating
+  Systems}. IEEE Computer Society, 1997.
+
+\bibitem{Garcia:11}
+M.~Garcia, A.~Bessani, I.~Gashi, N.~Neves, and R.~Obelheiro.
+\newblock {OS} diversity for intrusion tolerance: Myth or reality?
+\newblock In {\em Proceedings of the IEEE/IFIP 41st International Conference on
+  Dependable Systems and Networks}, pages 383 --394, 27--30 June 2011.
 
 \bibitem{Gupta02}
 V.~Gupta, S.~Gupta, S.~Chang, and D.~Stebila.
-\newblock Performance analysis of elliptic curve cryptography for ssl.
+\newblock Performance analysis of elliptic curve cryptography for {SSL}.
 \newblock In {\em Proceedings of the 1st ACM Workshop on Wireless Security},
-  WiSE '02, pages 87--94, New York, NY, USA, 2002. ACM.
+  pages 87--94. ACM, 2002.
+
+\bibitem{homescu2013profile}
+A.~Homescu, S.~Neisius, P.~Larsen, S.~Brunthaler, and M.~Franz.
+\newblock Profile-guided automated software diversity.
+\newblock In {\em Proceedings of the 2013 IEEE/ACM International Symposium on
+  Code Generation and Optimization}, pages 1--11, 2013.
 
 \bibitem{RFC6367}
 S.~Kanno and M.~Kanda.
 \newblock {Addition of the Camellia Cipher Suites to Transport Layer Security
-  (TLS) (RFC 6367)}, 2011.
+  (TLS)}.
+\newblock RFC 6367, RFC Editor, September 2011.
 
 \bibitem{IPsec}
 S.~Kent and K.~Seo.
-\newblock {Security Architecture for the Internet Protocol (RFC 4301)}, 2005.
+\newblock {Security Architecture for the Internet Protocol}.
+\newblock RFC 4301, RFC Editor, December 2005.
+\newblock \url{http://www.rfc-editor.org/rfc/rfc4301.txt}.
 
 \bibitem{Kleinjung2010}
 T.~Kleinjung, K.~Aoki, J.~Franke, A.~Lenstra, E.~Thom{\'{e}}, J.~Bos,
   P.~Gaudry, A.~Kruppa, P.~Montgomery, D.~Osvik, H.~{Te Riele}, A.~Timofeev,
   and P.~Zimmermann.
-\newblock {Factorization of a 768-Bit RSA modulus}.
-\newblock {\em Lecture Notes in Computer Science}, 6223 LNCS:333--350, 2010.
+\newblock Factorization of a 768-bit {RSA} modulus.
+\newblock In {\em Proceedings of the 30th Annual Conference on Advances in
+  Cryptology}, volume LNCS 6223, pages 333--350, 2010.
+
+\bibitem{larsen2014sok}
+P.~Larsen, A.~Homescu, S.~Brunthaler, and M.~Franz.
+\newblock {SoK}: Automated software diversity.
+\newblock In {\em Proceedings of the 2014 IEEE Symposium on Security and
+  Privacy}, pages 276--291, 2014.
 
 \bibitem{Littlewood2004}
 B.~Littlewood and L.~Strigini.
-\newblock {Redundancy and Diversity in Security}.
-\newblock {\em Computer Security ESORICS 2004}, pages 227--246, 2004.
+\newblock Redundancy and diversity in security.
+\newblock In {\em Computer Security -- ESORICS 2004, 9th European Symposium on
+  Research Computer Security}, pages 227--246, 2004.
 
 \bibitem{Menezes1996-ch9}
 A.~Menezes, P.~van Oorschot, and S.~Vanstone.
 \newblock {Hash Functions and Data Integrity}.
 \newblock In {\em Handbook of Applied Cryptography}, chapter~9, pages 321--383.
-  1996.
+  CRC Press, Inc., 1996.
 
 \bibitem{Menezes1996}
 A.~Menezes, P.~van Oorschot, and S.~Vanstone.
@@ -87,7 +148,6 @@ A.~Menezes, P.~van Oorschot, and S.~Vanstone.
 R.~C. Merkle.
 \newblock {\em Secrecy, Authentication, and Public Key Systems.}
 \newblock PhD thesis, Stanford, CA, USA, 1979.
-\newblock AAI8001972.
 
 \bibitem{Rijmen2001}
 V.~Rijmen and J.~Daemen.
@@ -95,31 +155,24 @@ V.~Rijmen and J.~Daemen.
 \newblock {\em U.S. National Institute of Standards and Technology (NIST)},
   2009:8--12, 2001.
 
-\bibitem{Schneier12}
-B.~Schneier.
-\newblock {When Will We See Collisions for SHA-1?}
-\newblock
-  \url{https://www.schneier.com/blog/archives/2012/10/when\_will\_we\_se.html},
-  2012.
-\newblock Last time accessed: 2016-01-03.
-
-\bibitem{Schneier15}
-B.~Schneier.
-\newblock {SHA-1 Freestart Collision}.
-\newblock
-  \url{https://www.schneier.com/blog/archives/2015/10/sha-1\_freestart.html},
-  2015.
-\newblock Last time accessed: 2016-01-03.
+\bibitem{Roeder:10}
+T.~Roeder and F.~B. Schneider.
+\newblock Proactive obfuscation.
+\newblock {\em ACM Trans. Comput. Syst.}, 28:4:1--4:54, July 2010.
 
 \bibitem{heartbeat-extension}
 R.~Seggelmann, M.~Tuexen, and M.~Williams.
 \newblock {Transport Layer Security (TLS) and Datagram Transport Layer Security
-  (DTLS) Heartbeat Extension (RFC 6520)}, 2012.
+  (DTLS) Heartbeat Extension}.
+\newblock RFC 6520, RFC Editor, February 2012.
+\newblock \url{http://www.rfc-editor.org/rfc/rfc6520.txt}.
 
 \bibitem{RFC7457}
 Y.~Sheffer, R.~Holz, and P.~Saint-Andre.
 \newblock {Summarizing Known Attacks on Transport Layer Security (TLS) and
-  Datagram TLS (DTLS) (RFC 7457)}, 2015.
+  Datagram TLS (DTLS)}.
+\newblock RFC 7457, RFC Editor, February 2015.
+\newblock \url{http://www.rfc-editor.org/rfc/rfc7457.txt}.
 
 \bibitem{Shor1995}
 P.~Shor.
@@ -128,33 +181,45 @@ P.~Shor.
 \newblock {\em SIAM Journal on Scientific and Statistical Computing}, 26:1484,
   1995.
 
+\bibitem{Sousa:10}
+P.~Sousa, A.~N. Bessani, M.~Correia, N.~F. Neves, and P.~Verissimo.
+\newblock Highly available intrusion-tolerant services with proactive-reactive
+  recovery.
+\newblock {\em IEEE Transactions on Parallel and Distributed Systems},
+  21(4):452--465, Apr. 2010.
+
 \bibitem{Stevens11}
 M.~Stevens.
 \newblock {\em Attacks on Hash Functions and Applications}.
-\newblock PhD thesis, 2012.
+\newblock PhD thesis, Mathematical Institute, Leiden University, 2012.
 
 \bibitem{Stevens15}
 M.~Stevens, P.~Karpman, and T.~Peyrin.
-\newblock {Freestart collision on full SHA-1}.
+\newblock Freestart collision on full {SHA-1}.
 \newblock Cryptology ePrint Archive, Report 2015/967, 2015.
 
-\bibitem{Logjam-explained}
-F.~Valsorda.
-\newblock {Logjam: the latest TLS vulnerability explained}.
-\newblock
-  \url{https://blog.cloudflare.com/logjam-the-latest-tls-vulnerability-explained/},
-  2015.
-\newblock Last time accessed: 2015-11-13.
+\bibitem{viega2002network}
+J.~Viega, M.~Messier, and P.~Chandra.
+\newblock {\em Network Security with {OpenSSL}: Cryptography for Secure
+  Communications}.
+\newblock O'Reilly, 2002.
 
 \bibitem{Wang05}
 X.~Wang, Y.~Yin, and H.~Yu.
-\newblock {Finding Collisions in the Full SHA-1}.
+\newblock Finding collisions in the full {SHA-1}.
 \newblock In {\em Proceedings of the 25th Annual International Conference on
-  Advances in Cryptology}, CRYPTO'05, pages 17--36, Berlin, Heidelberg, 2005.
-  Springer-Verlag.
+  Advances in Cryptology}, pages 17--36. Springer-Verlag, 2005.
+
+\bibitem{xu2003transparent}
+J.~Xu, Z.~Kalbarczyk, and R.~K. Iyer.
+\newblock Transparent runtime randomization for security.
+\newblock In {\em Proceedings of the 22nd International Symposium on Reliable
+  Distributed Systems}, pages 260--269, 2003.
 
 \bibitem{SSH}
 T.~Ylonen and C.~Lonvick.
-\newblock {The Secure Shell (SSH) Protocol Architecture (RFC 4251)}, 2006.
+\newblock {The Secure Shell (SSH) Protocol Architecture}.
+\newblock RFC 4251, RFC Editor, January 2006.
+\newblock \url{http://www.rfc-editor.org/rfc/rfc4251.txt}.
 
 \end{thebibliography}

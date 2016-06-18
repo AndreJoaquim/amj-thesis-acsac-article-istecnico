@@ -1,8 +1,8 @@
-
-
 \documentclass{sig-alternate-05-2015}
 
-\usepackage{caption} 
+\usepackage{caption}
+\usepackage{tablefootnote}
+\usepackage{multirow}
 
 \graphicspath{ {images/} }
 
@@ -110,6 +110,8 @@
 % in the \additional authors block, viz.
 \date{03 May 2016}
 
+
+%amj: explicar claramente o que é diversificado (p.e. certificados? é certificados e chaves?)
 
 \maketitle
 \begin{abstract}
@@ -426,9 +428,7 @@ In 2005, Wang \emph{et al.}~presented a collision attack on SHA-1 that reduced t
 \section{Vulnerability-Tolerant TLS}
 \label{sec-vtTLS}
 
-\textsc{vtTLS} is a protocol for diverse and redundant vulnerabi\-li\-ty-tolerant secure communication channels. It aims at increasing security using diverse and redundant cryptographic mechanisms and certificates. It is based on the TLS protocol. %Although being an independent protocol for secure communication channels, \textsc{vtTLS} is compatible with TLS 1.2.
-%mpc: explicar o que é que quer dizer compatível, ou mudar a frase
-%amj: neste momento não é compatível, por isso não faz sentido quer a frase existir
+\textsc{vtTLS} is a protocol for diverse and redundant vulnerabi\-li\-ty-tolerant secure communication channels. It aims at increasing security using diverse and redundant cryptographic mechanisms and certificates. It is based on the TLS protocol. 
 The protocol aims to solve the main problem originated by having only one cipher suite negotiated between client and server: when one of the cipher suite's mechanisms becomes insecure, the communication channels using that cipher suite may become vulnerable.
 Although most cipher suites' cryptographic mechanisms supported by TLS 1.2 are believed to be secure, Section \ref{sec-related-work} shows clearly that new vulnerabilities may be discovered. 
 %there is not any assurance that a governmental agency or a company with high computational power and financial resources is not able to break one of those cryptographic mechanisms in the near future.
@@ -483,9 +483,10 @@ The client proceeds to send a \msg{(Client) Certificate} message containing its 
 
 After sending its certificates, the client sends $k$ \msg{ClientKeyExchange} messages to the server. The content of these messages is based on the $k$ cipher suites chosen. If $m$ of the cipher suites use RSA as KEM, the client sends $m$ messages, each one with a RSA-encrypted pre-master secret to the server ($0 \leq m \leq k$). If $j$ of the cipher suites use ECDHE or DHE, the client sends $j$ messages to the server containing its $j$ Diffie-Hellman public values ($0 \leq j \leq k$). Even if a subset of the $k$ cipher suites share the same KEM, this methodology still applies as we introduce diversity by using different parameters for each cipher suite being used.
 
-The server may need to verify the client's $i$ certificates. If they have signing capabilities, the client digitally signs all the previous handshake messages and sends them to the server for verification.
+The server may need to verify the client's $i$ certificates. If they have signing capabilities (i.e., they do not contain fixed Diffie-Hellman parameters), the client digitally signs all the previous handshake messages and sends them to the server for verification.
 %mpc: não percebi "If they have signing capabilities". Substitui "they" por aquilo que estás a referir. Mesmo assim não sei se "signing capabilities" se percebe. 
 %amj: source - RFC do TLS 1.2: «This message is used to provide explicit verification of a client certificate.  This message is only sent following a client certificate that has signing capability (i.e., all certificates except those containing fixed Diffie-Hellman parameters).»
+%amj: fixed
 
 Client and server now exchange \msg{ChangeCipherSpec} messages, like in the Cipher Spec Protocol of TLS 1.2, in order to state that they are now using the previously negotiated cipher suites for exchanging messages in a secure fashion.
 
@@ -494,6 +495,9 @@ In order to finish the Handshake, the client and server send each other a \msg{F
 \subsection{Combining Diverse Cipher Suites}
 %mpc: agora é tarde mas tinha sido mais interessante pegar na metocologia proposta pelo Ricardo Carvalho e aplicá-la aos mecanismos fornecidos pelo TLS 1.2, em vez de ir dizendo que não estão disponíveis. Possivelmente seria preciso extender algum aspecto dessa metodologia, o que seria ainda mais interessante.
 %amj: para a dissertação acho que era interessante fazer isso
+%amj: currently doing this:
+% --- [DONE] Hash functions(Mac) & PK(Kx and Au) -- utilizei as mesmas métricas (talvez seja possivel adicionar alguma metrica)
+% --- [DONE] Symmetric Key (Enc) -- utilizei as minhas métricas
 
 Diversity between cryptographic mechanisms can be taken in a soft sense as the use of different mechanisms, or in a hard sense as the use of mechanisms that do not share common vulnerabilities (e.g., because they are based on different mathematical problems). In \textsc{vtTLS} we are interested in using strong diversity in order to claim that no common vulnerabilities will appear in different mechanisms. Measuring the level of diversity is not simple, so we leverage previous research by Carvalho on heuristics for comparing diversity among  cryptographic mechanisms \cite{CarvalhoThesis14}. Moreover, not all cryptographic mechanisms can be used together in the context of TLS 1.2 and other security protocols. 
 
@@ -657,7 +661,7 @@ In order to perform this tests, we used two virtual machines in the same Intel c
 
 \subsection{Performance}
 
-%mpc: depois é preciso fazer esta avaliação com muito mais casos: mais tamanhos, medir a latência da comunicação, o débito que se consegue (numa rede real), etc. etc.
+%mpc: depois é preciso fazer esta avaliação com muito mais casos: mais tamanhos, [medir a latência da comunicação], o débito que se consegue (numa rede real), etc. etc.
 %amj: ok!
 
 In order to evaluate \textsc{vtTLS}' performance, we executed several tests. The main goal was to understand if the overhead of \textsc{vtTLS} is lower, equal, or bigger than $k$ times in relation to OpenSSL.

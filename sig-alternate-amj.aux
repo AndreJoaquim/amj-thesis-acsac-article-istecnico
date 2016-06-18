@@ -1,21 +1,37 @@
 \relax 
 \citation{IPsec}
 \citation{SSH}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{\thepage }}
+\citation{Forrest1997}
 \citation{Littlewood2004}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{\thepage }}
-\newlabel{sec-related-work}{{2}{\thepage }}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Diversity in security}{\thepage }}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}SSL/TLS Protocol}{\thepage }}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}The TLS Protocol}{\thepage }}
+\citation{Garcia:11}
+\citation{Carvalho2014}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}}
+\newlabel{sec-introduction}{{1}{1}}
+\citation{Bilge:12}
+\citation{viega2002network}
+\citation{Littlewood2004}
+\citation{Littlewood2004}
+\citation{Evans2011}
+\citation{Carvalho2014}
+\citation{Sousa:10}
+\citation{Forrest1997}
+\citation{Forrest:1997:BDC:822075.822408}
+\citation{Avizienis77n-version}
+\citation{larsen2014sok}
+\citation{Garcia:11}
+\citation{homescu2013profile}
+\citation{xu2003transparent}
+\citation{Roeder:10}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background and Related Work}{2}}
+\newlabel{sec-related-work}{{2}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Diversity in Security}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}SSL/TLS Protocol}{2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}TLS Handshake Protocol}{2}}
 \citation{RFC7457}
 \citation{Adrian2015}
-\citation{Logjam-explained}
-\citation{Beurdouche2015}
-\citation{Adrian2015}
-\citation{Adrian2015}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2}TLS vulnerabilities}{\thepage }}
-\newlabel{tls-vulnerabilities}{{2.2.2}{\thepage }}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2}TLS Record Protocol}{3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.3}TLS Vulnerabilities}{3}}
+\newlabel{tls-vulnerabilities}{{2.2.3}{3}}
 \citation{heartbeat-extension}
 \citation{Carvalho2014-HB}
 \citation{Menezes1996}
@@ -25,65 +41,80 @@
 \citation{Bogdanov2011}
 \citation{Ferguson2001}
 \citation{Menezes1996-ch9}
-\citation{Schneier15}
+\citation{ENISA:14}
 \citation{Stevens15}
 \citation{Merkle79}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Vulnerabilities in cryptographic mechanisms}{\thepage }}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.1}Vulnerabilities in asymmetric encryption mechanisms}{\thepage }}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.2}Vulnerabilities in symmetric encryption mechanisms}{\thepage }}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.3}Vulnerabilities in hash functions}{\thepage }}
 \citation{Wang05}
 \citation{Stevens11}
-\citation{Schneier12}
-\@writefile{toc}{\contentsline {section}{\numberline {3}SuperTLS}{\thepage }}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Protocol Specification}{\thepage }}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Vulnerabilities in Cryptographic Schemes}{4}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.1}Public-key Cryptography}{4}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.2}Symmetric Encryption}{4}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.3}Hash Functions}{4}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Vulnerability-Tolerant TLS}{4}}
+\newlabel{sec-vtTLS}{{3}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Protocol Specification}{4}}
 \citation{TLS1.2-5246}
 \citation{CarvalhoThesis14}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces SuperTLS' Handshake messages using a diversity factor $k$. The diversity and redundancy entry points are marked in blue and underlined.\relax }}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces \textsc  {vtTLS} Handshake messages using diversity factor $k$. The places where diversity and redundancy are introduced are marked in bold and underlined.\relax }}{5}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:superTLS-example}{{1}{\thepage }}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Combining diverse cipher suites}{\thepage }}
+\newlabel{fig:vtTLS-example}{{1}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Combining Diverse Cipher Suites}{5}}
 \citation{Gupta02}
 \citation{RFC6367}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Implementation}{\thepage }}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces First four steps regarding the ordering of the encryption and signing of SuperTLS using a diversity factor $k = 2$.\relax }}{\thepage }}
-\newlabel{fig:diverse-mac-and-cipher-pt1}{{2}{\thepage }}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Remaining three steps regarding the ordering of the encryption and signing of SuperTLS using a diversity factor $k = 2$. Here is represented the second signing and the second encryption, employing diversity and redundancy in the communication.\relax }}{\thepage }}
-\newlabel{fig:diverse-mac-and-cipher-pt2}{{3}{\thepage }}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Theoretical message size increase}{\thepage }}
-\newlabel{subsec:theretical-msg-size}{{4.1}{\thepage }}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Experimental evaluation}{\thepage }}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Performance}{\thepage }}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Comparison between the time it takes to send and receive a message using SuperTLS and OpenSSL 1.0.2g.\relax }}{\thepage }}
-\newlabel{fig:eval_time_2}{{4}{\thepage }}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Management and Cost}{\thepage }}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Implementation}{6}}
+\newlabel{sec-implementation}{{4}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces \textsc  {vtTLS} API: additional functions in relation to the OpenSSL API.\relax }}{7}}
+\newlabel{fig:vtTLS-api}{{2}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces First four steps regarding the ordering of the encryption and signing of \textsc  {vtTLS} using a diversity factor $k = 2$.\relax }}{7}}
+\newlabel{fig:diverse-mac-and-cipher-pt1}{{3}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Remaining three steps regarding the ordering of the encryption and signing of \textsc  {vtTLS} using a diversity factor $k = 2$. Here is represented the second signing and the second encryption, employing diversity and redundancy in the communication.\relax }}{8}}
+\newlabel{fig:diverse-mac-and-cipher-pt2}{{4}{8}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experimental Evaluation}{8}}
+\newlabel{sec-evaluation}{{5}{8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Performance}{8}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.1}Handshake}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Comparison between the time it takes to send and receive a message using \textsc  {vtTLS} and OpenSSL 1.0.2g.\relax }}{8}}
+\newlabel{fig:eval_time_2}{{5}{8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Data Communication}{8}}
 \bibstyle{abbrv}
 \bibdata{sigproc}
 \bibcite{Adrian2015}{1}
-\bibcite{Beurdouche2015}{2}
-\bibcite{Bogdanov2011}{3}
-\bibcite{Carvalho2014-HB}{4}
-\bibcite{CarvalhoThesis14}{5}
-\bibcite{TLS1.2-5246}{6}
-\bibcite{Ferguson2001}{7}
-\bibcite{Gupta02}{8}
-\bibcite{RFC6367}{9}
-\bibcite{IPsec}{10}
-\bibcite{Kleinjung2010}{11}
-\bibcite{Littlewood2004}{12}
-\bibcite{Menezes1996-ch9}{13}
-\bibcite{Menezes1996}{14}
-\bibcite{Merkle79}{15}
-\bibcite{Rijmen2001}{16}
-\bibcite{Schneier12}{17}
-\bibcite{Schneier15}{18}
-\bibcite{heartbeat-extension}{19}
-\bibcite{RFC7457}{20}
-\bibcite{Shor1995}{21}
-\bibcite{Stevens11}{22}
-\bibcite{Stevens15}{23}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusions}{\thepage }}
-\@writefile{toc}{\contentsline {section}{\numberline {7}References}{\thepage }}
-\bibcite{Logjam-explained}{24}
-\bibcite{Wang05}{25}
-\bibcite{SSH}{26}
+\bibcite{Avizienis77n-version}{2}
+\bibcite{Bilge:12}{3}
+\bibcite{Bogdanov2011}{4}
+\bibcite{Carvalho2014-HB}{5}
+\bibcite{Carvalho2014}{6}
+\bibcite{CarvalhoThesis14}{7}
+\bibcite{TLS1.2-5246}{8}
+\bibcite{ENISA:14}{9}
+\bibcite{Evans2011}{10}
+\bibcite{Ferguson2001}{11}
+\bibcite{Forrest1997}{12}
+\bibcite{Forrest:1997:BDC:822075.822408}{13}
+\bibcite{Garcia:11}{14}
+\bibcite{Gupta02}{15}
+\bibcite{homescu2013profile}{16}
+\bibcite{RFC6367}{17}
+\bibcite{IPsec}{18}
+\bibcite{Kleinjung2010}{19}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Cost}{9}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusions}{9}}
+\newlabel{sec-conclusions}{{6}{9}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}References}{9}}
+\bibcite{larsen2014sok}{20}
+\bibcite{Littlewood2004}{21}
+\bibcite{Menezes1996-ch9}{22}
+\bibcite{Menezes1996}{23}
+\bibcite{Merkle79}{24}
+\bibcite{Rijmen2001}{25}
+\bibcite{Roeder:10}{26}
+\bibcite{heartbeat-extension}{27}
+\bibcite{RFC7457}{28}
+\bibcite{Shor1995}{29}
+\bibcite{Sousa:10}{30}
+\bibcite{Stevens11}{31}
+\bibcite{Stevens15}{32}
+\bibcite{viega2002network}{33}
+\bibcite{Wang05}{34}
+\bibcite{xu2003transparent}{35}
+\bibcite{SSH}{36}
