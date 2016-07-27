@@ -1,3 +1,5 @@
+
+
 \documentclass{sig-alternate-05-2015}
 
 \usepackage{caption}
@@ -12,8 +14,6 @@
 
 \newcommand{\msg}[1]{\textsc{{#1}}}
 \newcommand{\suite}[1]{\texttt{{\footnotesize #1}}}
-%mpc: o fim destes comandos é óbvio; se não gostares do aspecto com que ficam as mensagens ou suites podes mudar aqui e fica mudado em todo o artigo
-
 
 \pagenumbering{arabic} %comment to remove page numbers
 
@@ -110,9 +110,6 @@
 % in the \additional authors block, viz.
 \date{03 May 2016}
 
-
-%amj: explicar claramente o que é diversificado (p.e. certificados? é certificados e chaves?)
-
 \maketitle
 \begin{abstract}
 We present \textsc{vtTLS}, a vulnerability-tolerant communication protocol based on diversity and redundancy. 
@@ -195,7 +192,7 @@ TLS is a secure communication protocol widely used. Originally called Secure Soc
 Defined in 1999, TLS did not introduce major changes in relation to SSL 3.0.
 %, Although, the changes introduced were enough to make TLS 1.0 incompatible with SSL 3.0.
 % In order to grant compatibility, a TLS 1.0 connection can be downgraded to SSL 3.0, which brought security issues.
-TLS 1.1 and TLS 1.2 are upgrades to TLS 1.0 which brought improvements such as mitigation of cipher block chaining (CBC) attacks and supporting more block cipher modes  to use with AES.
+TLS 1.1 and TLS 1.2 are upgrades to TLS 1.0 which brought improvements such as mitigation of cipher block chaining (CBC) attacks and support for more block cipher modes  to use with AES.
 %TLS is divided in two sub-protocols, Handshake and Record, constituted by several mechanisms each. The Handshake protocol is used to establish or re-establish a communication between a server and client. The Record protocol is used to process the sent and received messages.
 
 Other two secure communication protocols are IPsec and SSH.
@@ -206,8 +203,18 @@ Other two secure communication protocols are IPsec and SSH.
 Such a secure communication protocol becomes insecure when a vulnerability is discovered. Vulnerabilities may concern the protocol's specification, the cryptographic mechanisms used, or specific implementations of the protocol. Many vulnerabilities have been discovered in SSL/TLS originating new versions of the protocol with new security features such as deprecating cryptographic mechanisms or enforcing security measures.
 Concrete implementations of SSL/ TLS have been also found vulnerable due to implementation bugs, causing  security breaches and affecting devices worldwide.
 
-\textsc{vtTLS} is a protocol that provides \emph{vulnerability-tolerant communication channels}. These channels are characterized by not relying on individual cryptographic mechanisms, so that if one is found vulnerable (or possibly a few of them) the channels remain secure. The idea is to leverage  \textit{diversity}  and \textit{redundancy} of cryptographic mechanisms and keys, i.e., the use respectively of different and more than one set of mechanisms/keys. This use of diversity and redundancy is inspired in previous works on computer immunology \cite{Forrest1997}, diversity in security \cite{Littlewood2004,Garcia:11}, and moving-target defenses \cite{Carvalho2014}.
+\textsc{vtTLS} is a protocol that provides \emph{vulnerability-tolerant communication channels}. These channels are characterized by not relying on individual cryptographic mechanisms, so that if one is found vulnerable (or possibly a few of them) the channels remain secure. The idea is to leverage  \textit{diversity}  and \textit{redundancy} of cryptographic mechanisms and keys, i.e., the use respectively of different and more than one set of mechanisms/keys. More clearly, diversity is employed in the following aspects:
 
+\begin{itemize}
+\item{Pair certificate/private key;}
+\item{Key exchange mechanism;}
+\item{Authentication mechanism;}
+\item{Encryption mechanism;}
+\item{Hash function (MAC).}
+\end{itemize}
+
+
+This use of diversity and redundancy is inspired in previous works on computer immunology \cite{Forrest1997}, diversity in security \cite{Littlewood2004,Garcia:11}, and moving-target defenses \cite{Carvalho2014}.
 
 In the context of \textsc{vtTLS}, diversity and redundancy consist in using two or more different mechanisms with the same objective. For example, SHA-1 and SHA-3 are both hash functions that may be used to generate message digests. If used in combination and  SHA-1 eventually becomes insecure, \textsc{vtTLS} would rely upon SHA-3 to keep the communication secure. %Using diversity and redundancy of cryptographic mechanisms, when a one of those mechanisms is successfully attacked, another mechanism is able to maintain the security and availability of the communication.
 
@@ -278,49 +285,40 @@ This section presents the SSL/TLS, as this is the protocol in which \textsc{vtTL
 
 \subsubsection{TLS Handshake Protocol}
 
-The TLS Handshake Protocol is used to establish or resume a secure session between two communicating parties -- a client and a server.
-A session is established in several steps, each one corresponding to a different message:
+The TLS Handshake Protocol is used to establish or resume a secure session between two communicating parties -- client and server.
+A session is established in several steps, each one corresponding to a different message.
 
-\begin{enumerate}
+The client sends a \msg{ClientHello} message to the server when he wants to start a connection.
+This message is composed by the client's TLS version, a structure denominated \textit{Random} (which has a secure random number with 28 bytes and the current date and time), the session identifier, a list of the cryptographic mechanisms supported by the client and a list of compression methods supported by the client, both lists ordered by preference. The client may also request additional functionality from the server.
 
-\item {The client sends a \msg{ClientHello} message to the server. This message is sent when the client wants to connect to a server.
-The \msg{ClientHello} message is composed by the client's TLS version, a structure denominated \textit{Random} (which has a secure random number with 28 bytes and the current date and time), the session identifier, a list of the cryptographic mechanisms supported by the client and a list of compression methods supported by the client, both lists ordered by preference. The client may also request additional functionality from the server.}
+The server responds with a \msg{ServerHello} message. This message is composed by the server's TLS version, a structure denominated \textit{Random} analogous to \msg{ClientHello}'s message, the session identifier, a cryptographic mechanism and a compression method, both of them chosen by the server from the lists received in the \msg{ClientHello} message, and a list of extensions.
 
-%mpc: uma nota sobre Latex: a seguir a \item podes pôr texto à vontade
+If the key exchange algorithm agreed between client and server requires authentication, the server sends its certificate to the client using a \msg{Certificate} message.
 
-\item {The server responds with a \msg{ServerHello} message. The message is composed by the server's TLS version, a structure denominated \textit{Random} analogous to \textit{ClientHello}'s structure with the same name, the session identifier, a cryptographic mechanism and a compression method, both of them chosen by the server from the lists received in the \msg{ClientHello} message, and a list of extensions.}
+If the server's certificate does not contain enough information in order to allow the client to share a premaster secret, the server sends a \msg{ServerKeyExchange} message.
 
-\item {If the key exchange algorithm agreed between client and server requires authentication, the server sends its certificate to the client using a \msg{Certificate} message.}
+The server proceeds to send a request for the client's certificate -- \msg{CertificateRequest}.
 
-\item {A \msg{ServerKeyExchange} message is sent to the client after the \msg{Certificate} message if the server's certificate does not contain enough information in order to allow the client to share a premaster secret.}
+Afterwards, the server sends a \msg{ServerHelloDone} message to conclude its first sequence of messages.
 
-\item {The server then sends a request for the client's certificate -- \msg{CertificateRequest}. This message is composed by a list of types of certificate the client may send, a list of the server's supported signature algorithms and a list of certificate authorities accepted by the server.}
-
-\item {The server sends a \msg{ServerHelloDone} message to conclude its first sequence of messages.}
-
-\item {After receiving the \msg{ServerHelloDone} message, the client sends its certificate to the server, if requested.
+After receiving the \msg{ServerHelloDone} message, the client sends its certificate to the server, if requested.
 %When the server receives the client's certificate, there are some aspects that may risk the handshake.
 If the client does not send its certificate or if its certificate does not meet the server's conditions, the server may choose to continue or to abort the handshake.
-}
 
-\item {The client proceeds to send to the server a \msg{ClientKeyExchange} message containing an encrypted premaster secret. The client generates a premaster secret with 48 bytes and encrypts it with the server's certificate public key. At this point, the server and the client use the premaster secret to generate the session keys and the master secret.}
+The client proceeds to send to the server a \msg{ClientKeyExchange} message containing an encrypted premaster secret. The client generates a premaster secret with 48 bytes and encrypts it with the server's public key. At this point, the server and the client use the premaster secret to generate the session keys and the master secret.
 
-\item {If the client's certificate possesses signing capability, a \msg{CertificateVerify} message is sent to the server. Its purpose is to explicitly verify the client's certificate.}
+If the client's certificate possesses signing capability (i.e., do not contain fixed Diffie-Hellman parameters), a \msg{CertificateVerify} message is sent to the server. Its purpose is to explicitly verify the client's certificate.
 
-\item {The client sends a \msg{ChangeCipherSpec} message to the server. This message is used to inform the server that the client is now using the agreed-upon algorithms for encryption and hashing. TLS has a specific protocol to signal transitions in ciphering strategies denominated Change Cipher Spec.
+The client sends a \msg{ChangeCipherSpec} message to the server to inform that he is using the agreed-upon algorithms for encryption and hashing. TLS has a specific protocol to signal transitions in ciphering strategies denominated Change Cipher Spec.
 %According to this protocol, a \msg{ChangeCipherSpec} message must be sent by both client and server to notify one another that they are now using the algorithms agreed-upon.
-}
 
-\item {The client  sends its last handshake message -- \textit{Finished}. The Finished message verifies the success of the key exchange and the authentication.}
+The client  sends its last handshake message -- \msg{Finished}. The Finished message verifies the success of the key exchange and the authentication.
 
-\item {After receiving the \msg{ChangeCipherSpec} message, the server starts using the algorithms established previously and sends a \msg{ChangeCipherSpec} message to the client as well.}
+After receiving the \msg{ChangeCipherSpec} message, the server starts using the algorithms established previously and sends a \msg{ChangeCipherSpec} message to the client.
 
-\item {The server puts an end to the handshake protocol by sending a \msg{Finished} message to the client.}
-
-\end{enumerate}
+The server puts an end to the handshake protocol by sending a \msg{Finished} message to the client.
 
 At this point, the session is established. Client and server can now exchange application-layer data through the secure communication channel.
-
 
 \subsubsection{TLS Record Protocol}
 
@@ -338,11 +336,6 @@ Each potentially compressed block is now transformed into a ciphertext block by 
 The message is then sent to its destination.
 
 Regarding an incoming message, the process is the inverse. The message is decrypted, verified, optionally decompressed, reassembled and delivered to the application.
-
-
-%mpc: estas seccoes que descrevem o funcionamento do TLS estão demasiado longas e detalhadas para paper; temos de pensar se vale a pena cortar
-%amj: tambem acho que estao um pouco longas, talvez nao valha a pena entrar em tanto detalhe aqui. se calhar vale mais a pena manter mais informacao sobre o Handshake do que propriamente o Record.
-%amj: Tentei reduzir um pouco
 
 \subsubsection{TLS Vulnerabilities}
 \label{tls-vulnerabilities}
@@ -392,6 +385,17 @@ Kleinjung \emph{et al.}~performed the factorization of RSA-768, a RSA number wit
 Factorizing a large integer is  very different  from breaking RSA, which is still secure.
 As of 2010, the researchers concluded that RSA-1024 would be factored within five years, i.e., in 2015. As for now, no factorization of RSA-1024 has been publicly announced.
 
+Camellia is symmetric block cipher originated in Japan in 2000 \cite{RFC3713, RFC5528}. Mitsubishi Electric and NTT are the corporations responsible
+for the development of Camellia. Using a Feistel network as a structure, Camellia can be used with three different key sizes: 128, 192 or 256 bits.
+In fact, TLS only supports Camellia with 128 and 256 bits keys \cite{RFC5932}. Camellia can be employed using the Galois/Counter mode or the cipher
+block chaining mode. Although TLS supports both modes of operation \cite{RFC6367}, OpenSSL does not support Camellia with GCM.
+
+Camellia, such as AES, is considered a secure cipher but several attacks have been performed against Camellia's security.
+Several researchers tried to use impossible differential attacks against Camellia. These type of attacks focus \cite{Blondeau2015660},
+Meet-in-the-middle attacks have also been used to test Camellia's security \cite{Li2014:292, Lu2012}. The majority of these attacks focused reduced
+versions of Camellia. Therefore, altough the results of these attacks demonstrate some advance in breaking the first rounds of Camellia, Camellia
+is still a secure symmetric encryption function which can be used in secure communication channels.
+
 Shor designed a quantum computing algorithm to factorize integers in polynomial time \cite{Shor1995}. However, it requires a quantum computer able to run it, which is still not available.
 
 
@@ -421,6 +425,13 @@ The Secure Hash Algorithm 1 (SHA-1) is a cryptographic hash function which produ
 Other attacks have been successful against SHA-1. Stevens \emph{et al.}~presented a freestart collision attack for SHA-1's internal compression function \cite{Stevens15}. Taking into consideration the Damgard-Merkle \cite{Merkle79} construction for hash functions and the input of the compression function, a freestart collision attack is a collision attack where the attacker can choose the initial chaining value, also known as initialisation vector (IV). Although, freestart collision attacks being successful does not imply that SHA-1 is insecure, but it is a step forward in that direction.
 
 In 2005, Wang \emph{et al.}~presented a collision attack on SHA-1 that reduced the number of calculations needed to find collisions from $2^{80}$ to $2^{69}$ \cite{Wang05}. The researchers claim that this was the first collision attack on the full 80-step SHA-1 with complexity inferior to the $2^{80}$ theoretical bound. By the year of 2011, Stevens improved the number of calculations needed to produce a collision from $2^{69}$ to a number between $2^{60.3}$ and $2^{65.3}$ \cite{Stevens11}.
+
+Regarding SHA-2 and its security, Khovratovich \textit{et al.} presented in 2011 a biclique attack against SHA-2's preimage resistance \cite{Khovratovich2011}.
+This attack only breaks SHA-2's preimage resistance for 57 rounds of SHA-512 and for 52 rounds of SHA-256 and does not represent a real threat
+against SHA-2 security.
+For several years, other researches have also tried differential attacks for collisions and pseudo-collisions \cite{Dobraunig2016, Eichlseder2014, Lamberger2011, Mendel2013}.
+Similarly to the biclique attack, these attacks do not mean that SHA-2 is insecure, as they could only break a small number of rounds of SHA-2 variants.
+Concluding, SHA-2 is still a secure hash function without collisions, and preimage and second preimage resistant.
 
 %Nowadays it is still computationally expensive to perform these number of calculations. In the near future,  a collision attack may be affordable for a university research project \cite{Schneier12}.
 
@@ -483,7 +494,7 @@ The client proceeds to send a \msg{(Client) Certificate} message containing its 
 
 After sending its certificates, the client sends $k$ \msg{ClientKeyExchange} messages to the server. The content of these messages is based on the $k$ cipher suites chosen. If $m$ of the cipher suites use RSA as KEM, the client sends $m$ messages, each one with a RSA-encrypted pre-master secret to the server ($0 \leq m \leq k$). If $j$ of the cipher suites use ECDHE or DHE, the client sends $j$ messages to the server containing its $j$ Diffie-Hellman public values ($0 \leq j \leq k$). Even if a subset of the $k$ cipher suites share the same KEM, this methodology still applies as we introduce diversity by using different parameters for each cipher suite being used.
 
-The server may need to verify the client's $i$ certificates. If they have signing capabilities (i.e., they do not contain fixed Diffie-Hellman parameters), the client digitally signs all the previous handshake messages and sends them to the server for verification.
+The server may need to verify the client's $i$ certificates. If they have signing capabilities (i.e., do not contain fixed Diffie-Hellman parameters), the client digitally signs all the previous handshake messages and sends them to the server for verification.
 %mpc: não percebi "If they have signing capabilities". Substitui "they" por aquilo que estás a referir. Mesmo assim não sei se "signing capabilities" se percebe. 
 %amj: source - RFC do TLS 1.2: «This message is used to provide explicit verification of a client certificate.  This message is only sent following a client certificate that has signing capability (i.e., all certificates except those containing fixed Diffie-Hellman parameters).»
 %amj: fixed
@@ -497,61 +508,197 @@ In order to finish the Handshake, the client and server send each other a \msg{F
 %amj: para a dissertação acho que era interessante fazer isso
 %amj: currently doing this:
 % --- [DONE] Hash functions(Mac) & PK(Kx and Au) -- utilizei as mesmas métricas (talvez seja possivel adicionar alguma metrica)
-% --- [DONE] Symmetric Key (Enc) -- utilizei as minhas métricas
+% --- [DONE] Symmetric-Key (Enc) -- utilizei as minhas métricas
+
+%amj: tentar retirar ou minimizar referencias ao trabalho do ricardo
 
 Diversity between cryptographic mechanisms can be taken in a soft sense as the use of different mechanisms, or in a hard sense as the use of mechanisms that do not share common vulnerabilities (e.g., because they are based on different mathematical problems). In \textsc{vtTLS} we are interested in using strong diversity in order to claim that no common vulnerabilities will appear in different mechanisms. Measuring the level of diversity is not simple, so we leverage previous research by Carvalho on heuristics for comparing diversity among  cryptographic mechanisms \cite{CarvalhoThesis14}. Moreover, not all cryptographic mechanisms can be used together in the context of TLS 1.2 and other security protocols. 
+%amj: comecei a escrever a parte relacionada com as cifras do vtTLS com a metodologia do ricardo
+Diversity can be assessed using different metrics. Previous research evaluated diversity among some hash and public-key functions. The functions subject to comparison were not chosen considering any specific protocol or implementation.
+As \textsc{vtTLS} uses the same cryptographic mechanisms as TLS, more specifically those available in OpenSSL, we assess diversity among \textsc{vtTLS}'s mechanisms, including symmetric encryption mechanisms.
 
-%mpc: não se percebe o significado das métricas; para a próxima é preciso explicar brevemente cada uma
-Diversity can be assessed using different metrics. For hash functions, example metrics are origin, year, digest size, structure, rounds and known weaknesses (collisions, second preimage and preimage).
-After comparing several hash functions using the metrics stated above, Carvalho concluded that the best three combinations are the following:
+%\subsubsection{Combining hash functions}
+
+Regarding hash functions, the metrics used were the people, entity or organization who created or designed the function -- \textit{designers} -- and the country of origin; the \textit{year} when it was first published; its \textit{digest size}; its \textit{structure}; its number of \textit{rounds}; its \textit{properties} (collision, preimage, and second preimage resistant); and finally \textit{known attacks} to the function.
+Table \ref{table:vttls-hash} and \ref{table:vttls-hash-known-attacks} shows the metrics for each hash function supported by \textsc{vtTLS}.
+We consider the most diverse ciphers are those with different structure, and no common weaknesses. The other metrics are considered less relevant.
+
+AEAD was included in this study due to the fact that, although not being a hash function, it is considered an alternative mechanism used with the same purpose as hash functions. Therefore, it can be used redundantly with a HMAC to achieve even higher diversity.
+
+\begin{table*}[tb]
+\center\footnotesize
+\begin{tabular}{l|l|l|l|l|l|}
+\cline{2-6}
+                                      & Designers                         & Year                  & Digest Size & Structure                           & Rounds \\ \hline
+\multicolumn{1}{|l|}{AEAD (GCM)}      & McGrew, D., and Viega J. (U.S.A.) & 2005-2009             & \multicolumn{3}{c|}{Does not apply}                        \\ \hline
+\multicolumn{1}{|l|}{SHA-2 (SHA-384)} & \multirow{3}{*}{NIST (U.S.A.)}    & \multirow{2}{*}{2000} & 384 bits    & \multirow{4}{*}{Merkel-D\r{a}mgard} & 80     \\ \cline{1-1} \cline{4-4} \cline{6-6} 
+\multicolumn{1}{|l|}{SHA-2 (SHA-256)} &                                   &                       & 256 bits    &                                     & 64     \\ \cline{1-1} \cline{3-4} \cline{6-6} 
+\multicolumn{1}{|l|}{SHA-1}           &                                   & 1993                  & 160 bits    &                                     & 80     \\ \cline{1-4} \cline{6-6} 
+\multicolumn{1}{|l|}{MD5}             & Rivest, R. (U.S.A.)               & 1992                  & 128 bits    &                                     & 4      \\ \hline
+\end{tabular}
+\caption{\textsc{vtTLS} hash functions' diversity metrics}
+\label{table:vttls-hash}
+\end{table*}
+
+\begin{table*}[tb]
+\center\footnotesize
+\begin{tabular}{l|l|l|l|l|}
+\cline{2-5}
+                                     & \multicolumn{3}{c|}{\begin{tabular}[c]{@{}c@{}}Properties\\ (Complexity)\end{tabular}}                                                                                                             & \multicolumn{1}{c|}{\multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Other relevant\\ known attacks\\ (number of rounds attacked)\end{tabular}}} \\ \cline{2-4}
+                                     & \begin{tabular}[c]{@{}l@{}}Collision\\ resistant\end{tabular} & \begin{tabular}[c]{@{}l@{}}Preimage\\ resistant\end{tabular} & \begin{tabular}[c]{@{}l@{}}Second preimage\\ resistant\end{tabular} & \multicolumn{1}{c|}{}                                                                                                                      \\ \hline
+\multicolumn{1}{|l|}{AEAD (GCM)}     & Yes                                                           & Yes                                                          & Yes                                                                 &                                                                                                                                            \\ \hline
+\multicolumn{1}{|l|}{SHA-2 (SHA-384)} & Yes                                                           & Yes                                                          & Yes                                                                 & \begin{tabular}[c]{@{}l@{}}Biclique attack (57),\\ Meet-in-the-middle attack (46)\end{tabular}                                             \\ \hline
+\multicolumn{1}{|l|}{SHA-2 (SHA-256)} & Yes                                                           & Yes                                                          & Yes                                                                 & \begin{tabular}[c]{@{}l@{}}Biclique attack (52),\\ Pseudo-collision attack (46),\\ Meet-in-the-middle (43)\end{tabular}                    \\ \hline
+\multicolumn{1}{|l|}{SHA-1}          & No ($2^{60.3}$)                             & Yes                                                   & Yes                                                                 & Freestart collision attack (on full SHA-1)                                                                                                 \\ \hline
+\multicolumn{1}{|l|}{MD5}            & No ($2^{30}$)                                                 & No                                                           & No                                                                  &                                                                                                                                            \\ \hline
+\end{tabular}
+\caption{\textsc{vtTLS} hash functions' known attacks}
+\label{table:vttls-hash-known-attacks}
+\end{table*}
+
+% After comparing several hash functions using the metrics stated above, Carvalho stated the best three combinations. Unfortunately, for all of these combinations, at least one of the hash functions is not supported by TLS 1.2, such as SHA-3 and Whirlpool.
+
+All \textsc{vtTLS} cipher suites use either AEAD (MAC-then-Encrypt mode), SHA-2 (SHA-256 or SHA-384), SHA-1 or MD5.
+The first metric to be taken into account is the current security of each hash function. While AEAD (which is not an hash function) and SHA-2 are considered secure, SHA-1 is being deprecated and MD5 is considered insecure. Therefore, we excluded SHA-1 and MD5 from the possible combinations of hash functions.
+
+Having a small range of available hash functions limits the maximum diversity factor achievable concerning hash functions. The choice for a combination relies in choosing between AEAD and a SHA-2 variant or SHA-384 and SHA-256.
+
+Our choice for creating maximum diversity relies on AEAD + a variant of SHA-2. As AEAD is a different approach to MACs, it is supposedly vulnerable to different attacks than the ones targeting pure hash functions, such as SHA-2.
+Using a combination of two SHA-2 variants would not create maximum diversity. Although having different digest sizes and rounds, their structure is identical.
+
+In a near future, it is expected that a new version of TLS supports SHA-3 and makes possible more combinations.
+%SHA-3's structure is sponge construction and its digest size is arbitrary.
+
+%\subsubsection{Combining public-key encryption mechanisms}
+
+\textsc{vtTLS} supports several public-key functions used for both key-exchange and authentication. Public-key encryption mechanisms' metrics are obviously different from hash functions' metrics. 
+The metrics used to classify public-key functions include its \textit{designers}, similarly to hash functions, its publishing \textit{year}, the \textit{mathematical hard problems} on which the mechanism is based-upon, if the mechanism provides \textit{perfect forward secrecy (PFS)}, its \textit{semantic security} (i.e. given a ciphertext and the public key, it must be unfeasible to derive any information about the original message) and \textit{known attacks}. Previous research prioritized the diverse mathematical hard problems metric. The second and third most important metrics were PFS and semantic security.
+%amj: o ricardo usava a PFS como 2a metrica em vez de a prioritizar. eu prioritizei-a e explico isso na frase abaixo
+This ordering is debatable. As we want to increase diversity in order to increase security, we prioritize mechanisms which grant PFS instead of mechanisms with disjoint mathematical hard problems.
+
+Table \ref{table:vttls-pkc} demonstrates the first set of metrics used to assess diversity among public-key mechanisms supported by TLS. Table \ref{table:vttls-pkc-known-attacks} demonstrates the known attacks of the considered mechanisms. Of course, there are not listed all attacks because it is difficult to enumerate all existing attacks and not all attacks are of public knowledge. A wrong conclusion is that the mechanisms with most known attacks are less safe. A more popular mechanism will be targeted more times than a less popular mechanism. The attacks complexity is also important. Great part of the attacks are either theoretical or computationally unfeasible.
+
+\begin{table*}[tb]
+\center\footnotesize
+\begin{tabular}{l|l|l|l|l|l|}
+\cline{2-6}
+                              & Designers                                                                                                     & Year & \begin{tabular}[c]{@{}l@{}}Mathematical\\ Hard Problem\end{tabular} & \begin{tabular}[c]{@{}l@{}}Perfect Forward\\ Secrecy\end{tabular}           & \begin{tabular}[c]{@{}l@{}}Semantic\\ Security\end{tabular}                                \\ \hline
+\multicolumn{1}{|l|}{RSA}     & \begin{tabular}[c]{@{}l@{}}Rivest, R.,\\ and Shamir, A.,\\ and Adleman, L.\\ (U.S.A. and Israel)\end{tabular} & 1977 & Integer Factorisation Problem                                       & No                                                                          & \begin{tabular}[c]{@{}l@{}}Yes (Using a random\\ encryption padding\\ scheme)\end{tabular} \\ \hline
+\multicolumn{1}{|l|}{ECDH(E)} & \begin{tabular}[c]{@{}l@{}}Miller, V.,\\ and Koblitz, N.\\ (U.S.A.)\end{tabular}                              & 1985 & Elliptic-curve discrete logarithm problem                           & \begin{tabular}[c]{@{}l@{}}Yes (If used with\\ ephemeral keys)\end{tabular} & No                                                                                         \\ \hline
+\multicolumn{1}{|l|}{DH(E)}   & \begin{tabular}[c]{@{}l@{}}Diffie, W.\\  and Hellman, M.\\ (U.S.A.)\end{tabular}                              & 1976 & Discrete Logarithm Problem                                          & \begin{tabular}[c]{@{}l@{}}Yes (If used with\\ ephemeral keys)\end{tabular} & No                                                                                         \\ \hline
+\multicolumn{1}{|l|}{ECDSA}   & \begin{tabular}[c]{@{}l@{}}Vanstone, S.\\ (Canada)\end{tabular}                                               & 1992 & Elliptic-curve discrete logarithm problem                           & Yes                                                                         & No                                                                                         \\ \hline
+\multicolumn{1}{|l|}{DSA}     & \begin{tabular}[c]{@{}l@{}}NIST\\ (U.S.A.)\end{tabular}                                                       & 1991 & Discrete Logarithm Problem                                          & Yes                                                                         & No                                                                                         \\ \hline
+\end{tabular}
+\caption{Public-key encryption functions' diversity metrics}
+\label{table:vttls-pkc}
+\end{table*}
+
+\begin{table*}[tb]
+\center\footnotesize
+\begin{tabular}{l|l|}
+\cline{2-2}
+                              & \multicolumn{1}{c|}{Known attacks}                                                                                                                                                             \\ \hline
+\multicolumn{1}{|l|}{RSA}     & \begin{tabular}[c]{@{}l@{}}Chosen plaintext attack, Chosen ciphertext attack, Adaptive chosen ciphertext attack,\\ Coppersmith's attack, H\r{a}stad's broadcast attack\end{tabular}            \\ \hline
+\multicolumn{1}{|l|}{ECDH(E)} & \begin{tabular}[c]{@{}l@{}}Man-in-the-middle attack, Menezes-Okamoto-Vanstone (MOV) attack, Frey-Rueck attack,\\ Pollard's rho method, Weil descent attack\end{tabular}                        \\ \hline
+\multicolumn{1}{|l|}{DH(E)}   & Man-in-the-middle attack, Logjam attack                                                                                                                                                        \\ \hline
+\multicolumn{1}{|l|}{ECDSA}   & \begin{tabular}[c]{@{}l@{}}Menezes-Okamoto-Vanstone (MOV) attack, Frey-Rueck attack, Pollard's rho method,\\ Weil descent attack, Timing attack, Collision attack, Lattice attack\end{tabular} \\ \hline
+\multicolumn{1}{|l|}{DSA}     & Adaptive chosen-ciphertest attack, Lattice attack                                                                                                                                              \\ \hline
+\end{tabular}
+\caption{\textsc{vtTLS} public-key encryption mechanisms' known attacks}
+\label{table:vttls-pkc-known-attacks}
+\end{table*}
+
+After comparing these public-key encryption mechanisms, using the metrics stated above, we conclude that the best three combinations are:
 \begin{itemize}
-\item {SHA-1 + SHA-3: This combination is not possible in \textsc{vtTLS} as SHA-1 is not recommended and TLS 1.2 does not support SHA-3;}
-\item {SHA-1 + Whirlpool: This combination is not possible in \textsc{vtTLS} as SHA-1 is not recommended and TLS 1.2 does not support Whirlpool;} 
-\item {SHA-2 + SHA-3: This combination is not possible in \textsc{vtTLS} as TLS 1.2 does not support SHA-3.}
+\item {\suite{DSA + RSA}: This combination is possible as TLS 1.2 supports both functions for \textit{authentication}. However, TLS 1.2 specific cipher suites only support ECDSA}
+\item {\suite{RSA + ECDH(E)}: This combination is possible as TLS 1.2 supports both functions for \textit{key exchange}}
+\item {\suite{ECDSA + RSA}: This combination is possible as TLS 1.2 supports both functions for \textit{authentication}}
 \end{itemize}
 
-All the remaining  combinations suggested in that work cannot also be used because TLS 1.2 does not support SHA-3.
-%These results have a direct impact in \textsc{vtTLS} due to the fact that, being \textsc{vtTLS} based on OpenSSL, it also does not support SHA-3 nor Whirlpool. 
-All \textsc{vtTLS} cipher suites use either AEAD (MAC-then-Encrypt mode using a SHA-2 variant) or SHA-2 (SHA-256 or SHA-384).
-Having a small range of available hash functions limits the maximum diversity factor achievable concerning hash functions.
-%SHA-3 is relatively recent, having been selected the winner of the NIST hash function competition on 2012. 
-In a near future, it is expected that a new TLS protocol version supports SHA-3 and makes possible the use of diverse hash functions.
-Nevertheless, it still possible to achieve diversity by using different variants of SHA-2: SHA-256 and SHA-384.
+\textsc{vtTLS} uses public-key encryption mechanisms for key exchange and authentication. Although there is not a wide range of supported mechanisms for both purposes, \textsc{vtTLS}' supported mechanisms provide a good diversity.
 
-Regarding public-key functions, the metrics proposed include origin, year, mathematical hard problems, perfect forward secrecy, semantic security and known attacks.
-After comparing several public-key encryption mechanisms, using the metrics stated above, Carvalho concluded that the best four combinations are:
+Regarding authentication, although DSA + RSA is stated as the most diverse combination, TLS 1.2 preferred cipher suites use ECDSA instead of DSA. Using elliptic curves results in a faster computation and lower power consumption \cite{Gupta02}. With that being said, the preferred combination for authentication is ECDSA + RSA.
+
+Regarding key exchange, the most diverse combination is RSA + ECDH(E). In order to grant perfect forward secrecy, our main constraint, ECDH must be used with ephemeral keys (ECDHE). Concluding, the preferred combination for key exchange is RSA + ECDHE.
+
+
+
+%\subsubsection{Combining public-key encryption mechanisms}
+
+Previous studies did not approach sym\-metric-key encryption. As \textsc{vtTLS} uses this mechanism, we evaluated diversity among symmetric encryption mechanisms, similar to hash functions and public-key functions.
+
+In order to classify each symmetric mechanism supported by \textsc{vtTLS}, we consider the following metrics: its \textit{type} (block cipher or stream cipher); its \textit{mode of operation}; its \textit{designers}, similarly to hash and public-key functions; the \textit{year} it was first published; its key size in bits, named \textit{strength}; its number of \textit{rounds}; its \textit{block size}, also in bits; its internal \textit{structure}; and finally its current \textit{status} (secure, low strength or insecure). We do not consider semantic security (i.e. an attacker must not be able to extract any information about the original message from its ciphertext) for symmetric-key as it is almost the same as status. If a mechanism is not semantically secure, its status is insecure.
+
+Table \ref{table:vttls-sym} demonstrates the metrics above applied to \textsc{vtTLS} supported mechanisms. Table \ref{table:vttls-sym-ka} shows the known attacks to each studied mechanism.
+
+\begin{table*}[tb]
+\center\footnotesize
+\begin{tabular}{l|l|l|l|l|l|l|l|l|l|}
+\cline{2-10}
+ & Type & \begin{tabular}[c]{@{}l@{}}Mode of\\ Operation\end{tabular} & Designers & Year & \begin{tabular}[c]{@{}l@{}}Strength\\ (in bits)\end{tabular} & Rounds & \begin{tabular}[c]{@{}l@{}}Block\\ size\\ (in bits)\end{tabular} & Structure & Status \\ \hline
+\multicolumn{1}{|l|}{\multirow{4}{*}{AES}} & \multirow{12}{*}{Block} & \multirow{2}{*}{GCM} & \multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Rijmen, V.,\\ and Daemen, J.\\ (Belgium)\end{tabular}} & \multirow{4}{*}{1998} & 256 & 14 & \multirow{4}{*}{128} & \multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Substitution-\\ -permutation\\ network\end{tabular}} & \multirow{4}{*}{Secure} \\ \cline{6-7}
+\multicolumn{1}{|l|}{} &  &  &  &  & 128 & 10 &  &  &  \\ \cline{3-3} \cline{6-7}
+\multicolumn{1}{|l|}{} &  & \multirow{2}{*}{CBC} &  &  & 256 & 14 &  &  &  \\ \cline{6-7}
+\multicolumn{1}{|l|}{} &  &  &  &  & 128 & 10 &  &  &  \\ \cline{1-1} \cline{3-10} 
+\multicolumn{1}{|l|}{\multirow{2}{*}{Camellia}} &  & \multirow{2}{*}{CBC} & \multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}Mitsubishi Electric,\\ and NTT (Japan)\end{tabular}} & \multirow{2}{*}{2000} & 256 & 24 & \multirow{2}{*}{128} & \multirow{2}{*}{Feistel network} & \multirow{2}{*}{Secure} \\ \cline{6-7}
+\multicolumn{1}{|l|}{} &  &  &  &  & 128 & 18 &  &  &  \\ \cline{1-1} \cline{3-10} 
+\multicolumn{1}{|l|}{SEED} &  & CBC & KISA (South Korea) & 1998 & 128 & 16 & 128 & \begin{tabular}[c]{@{}l@{}}Nested Feistel\\ network\end{tabular} & Secure \\ \cline{1-1} \cline{3-10} 
+\multicolumn{1}{|l|}{\multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}ARIA\\ (Not available\\ in \textsc{vtTLS})\end{tabular}}} &  & \multirow{2}{*}{GCM} & \multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Large group\\ of researchers\\ (South Korea)\end{tabular}} & \multirow{4}{*}{2003} & 128 & 12 & \multirow{4}{*}{128} & \multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Substitution-\\ -permutation\\ network\end{tabular}} & Secure \\ \cline{6-7} \cline{10-10} 
+\multicolumn{1}{|l|}{} &  &  &  &  & 256 & 16 &  &  & Secure \\ \cline{3-3} \cline{6-7} \cline{10-10} 
+\multicolumn{1}{|l|}{} &  & \multirow{2}{*}{CBC} &  &  & 128 & 12 &  &  & Secure \\ \cline{6-7} \cline{10-10} 
+\multicolumn{1}{|l|}{} &  &  &  &  & 256 & 16 &  &  & Secure \\ \cline{1-1} \cline{3-10} 
+\multicolumn{1}{|l|}{3DES EDE} &  & CBC & \begin{tabular}[c]{@{}l@{}}IBM\\ (U.S.A.)\end{tabular} & 1998 & 112 & 48 & 64 & Feistel network & \begin{tabular}[c]{@{}l@{}}Low\\ strength\end{tabular} \\ \hline
+\end{tabular}
+\caption{\textsc{vtTLS} symmetric encryption mechanisms' diversity metrics}
+\label{table:vttls-sym}
+\end{table*}
+
+We also included ARIA \cite{RFC5794} in our comparison, although not being implemented in \textsc{vtTLS}. IDEA \cite{Lai91aproposal} is also a symmetric-key encryption mechanism supported by some versions of TLS but it was removed from TLS 1.2. therefore it is not part of our study nor supported by \textsc{vtTLS}. GOST 28147-89 is also another symmetric-key encryption mechanism originated in Russia \cite{gost28147} but its inclusion in TLS was only proposed in RFC drafts. Regarding stream ciphers, \textsc{vtTLS} only supports RC4 which use has been proihibited in all versions of TLS due to being insecure \cite{RFC7465}. ChaCha20-Poly1305 is another stream cipher available in some implementations of TLS but \textsc{vtTLS} and OpenSSL do not support this stream cipher \cite{chacha20-poly1305}. Nevertheless, ChaCha20-Poly1305 is considered a secure cipher and could possibly be used in the future to increase diversity.
+
+ 
+\begin{table*}[tb]
+\center\footnotesize
+\begin{tabular}{l|l|}
+\cline{2-2}
+ & \multicolumn{1}{c|}{Known attacks} \\ \hline
+\multicolumn{1}{|l|}{AES} & XSL attack, Biclique attack \\ \hline
+\multicolumn{1}{|l|}{Camellia} & \begin{tabular}[c]{@{}l@{}}Impossible differential attack, Cache timing attack, Collision attack,\\ High-order differential attack, Differential attack, Square attack\end{tabular} \\ \hline
+\multicolumn{1}{|l|}{SEED} & Differential attack \\ \hline
+\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}ARIA (Not available\\ in \textsc{vtTLS})\end{tabular}} & Meet-in-the-middle attack, Impossible differential attack, Boomerang attack \\ \hline
+\multicolumn{1}{|l|}{3DES EDE} & Meet-in-the-middle attack, Chosen-plaintext attack, Known-plaintext attack \\ \hline
+\end{tabular}
+\caption{\textsc{vtTLS} symmetric encryption mechanisms' known attacks}
+\label{table:vttls-sym-ka}
+\end{table*}
+
+Analogous to public-key encryption mechanisms, symmetric-key encryption mechanisms' three most important metrics to be taken into account are structure, mode of operation and common attacks. In a certain sense these metrics are related: attacks target a specific structure or mode of operation. Additionally, we will only consider secure mechanisms, preferably with different key sizes.
+
+Therefore, the combinations of symmetric encryption mechanisms we consider to be the most diverse are:
 \begin{itemize}
-\item {DSA + RSA: This combination is possible as TLS 1.2 supports both functions for \textit{authentication}. However, TLS 1.2 specific cipher suites only support DSA with elliptic curves (ECDSA);}
-\item {DSA + Rabin-Williams: This combination is not possible as TLS 1.2 does not support Rabin-Williams;}
-\item {RSA + ECDH: This combination is possible as TLS 1.2 supports both functions for \textit{key exchange};}
-\item {RSA + ECDSA: This combination is possible as TLS 1.2 supports both functions for \textit{authentication}.}
+\item {\suite{AES + CAMELLIA} (Using a different mode of operation and key size)}
+\item {\suite{AES256-GCM + SEED128-CBC}}
 \end{itemize}
 
-Regarding authentication, although DSA + RSA is stated as the most diverse combination, TLS 1.2 preferred cipher suites use ECDSA instead of DSA. Using elliptic curves results in a faster computation and lower power consumption \cite{Gupta02}. With that being said, the preferred combination for authentication is RSA + ECDSA.
+Both AES and Camellia are supported by TLS 1.2 and are considered secure. We consider the most diverse combination to be \suite{AES256-GCM + CAMELLIA128-CBC}. Regarding the priority metrics, their structure is different, as its mode of operation, and the set of known attacks is  disjoint.
 
-Regarding key exchange, the most diverse combination is RSA + ECDH. However, in order to grant perfect forward secrecy, the ECDH with ephemeral keys (ECDHE) has to be employed. Concluding, the preferred combination for key exchange is RSA + ECDHE.
-%mpc: logo o critério de fornecer perfect forward secrecy estava omisso na metodologia do Ricardo Carvalho e esta poderia ser afinada
-%amj: na proxima iteração, quando fizer entao a metodologia do Ricardo para as cifras do OpenSSL posso referir isso
 
-The study did not present any conclusions regarding sym\-metric-key encryption. Therefore, considering the metrics -- origin, year, and semantic security -- employed for public-key encryption functions, and considering an additional metric -- the mode of operation -- we obtained combinations of diverse symmetric-key encryption functions, all possible:
-\begin{itemize}
-\item {AES256-GCM + CAMELLIA128-CBC;}
-\item {AES256-CBC + CAMELLIA128-GCM;}
-\item {AES128-GCM + CAMELLIA256-CBC;}
-\item {AES128-CBC + CAMELLIA256-GCM.}
-\end{itemize}
+Although, using a cipher suite that contains Camellia or SEED, in order to maximize diversity in symmetric encryption, has some drawbacks.
+There is no cipher suite that uses RSA for key exchange, Camellia for encryption and a SHA-2 variant for MAC. Although RFC 6367 \cite{RFC6367} describes the support for Camellia HMAC-based cipher suites, extending TLS 1.2, these cipher suites are not supported by \textsc{vtTLS}.
+Using Camellia or SEED implies using SHA-1 for MAC, and not using ECDH(E) for key exchange nor ECDSA for authentication, at least in that cipher suite.
+Concluding, using Camellia or SEED increases diversity in symmetric encryption but forces reduced diversity and security essentially in MAC.
 
-Both AES and Camellia are supported by TLS 1.2 and are considered secure. The most diverse combination is AES256-GCM + CAMELLIA128-CBC: the origin of the two algorithms is different, they were first published in different years, they both have semantic security (as they both use initialization vectors) and the mode of operation is also different. One constraint of using this combination is that there is no cipher suite that uses RSA for key exchange, Camellia for encryption and a SHA-2 variant for MAC. Although RFC 6367 \cite{RFC6367} describes the support for Camellia HMAC-based cipher suites, extending TLS 1.2, these cipher suites are not supported by OpenSSL 1.0.2g. Using a cipher suite that uses Camellia, in order to maximize diversity, implies using also SHA-1 for MAC and not using ECDHE for key exchange nor ECDSA for authentication in that cipher suite. Concluding, using Camellia increases diversity in encryption but reduces security in MAC, forcing the use of an insecure algorithm. Nevertheless, diversity in encryption is still an objective to accomplish. We decided that the best option is:
-\begin{itemize}
-\item {AES256-GCM + AES128: This combination is possible as TLS 1.2 supports both functions.}
-\end{itemize}
-These functions are, in theory, the same, but employed with a different strength size and mode of operation, they can be considered diverse, although have an inferior degree of diversity comparing to any of the combinations above.
+Nevertheless, diversity in symmetric encryption is still an objective to accomplish. We decided that the best option is \suite{AES256-GCM + AES128-CBC}.
+
+In theory, these are the same symmetric mechanism. But employed with a different key size (strength) and mode of operation, they can be considered diverse, although  having an inferior degree of diversity comparing to any of the combinations  proposed above.
+
+The ideal scenario would be the one where Camellia HMAC-based cipher suites would be available in OpenSSL and \textsc{vtTLS} and allowing to combine AES and Camellia.  
+
 
 Concluding, the best combination of cipher suites is arguably:
 \suite{TLS\_ECDHE\_ECDSA\_WITH\_AES\_256\_GCM\_SHA384} and \suite{TLS\_RSA\_WITH\_AES\_128\_CBC\_SHA256}.
-For key exchange,  \textsc{vtTLS} will use Ephemeral ECDH (ECDHE) and RSA; for authentication, it will use Elliptic Curve DSA (ECDSA) and RSA; for encryption, it will use AES-256 with Galois/Counter mode (GCM) and AES-128 with cipher block chaining (CBC) mode; finally, for MAC, it will use SHA-2 variants (SHA-384 and SHA-256).
+For key exchange,  \textsc{vtTLS} will use ECDH(E) and RSA; for authentication, it will use ECDSA and RSA; for symmetric encryption, it will use AES-256 with Galois/Counter mode (GCM) and AES-128 with cipher block chaining (CBC) mode; finally, for MAC, it will use AEAD and a SHA-2 variant (SHA-256).
 
-Using this combination of cipher suites, maximum diversity is achieved using a diversity factor $k = 2$. The least diversified part of the communication is the MAC, due to the fact that TLS 1.2 does not support SHA-3 for now.
+Using this combination of cipher suites, maximum diversity is achieved using a diversity factor $k = 2$. The least diversified parts of the communication is the MAC and the symmetric, due to the fact that TLS 1.2 does not support SHA-3 and OpenSSL does not support Camellia HMAC-based cipher suites.
 
 
 \section{Implementation}
@@ -574,9 +721,10 @@ int SSL_CTX_use_n_PrivateKey(short n, SSL_CTX* ctx, EVP_PKEY* pkey);
 int SSL_CTX_use_n_PrivateKey_file(short n, SSL_CTX* ctx, const char* file, int type);
 int SSL_CTX_check_n_private_key(short n, const SSL_CTX* ctx);
 X509* SSL_get_n_peer_certificate(short n, const SSL* s);
+int SSL_CTX_add_n_preferred_cipher_suite(short n, SSL_CTX *ctx, int hex);
 
 \end{verbatim}
-\caption{\textsc{vtTLS} API: additional functions in relation to the OpenSSL API.}
+\caption{\textsc{vtTLS} API: Additional functions in relation to the OpenSSL API.}
 \label{fig:vtTLS-api}
 \end{figure*}
 
@@ -589,8 +737,6 @@ Moreover, the current \textsc{vtTLS} prototype does not support all OpenSSL ciph
 
 In order to establish a \textsc{vtTLS} communication channel, additional functions are required to fulfill the requirements of \textsc{vtTLS}, such as loading two certificates and corresponding private keys. These functions have a similar name of the ones belonging to the OpenSSL API, to reduce the learning curve.
 The most relevant functions regarding the setup of the channel are the functions that allow to load the second certificate and private key and allow to check if the second private key corresponds to the second certificate.
-%mpc: numa próxima versão era bom listares as funções, ou seja, mostrares a extensão à API; não está muito grande...
-%amj: inicialmente era essa a ideia, mas achei que para o artigo ia ficar muito grande. se quiser posso colocar
 
 Regarding the \textit{Handshake Protocol}, we opted for sending $k$ \msg{ServerKeyExchange} and \msg{ClientKeyExchange} messages, instead of sending one single \msg{ServerKeyExchange}, and one single \msg{ClientKeyExchange}, each one with several parameters. This is due to the fact that it is easier to understand and to maintain the code. If $k$ needs to be increased, just send an additional message instead of changing the code related to sending and retrieving \msg{ServerKeyExchange} and \msg{ClientKeyExchange} messages.
 
@@ -652,6 +798,9 @@ In the best case, the number of packets is the same for OpenSSL and \textsc{vtTL
 \section{Experimental Evaluation}
 \label{sec-evaluation}
 
+%amj: para todas as medidas fazer intervalo de confiança
+%amj: explorar mais macro benchmarks (lighttpd) - comparar http/https(openssl)/https(vttls)
+
 We evaluated \textsc{vtTLS} in terms of two aspects: \textit{performance} and \textit{costs}.
 We considered OpenSSL 1.0.2g as the baseline, due to the fact that \textsc{vtTLS} is based on that version of OpenSSL.
 
@@ -667,13 +816,14 @@ In order to perform this tests, we used two virtual machines in the same Intel c
 In order to evaluate \textsc{vtTLS}' performance, we executed several tests. The main goal was to understand if the overhead of \textsc{vtTLS} is lower, equal, or bigger than $k$ times in relation to OpenSSL.
 We configured \textsc{vtTLS} to use the following cipher suites:
 \suite{TLS\_RSA\_WITH\_AES\_256\_GCM\_SHA384} and
-\suite{TLS\_ECDH\_ECDSA\_WITH\_AES\_256\_GCM\_SHA384}. The suite used with OpenSSL was the second. 
-
+\suite{TLS\_ECDH\_ECDSA\_WITH\_AES\_256\_GCM\_SHA384}. The suite used with OpenSSL was the later. 
 
 \subsubsection{Handshake}
 
 To evaluate the performance of the handshake, we executed 100 times the Handhake Protocol of both \textsc{vtTLS} and  OpenSSL.
 In average, the \textsc{vtTLS}' handshake took 3.909 milliseconds to conclude and the OpenSSL's handshake 2.345 milliseconds. Therefore, the \textsc{vtTLS}'s Handshake takes 66.7\% longer than OpenSSL's Handshake. The \textsc{vtTLS}' Handshake is only 1.67 slower than the OpenSSL's Handshake, which is better than the worst case, 2 times.
+
+%amj: todo: inserir tabela com os valores + stdev + ic (95%)
 
 
 \subsection{Data Communication}
@@ -682,30 +832,49 @@ After evaluating the Handshake, we performed data communication tests to assess 
 For this test, we considered a sample of 100 messages sent and received using \textsc{vtTLS}, and other 100 messages sent and received using OpenSSL. 
 
 \begin{figure}[t]
-\includegraphics[width=\columnwidth]{eval_time_2_bw}
+\includegraphics[width=\columnwidth]{eval_time_4_bw_IC}
 \centering
-\caption{Comparison between the time it takes to send and receive a message using \textsc{vtTLS} and OpenSSL 1.0.2g.}
+\caption{Comparison between the time it takes to send and receive a message using \textsc{vtTLS} and OpenSSL.}
 \label{fig:eval_time_2}
 \end{figure}
+
+%mpc: fazer também uma tabela com estes números
+%amj: todo: inserir tabela com os valores + stdev + ic (95%)
 
 Figure \ref{fig:eval_time_2} shows the comparison between the time it takes to send and receive a message using \textsc{vtTLS} and
 %the time it takes to send, and receive, the same message
 OpenSSL/TLS.
 The measurements concern the time each channel needs to perform the local operations in order to send the message (including encryption, signing, second encryption and second signing). These values do not include the time taken by the message to reach its destination through the network. The timer is started before the call to \suite{SSL\_write} and stopped after the function returns.
-As for the results regarding the reception of messages, the measured time is the time taken to perform the operations necessary to retrieve the message (including second decrypting and second verifying), i.e., the time of execution of \suite{SSL\_read}. 
-%amj: já alterei os valores que tinha virgula para ponto, acho que nao me escapou nenhum ok
+As for the results regarding the reception of messages, the measured time is the time taken to perform the operations necessary to retrieve the message (including second decrypting and second verifying), i.e. the time of execution of \suite{SSL\_read}.
+
+%amj: explicacao do SSL_read e write ser bloqueante
+This methodology is only possible due to the fact that \suite{SSL\_write} is a synchronous call. It only returns after writing the message to the buffer. And also due to the fact that \suite{SSL\_read} is also synchronous as it only returns when the message is read.
 
 In average, a message sent through a \textsc{vtTLS} channel takes 22.88\% longer than a message sent with OpenSSL. For example, a 50 MB message takes, in average $534.55$ ms to be sent with \textsc{vtTLS}. Using OpenSSL, the same message takes $435.01$ ms to be sent.
 The overhead generated by using diverse encryption and signing mechanisms exists, as expected, but it is much smaller than the worst case.
 
+
+
 In Section \ref{sec-implementation}, we  do an analysis of the expected message size increase. In order to validate the premise that the message increase is the same considering the same message size, we measured the increase in the message size comparing once again \textsc{vtTLS} and OpenSSL channels.
 A 100 KB plaintext message converts into a ciphertext of $102,771$ bytes  with \textsc{vtTLS}. Using OpenSSL, the same message corresponds to a ciphertext of $102,603$ bytes. Concluding, sending a 100 KB message through \textsc{vtTLS} costs an additional $168$ bytes. Although, as stated before, the number of extra bytes sent is not directly proportional to the message size.
 
+%amj: todo: inserir tabela com os valores + stdev + ic (95%)
+
+
 We also evaluated the message size of the ciphertext of a 1 MB plaintext message. A 1 MB plaintext message corresponds to a ciphertext of $1,029,054$ bytes using \textsc{vtTLS}, while using OpenSSL the same message converts into a message of $1,025,856$ bytes. Concluding, sending 1 MB through a \textsc{vtTLS} channel costs an additional $3,198$ bytes than using a OpenSSL channel.
+
+%amj: todo: inserir tabela com os valores + stdev + ic (95%)
+
+
+%amj: nao vale a pena medir a latencia: 
+%1. medir a latencia numa so direccao é dificil
+%2. o tcp faz controle de congestão (ajusta o ritmo que envia) por isso a latencia
+
+We chose not to evaluate latency of the communication using \textsc{vtTLS}. Latency is defined as the time interval between a request and response. \textsc{vtTLS}, as OpenSSL, does not respond to requests by default. Additionally, measuring latency in one-way communications is very difficult. Although, some protocols for communication which use secure channels, such as HTTPS, respond to requests, but this is not the case of standalone \textsc{vtTLS}.
+
 
 \subsection{Cost}
 
-%\textsc{vtTLS} is a communication channel which objective is to provide a vulnerability-tolerant channel, using diversity and redundancy, to provide security. Nevertheless, %mpc: já tinhas dito isto muitas vezes
 Similarly to TLS, \textsc{vtTLS} uses certificates that require some management effort and costs.
 A server using OpenSSL/ TLS to protect the communication with clients needs only one certificate. If the administrator decides to use \textsc{vtTLS} instead of TLS, at least $2$ certificates are needed for maximum diversity.
 %and at maximum, $k$ certificates.
@@ -724,10 +893,7 @@ Regarding management, there is the need to manage two certificates instead of on
 %We used a default diversity factor $k = 2$ for \textsc{vtTLS}, and the preferred cipher suite to use with a \textsc{vtTLS} are \suite{TLS\_ECDHE\_ECDSA\_WITH\_AES\_256\_GCM\_SHA384} and \suite{TLS\_RSA\_WITH\_AES\_128\_CBC\_SHA256}. 
 In order to evaluate our solution, we compared it to an OpenSSL 1.0.2g communication channel. While expected to be $k = 2$ times slower than an OpenSSL channel, the evaluation showed that using diversity and redundancy of cryptographic mechanisms in \textsc{vtTLS} does not generate such a high overhead. \textsc{vtTLS} takes, in average, 22.88\% longer to send a message than TLS/OpenSSL, but considering the increase in security, this overhead is acceptable.
 Overall, considering the additional costs of having an extra certificate, the time increase, and potential management costs,  \textsc{vtTLS} seems to provide an interesting trade-off for a set of critical applications.
-%for clouds to communicate,
-%amj: "good" não me parece um adjetivo muito... científico
-%mpc: pois; resolvi
-%using diversity to mitigate existent vulnerabilities.
+%for clouds to communicate, using diversity to mitigate existent vulnerabilities.
 
 %\end{document}  % This is where a 'short' article might terminate
 
